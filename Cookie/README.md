@@ -4,7 +4,7 @@ Http
 
 [![Build Status](https://travis-ci.org/Molajo/Http.png?branch=master)](https://travis-ci.org/Molajo/Http)
 
-Molajo Http: Client, Cookies, File Upload, Headers, Redirect, Request, Response, Server, Session Classes
+Molajo Http: Cookie, Cookies, File Upload, Headers, Redirect, Cookie, Response, Server, Session Classes
 <pre>
 URI Syntax (RFC 3986)
 
@@ -47,10 +47,10 @@ fragment        #fragment
 
 #### Results ####
 
-The output from the component action request, along with relevant data, can be accessed from the returned
+The output from the component action Cookie, along with relevant data, can be accessed from the returned
 object, as follows:
 
-**Action Results:** For any request where data is to be returned, this example shows how to retrieve the output:
+**Action Results:** For any Cookie where data is to be returned, this example shows how to retrieve the output:
 
 ```php
     echo $adapter->ct->field;
@@ -115,10 +115,10 @@ Molajo Project adopted the following:
  * [Packagist] (https://packagist.org)
 
 
-Submitting pull requests and features
+Submitting pull Cookies and features
 ------------------------------------
 
-Pull requests [GitHub](https://github.com/Molajo/Fileservices/pulls)
+Pull Cookies [GitHub](https://github.com/Molajo/Fileservices/pulls)
 
 Features [GitHub](https://github.com/Molajo/Fileservices/issues)
 

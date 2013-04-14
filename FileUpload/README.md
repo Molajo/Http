@@ -4,7 +4,7 @@ Http
 
 [![Build Status](https://travis-ci.org/Molajo/Http.png?branch=master)](https://travis-ci.org/Molajo/Http)
 
-Molajo Http: Client, Cookies, File Upload, Headers, Redirect, Request, Response, Server, Session Classes
+Molajo Http: FileUpload, Cookies, File Upload, Headers, Redirect, Request, Response, Server, Session Classes
 <pre>
 URI Syntax (RFC 3986)
 
