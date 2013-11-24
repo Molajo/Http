@@ -1,0 +1,22 @@
+<html>
+<head><title>Molajo FileUpload Package</title></head>
+<body>
+<h2>Molajo Upload Multiple Files Example</h2>
+
+<form name='UploadFile' enctype='multipart/form-data' action='UploadMultiple.php' method='POST'>
+    Choose file(s) to upload:<br/>
+    <input type="file" name="UploadFile[]" id="proof" required
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon"><br/>
+    <input type="file" name="UploadFile[]" id="proof"
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon"><br/>
+    <input type="file" name="UploadFile[]" id="proof"
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon"><br/>
+    <input type="file" name="UploadFile[]" id="proof"
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon"><br/>
+    <input type="file" name="UploadFile[]" id="proof"
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon"><br/>
+    <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+    <button type='submit'>Upload File(s)</button>
+</form>
+</body>
+</html>

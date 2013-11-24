@@ -2,9 +2,9 @@
 /**
  * Client Service Dependency Injector
  *
- * @package   Molajo
- * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright 2013 Amy Stephen. All rights reserved.
+ * @package    Molajo
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+ * @copyright  2013 Amy Stephen. All rights reserved.
  *
  */
 namespace Molajo\Tests;
@@ -27,11 +27,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $_SERVER['HTTP_CLIENT_IP'] = '127.0.0.1';
-        $_SERVER['REMOTE_HOST'] = 'xyz';
+        $_SERVER['HTTP_CLIENT_IP']        = '127.0.0.1';
+        $_SERVER['REMOTE_HOST']           = 'xyz';
         $_SERVER['HTTP_X_REQUESTED_WITH'] = 'xmlhttprequest';
-        $_SERVER['HTTP_HOST'] = 0;  //not cli
-        $_SERVER['HTTP_USER_AGENT'] = 'macintosh|mac os x firefox';
+        $_SERVER['HTTP_HOST']             = 0; //not cli
+        $_SERVER['HTTP_USER_AGENT']       = 'macintosh|mac os x firefox';
 
         $this->object = new Client();
     }
@@ -64,6 +64,5 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
     }
 }

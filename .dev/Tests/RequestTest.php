@@ -2,9 +2,9 @@
 /**
  * Request Service Dependency Injector
  *
- * @package   Molajo
- * @license   http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright 2013 Amy Stephen. All rights reserved.
+ * @package    Molajo
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
+ * @copyright  2013 Amy Stephen. All rights reserved.
  *
  */
 namespace Molajo\Tests;
@@ -28,16 +28,16 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $_SERVER['REQUEST_METHOD'] = 'GET';
-        $_SERVER['REQUEST_URI'] = 'http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value&amy=first#fragment';
-        $_SERVER['HTTPS'] = NULL;
-        $_SERVER['SERVER_PORT'] = 80;
-        $_SERVER['PHP_AUTH_USER'] = 'molajo';
-        $_SERVER['PHP_AUTH_PW'] = 'crocodile';
-        $_SERVER['HTTP_HOST'] = 'molajo.org';
-        $_SERVER['QUERY_STRING'] = 'name=value&amy=first';
+        $_SERVER['REQUEST_METHOD']  = 'GET';
+        $_SERVER['REQUEST_URI']     = 'http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value&amy=first#fragment';
+        $_SERVER['HTTPS']           = null;
+        $_SERVER['SERVER_PORT']     = 80;
+        $_SERVER['PHP_AUTH_USER']   = 'molajo';
+        $_SERVER['PHP_AUTH_PW']     = 'crocodile';
+        $_SERVER['HTTP_HOST']       = 'molajo.org';
+        $_SERVER['QUERY_STRING']    = 'name=value&amy=first';
         $_SERVER['SCRIPT_FILENAME'] = '';
-        $_SERVER['CONTENT_TYPE'] = 'text/html';
+        $_SERVER['CONTENT_TYPE']    = 'text/html';
 
         $this->object = new Request();
     }
@@ -49,12 +49,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet($key = null, $default = null, $filter = 'Alphanumeric', $filter_options = array())
     {
-        $key = 'fragment';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'fragment';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('fragment',
+        $this->assertEquals(
+            'fragment',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -66,15 +67,16 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testSet()
     {
-        $key = 'fragment';
-        $value = 'dog';
-        $default = '';
-        $filter = 'Alphanumeric';
+        $key            = 'fragment';
+        $value          = 'dog';
+        $default        = '';
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
         $this->object->set($key, $value);
 
-        $this->assertEquals('dog',
+        $this->assertEquals(
+            'dog',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -86,12 +88,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMethod()
     {
-        $key = 'method';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'method';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('GET',
+        $this->assertEquals(
+            'GET',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -103,12 +106,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUri()
     {
-        $key = 'uri';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'uri';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value&amy=first#fragment',
+        $this->assertEquals(
+            'http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value&amy=first#fragment',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -120,12 +124,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetScheme()
     {
-        $key = 'scheme';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'scheme';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('http://',
+        $this->assertEquals(
+            'http://',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -137,12 +142,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUser()
     {
-        $key = 'user';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'user';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('molajo',
+        $this->assertEquals(
+            'molajo',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -154,12 +160,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPassword()
     {
-        $key = 'password';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'password';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('crocodile',
+        $this->assertEquals(
+            'crocodile',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -171,12 +178,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetHost()
     {
-        $key = 'host';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'host';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('molajo.org',
+        $this->assertEquals(
+            'molajo.org',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -188,12 +196,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPort()
     {
-        $key = 'port';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'port';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('80',
+        $this->assertEquals(
+            '80',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -205,12 +214,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAuthority()
     {
-        $key = 'authority';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'authority';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('molajo:crocodile/molajo.org',
+        $this->assertEquals(
+            'molajo:crocodile/molajo.org',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -222,12 +232,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPath()
     {
-        $key = 'path';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'path';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('base/path',
+        $this->assertEquals(
+            'base/path',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -239,12 +250,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetQueryString()
     {
-        $key = 'query_string';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'query_string';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('name=value&amy=first',
+        $this->assertEquals(
+            'name=value&amy=first',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -256,12 +268,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetContentType()
     {
-        $key = 'mimetype';
-        $default = null;
-        $filter = 'Alphanumeric';
+        $key            = 'mimetype';
+        $default        = null;
+        $filter         = 'Alphanumeric';
         $filter_options = array();
 
-        $this->assertEquals('php',
+        $this->assertEquals(
+            'php',
             $this->object->get($key, $default, $filter, $filter_options)
         );
     }
@@ -272,6 +285,5 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
     }
 }

@@ -1,0 +1,14 @@
+<html>
+<head><title>Molajo FileUpload Package</title></head>
+<body>
+<h2>Molajo FileUpload Example</h2>
+
+<form name='UploadFile' enctype='multipart/form-data' action='Upload.php' method='POST'>
+    Choose a file to upload:
+    <input type="file" name="UploadFile" id="proof" required
+           accept="image/bmp, image/gif, image/jpeg, image/png, image/tiff, image/x-icon">
+    <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
+    <button type='submit'>Upload File</button>
+</form>
+</body>
+</html>

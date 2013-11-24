@@ -149,7 +149,7 @@ class UserCookiesTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Molajo\Http\Cookie\Cookie::get
-     * @expectedException  Molajo\Http\Cookie\Exception\CookieException
+     * @expectedException  Exception\Http\CookieException
      */
     public function testGetFail()
     {
@@ -177,7 +177,7 @@ class UserCookiesTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Molajo\Http\Cookie\Cookie::delete
-     * @expectedException  Molajo\Http\Cookie\Exception\CookieException
+     * @expectedException  Exception\Http\CookieException
      */
     public function testDelete()
     {
@@ -216,5 +216,4 @@ class UserCookiesTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
     }
-
 }

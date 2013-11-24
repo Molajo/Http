@@ -1,0 +1,30 @@
+{
+    "name": "molajo/fileupload",
+    "type": "molajo-bundle",
+    "description": "Molajo FileUpload: PHP platform independent File Upload and Validation Package",
+    "keywords": ["FileUpload", "Molajo", "PSR-0"],
+    "homepage": "http://github.com/Molajo/FileUpload",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amy Stephen",
+            "email": "AmyStephen@gmail.com",
+            "homepage": "http://AmyStephen.github.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.10"
+    },
+    "suggest": {
+        "molajo/filesystem": "Can be used in conjunction Molajo Filesystem to upload files into various systems"
+    },
+    "support": {
+        "email": "hello@molajo.org",
+        "irc": "irc://irc.freenode.org/molajo"
+    },
+    "autoload": {
+        "psr-0": {
+            "Molajo\\FileUpload": "./"
+        }
+    }
+}

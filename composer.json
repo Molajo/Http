@@ -1,39 +1,29 @@
 {
     "name": "molajo/http",
     "type": "molajo-bundle",
-    "description": "Molajo Http: Client, Cookies, File Upload, Headers, Redirect, Request, Response, Server, Session Classes",
-    "keywords": ["Http", "Molajo", "PSR-0"],
+    "description": "Molajo Http: Client, File Upload, Redirect, Request, Response, Server",
+    "keywords": ["Http", "CommonApi", "Molajo"],
     "homepage": "http://github.com/Molajo/Http",
     "license": "MIT",
     "authors": [
         {
             "name": "Amy Stephen",
             "email": "AmyStephen@gmail.com",
-            "homepage": "http://AmyStephen.github.com"
-        },
-        {
-            "name": "Other Contributors",
-            "homepage": "http://github.com/Molajo/Component/contributors"
+            "homepage": "http://AmyStephen.github.io"
         }
     ],
     "require": {
-        "php": ">=5.3"
+        "php": ">=5.3.10",
+        "commonapi/filesystem": "dev-master"
     },
 
     "support": {
-        "email": "hello@molajo.org",
+        "event": "hello@molajo.org",
         "irc": "irc://irc.freenode.org/molajo"
     },
-    "target-dir": "Molajo/Http",
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Molajo\\Http": "./"
-        }
-    },
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.1.0-dev"
         }
     }
 }

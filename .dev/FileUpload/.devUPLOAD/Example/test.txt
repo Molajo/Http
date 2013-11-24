@@ -1,0 +1,12 @@
+
+if (function_exists('ini_set')) {
+    // The temporary directory used for storing files when doing file upload.
+    // Must be writable by whatever user PHP is running as. If not specified PHP will use the system's default.
+    ini_set('upload_tmp_dir', __DIR__ . '/Temp');
+    // Whether or not to allow HTTP file uploads.
+    ini_set('file_uploads', 1);
+    // The maximum size of an uploaded file.
+    ini_set('upload_max_filesize', '2M');
+    // The maximum number of files allowed to be uploaded simultaneously.
+    ini_set('max_file_uploads', '20');
+}
