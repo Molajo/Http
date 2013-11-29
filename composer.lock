@@ -1,0 +1,113 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "5bf7d7da9a44117be9719e2f5f355f46",
+    "packages": [
+        {
+            "name": "commonapi/exception",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CommonApi/Exception.git",
+                "reference": "28ad30ec17ef62c90a86b87aa5ee41d37828c435"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CommonApi/Exception/zipball/28ad30ec17ef62c90a86b87aa5ee41d37828c435",
+                "reference": "28ad30ec17ef62c90a86b87aa5ee41d37828c435",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.10"
+            },
+            "type": "api",
+            "autoload": {
+                "psr-0": {
+                    "CommonApi\\Exception\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AmyStephen",
+                    "email": "AmyStephen@gmail.com",
+                    "homepage": "http://Molajo.org"
+                }
+            ],
+            "description": "Common Exception Api Interface",
+            "homepage": "https://github.com/CommonApi/Exception",
+            "keywords": [
+                "CommonApi",
+                "api",
+                "exception"
+            ],
+            "time": "2013-11-23 06:20:36"
+        },
+        {
+            "name": "commonapi/http",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CommonApi/Http.git",
+                "reference": "de1d445f19034b0e3b4050def93f97986a1b02e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CommonApi/Http/zipball/de1d445f19034b0e3b4050def93f97986a1b02e4",
+                "reference": "de1d445f19034b0e3b4050def93f97986a1b02e4",
+                "shasum": ""
+            },
+            "require": {
+                "commonapi/exception": ">=0.1",
+                "php": ">=5.3.10"
+            },
+            "type": "api",
+            "autoload": {
+                "psr-0": {
+                    "CommonApi\\Http\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AmyStephen",
+                    "email": "AmyStephen@Molajo.org",
+                    "homepage": "http://Molajo.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Common Http Api Interface",
+            "homepage": "https://github.com/CommonApi/Http",
+            "keywords": [
+                "CommonApi",
+                "api",
+                "http"
+            ],
+            "time": "2013-11-29 12:58:42"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "commonapi/http": 20
+    },
+    "platform": {
+        "php": ">=5.3.10"
+    },
+    "platform-dev": [
+
+    ]
+}

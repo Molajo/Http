@@ -1,62 +1,39 @@
 <?php
 /**
- * Http
+ * Fieldhandler
  *
  * @package    Molajo
  * @copyright  2013 Amy Stephen. All rights reserved.
- * @license    MIT
+ * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
+include_once __DIR__ . '/CreateClassMap.php';
 
-if (substr($_SERVER['DOCUMENT_ROOT'], - 1) == '/') {
-    define('ROOT_FOLDER', $_SERVER['DOCUMENT_ROOT']);
-} else {
-    define('ROOT_FOLDER', $_SERVER['DOCUMENT_ROOT'] . '/');
+if (! defined('PHP_VERSION_ID')) {
+    $version = explode('.', phpversion());
+    define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
 }
 
-$base = substr(__DIR__, 0, strlen(__DIR__) - 5);
-define('BASE_FOLDER', $base);
-
-//include BASE_FOLDER . '/Tests/Testcase1/Data.php';
-
-$classMap = array(
-    'Molajo\\Http\\Client\\CommonApi\\ClientInterface'               => BASE_FOLDER . '/Client/Api/ClientInterface.php',
-    'Molajo\\Http\\Client\\Exception\\ClientException'         => BASE_FOLDER . '/Client/Exception/ClientException.php',
-    'Molajo\\Http\\Client\\Exception\\ExceptionInterface'      => BASE_FOLDER . '/Client/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\Client\\Client'                             => BASE_FOLDER . '/Client/Client.php',
-    'Molajo\\Http\\FileUpload\\CommonApi\\FileuploadInterface'       => BASE_FOLDER . '/FileUpload/Api/FileuploadInterface.php',
-    'Molajo\\Http\\FileUpload\\Exception\\FileUploadException' => BASE_FOLDER . '/FileUpload/Exception/FileUploadException.php',
-    'Molajo\\Http\\FileUpload\\Exception\\ExceptionInterface'  => BASE_FOLDER . '/FileUpload/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\FileUpload\\FileUpload'                     => BASE_FOLDER . '/FileUpload/FileUpload.php',
-    'Molajo\\Http\\Redirect\\CommonApi\\RedirectInterface'           => BASE_FOLDER . '/Redirect/Api/RedirectInterface.php',
-    'Molajo\\Http\\Redirect\\Exception\\RedirectException'     => BASE_FOLDER . '/Redirect/Exception/RedirectException.php',
-    'Molajo\\Http\\Redirect\\Exception\\ExceptionInterface'    => BASE_FOLDER . '/Redirect/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\Redirect\\Redirect'                         => BASE_FOLDER . '/Redirect/Redirect.php',
-    'Molajo\\Http\\Request\\CommonApi\\RequestInterface'             => BASE_FOLDER . '/Request/Api/RequestInterface.php',
-    'Molajo\\Http\\Request\\Exception\\RequestException'       => BASE_FOLDER . '/Request/Exception/RequestException.php',
-    'Molajo\\Http\\Request\\Exception\\ExceptionInterface'     => BASE_FOLDER . '/Request/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\Request\\Request'                           => BASE_FOLDER . '/Request/Request.php',
-    'Molajo\\Http\\Response\\CommonApi\\ResponseInterface'           => BASE_FOLDER . '/Response/Api/ResponseInterface.php',
-    'Molajo\\Http\\Response\\Exception\\ResponseException'     => BASE_FOLDER . '/Response/Exception/ResponseException.php',
-    'Molajo\\Http\\Response\\Exception\\ExceptionInterface'    => BASE_FOLDER . '/Response/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\Response\\Response'                         => BASE_FOLDER . '/Response/Response.php',
-    'Molajo\\Http\\Server\\CommonApi\\ServerInterface'               => BASE_FOLDER . '/Server/Api/ServerInterface.php',
-    'Molajo\\Http\\Server\\Exception\\ServerException'         => BASE_FOLDER . '/Server/Exception/ServerException.php',
-    'Molajo\\Http\\Server\\Exception\\ExceptionInterface'      => BASE_FOLDER . '/Server/Exception/ExceptionInterface.php',
-    'Molajo\\Http\\Server\\Server'                             => BASE_FOLDER . '/Server/Server.php'
+$base                               = substr(__DIR__, 0, strlen(__DIR__) - 5);
+$classmap                           = array();
+$classmap                           = createClassMap($base . '/vendor/commonapi/http', 'CommonApi\\Http\\');
+$results                            = createClassMap(
+    $base . '/vendor/commonapi/exception',
+    'CommonApi\\Exception\\'
 );
+$classmap                                  = array_merge($classmap, $results);
+
+$classmap['Molajo\\Http\\Client']   = $base . '/Client.php';
+$classmap['Molajo\\Http\\Redirect'] = $base . '/Redirect.php';
+$classmap['Molajo\\Http\\Request']  = $base . '/Request.php';
+$classmap['Molajo\\Http\\Response'] = $base . '/Response.php';
+$classmap['Molajo\\Http\\Server']   = $base . '/Server.php';
+$classmap['Molajo\\Http\\Upload']   = $base . '/Upload.php';
+ksort($classmap);
 
 spl_autoload_register(
-    function ($class) use ($classMap) {
-        if (array_key_exists($class, $classMap)) {
-            require_once $classMap[$class];
+    function ($class) use ($classmap) {
+        if (array_key_exists($class, $classmap)) {
+            require_once $classmap[$class];
         }
     }
 );
-
-/*
-include BASE_FOLDER . '/' . 'ClassLoader.php';
-$loader = new ClassLoader();
-$loader->add('Molajo', BASE_FOLDER . '/src/');
-$loader->add('Testcase1', BASE_FOLDER . '/Tests/');
-$loader->register();
-*/

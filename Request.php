@@ -9,10 +9,9 @@
 namespace Molajo\Http;
 
 use stdClass;
-use Exception;
-use Exception\Http\RequestException;
 use CommonApi\Http\RequestInterface;
 use CommonApi\Model\FieldhandlerInterface;
+use CommonApi\Exception\InvalidArgumentException;
 
 /**
  * Request Class
@@ -49,7 +48,27 @@ use CommonApi\Model\FieldhandlerInterface;
 class Request implements RequestInterface
 {
     /**
-     * Method - GET, HEAD, POST, DELETE, PUT. PATCH
+     * $server_object
+     *
+     * Injected copy of $_SERVER
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $server_object = null;
+
+    /**
+     * Request Uri
+     *
+     * base/path/index.php?name=value#fragment
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $uri = null;
+
+    /**
+     * Method - GET, HEAD, POST, DELETE, PUT, PATCH
      *
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
      *
@@ -57,16 +76,6 @@ class Request implements RequestInterface
      * @since  1.0
      */
     protected $method = null;
-
-    /**
-     * Request Uri
-     *
-     * http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value#fragment
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $uri = null;
 
     /**
      * Scheme - HTTP or HTTPS
@@ -84,7 +93,7 @@ class Request implements RequestInterface
      * @var    bool
      * @since  1.0
      */
-    protected $is_secure = 0;
+    protected $is_secure = false;
 
     /**
      * User
@@ -133,16 +142,6 @@ class Request implements RequestInterface
     protected $authority = null;
 
     /**
-     * Path
-     *
-     * ex base/path/
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $path = null;
-
-    /**
      * Query String
      *
      * ex name=value
@@ -155,39 +154,26 @@ class Request implements RequestInterface
     /**
      * Query Parameters
      *
+     * ex array('name' => value)
+     *
      * @var    array
+     *
      * @since  1.0
      */
-    protected $parameters = array();
+    protected $query_parameters = array();
 
     /**
-     * Fragment
-     *
-     * #fragment
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $fragment = null;
-
-    /**
-     * Content Type - mimetype
+     * Content Type
      *
      * @var    array
      * @since  1.0
      */
-    protected $mimetype = null;
-
-    /**
-     * Fieldhandler Instance
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $fieldhandler = null;
+    protected $content_type = null;
 
     /**
      * URL
+     *
+     * http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value#fragment
      *
      * @var    string
      * @since  1.0
@@ -197,10 +183,22 @@ class Request implements RequestInterface
     /**
      * Base Url
      *
+     * http://molajo:crocodile/molajo.org:80/
+     *
      * @var    string
      * @since  1.0
      */
     protected $base_url = null;
+
+    /**
+     * Path
+     *
+     * ex base/path/
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $path = null;
 
     /**
      * Property Array
@@ -209,10 +207,8 @@ class Request implements RequestInterface
      * @since  1.0
      */
     protected $property_array = array(
-        'method',
-        'url',
-        'base_url',
         'uri',
+        'method',
         'scheme',
         'is_secure',
         'user',
@@ -222,120 +218,84 @@ class Request implements RequestInterface
         'authority',
         'path',
         'query_string',
-        'parameters',
-        'fragment',
-        'mimetype'
+        'query_parameters',
+        'content_type',
+        'url',
+        'base_url'
     );
 
     /**
      * Construct
      *
-     * @param   FieldhandlerInterface $fieldhandler
+     * @param   object $server_object
      *
      * @since   1.0
      */
-    public function __construct(FieldhandlerInterface $fieldhandler)
-    {
-        $this->fieldhandler = $fieldhandler;
+    public function __construct(
+        $server_object = null
+    ) {
+        $this->server_object = $server_object;
 
-        $this->getMethod();
-        $this->getUri();
-        $this->getScheme();
-        $this->getUser();
-        $this->getPassword();
-        $this->getHost();
-        $this->getPort();
-        $this->getQueryString();
-        $this->getAuthority();
-        $this->getContentType();
-
-        $this->getFragment();
-        $this->getPath();
-        $this->getUrl();
-        $this->getBaseUrl();
+        $this->setMethod();
+        $this->setUri();
+        $this->setScheme();
+        $this->setIsSecure();
+        $this->setUser();
+        $this->setPassword();
+        $this->setHost();
+        $this->setPort();
+        $this->setQueryParameters();
+        $this->setQueryString();
+        $this->setAuthority();
+        $this->setContentType();
+        $this->setBaseUrl();
+        $this->setPath();
+        $this->setUrl();
     }
 
     /**
      * Get the current value (or default) of the specified key
      *
-     * @param   null   $key
-     * @param   null   $default
-     * @param   string $filter
-     * @param   array  $filter_options
-     *
-     * @return  mixed
+     * @return  object
      * @since   1.0
-     * @throws  RequestException
+     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
-    public function get($key = null, $default = null, $filter = 'Alphanumeric', $filter_options = array())
+    public function get()
     {
-        $key = strtolower($key);
+        $request = new stdClass();
 
-        if ((string)$key === '*' || trim($key) === '') {
-            $request = new stdClass();
-            foreach ($this->property_array as $key) {
-                $request->$key = $this->$key;
-            }
-            return $request;
+        foreach ($this->property_array as $key) {
+            $request->$key = $this->$key;
         }
 
-        if (in_array($key, $this->property_array)) {
-        } else {
-            throw new RequestException('Request: Unknown key: ' . $key);
-        }
-
-        if ($this->$key === null) {
-            $this->$key = $default;
-        }
-
-        return $this->$key;
-    }
-
-    /**
-     * Set the value of a specified key
-     *
-     * @param   string $key
-     * @param   mixed  $value
-     *
-     * @return  mixed
-     * @since   1.0
-     * @throws  RequestException
-     */
-    public function set($key, $value = null)
-    {
-        $key = strtolower($key);
-
-        if (in_array($key, $this->property_array)) {
-        } else {
-            throw new RequestException('Request: Set value for unknown key: ' . $key);
-        }
-
-        $this->$key = $value;
-
-        return $this->$key;
+        return $request;
     }
 
     /**
      * Get Request Method - 'GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH'
      *
-     * @return  mixed|string|array
+     * @return  $this
      * @since   1.0
-     * @throws  RequestException
+     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
-    public function getMethod()
+    protected function setMethod()
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-
-        $method_array = array('GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH');
-        if (in_array($method, $method_array)) {
+        if ($this->method === null) {
         } else {
-            throw new RequestException
-            ('Request: No ($_SERVER[REQUEST_METHOD] value: ' . $_SERVER['REQUEST_METHOD']);
+            return $this->method;
         }
 
-        $this->method = $method;
+        $this->method = $this->server_object['REQUEST_METHOD'];
 
-        return $method;
+        $method_array = array('GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH');
+
+        if (in_array($this->method, $method_array)) {
+        } else {
+            throw new InvalidArgumentException
+            ('Request: Invalid $_SERVER[REQUEST_METHOD] value: ' . $this->server_object['REQUEST_METHOD']);
+        }
+
+        return $this;
     }
 
     /**
@@ -343,157 +303,149 @@ class Request implements RequestInterface
      *
      * @return  string
      * @since   1.0
-     * @throws  RequestException
      */
-    public function getUri()
+    protected function setUri()
     {
         // Apache and IIS 6
-        if (isset($_SERVER['REQUEST_URI'])) {
-            $uri = $_SERVER['REQUEST_URI'];
-            // IIS 5 and PHP as CGI
-        } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
-            $uri = $_SERVER['ORIG_PATH_INFO'];
+        if (isset($this->server_object['REQUEST_URI'])) {
+            $uri = $this->server_object['REQUEST_URI'];
 
-            if (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] != '') {
-                $uri .= '?' . $_SERVER['QUERY_STRING'];
+            // IIS 5 and PHP as CGI
+        } elseif (isset($this->server_object['ORIG_PATH_INFO'])) {
+            $uri = $this->server_object['ORIG_PATH_INFO'];
+
+            if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
+                $uri .= '?' . $this->server_object['QUERY_STRING'];
             }
+
         } else {
             $uri = '';
         }
 
-        try {
-            $uri = $this->filter('uri', $uri, 'url', array());
-        } catch (Exception $e) {
-            throw new RequestException
-            ('Request: Filter class Failed for Key: uri Filter: uri ' . $uri . ' ' . $e->getMessage());
-        }
+        $uri = filter_var($uri, FILTER_SANITIZE_URL);
 
         $this->uri = $uri;
 
-        return $uri;
+        return $this;
     }
 
     /**
-     * Returns the Scheme - HTTP or HTTPS
+     * Set the scheme and secure values
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    public function getScheme()
+    protected function setScheme()
     {
         $scheme = 'http';
 
-        if (empty($_SERVER['HTTPS'])) {
+        if (empty($this->server_object['HTTPS'])) {
         } else {
-            $https = strtolower($_SERVER['HTTPS']);
+            $https = strtolower($this->server_object['HTTPS']);
 
             if ($https == 'on' || $https == '1') {
                 $scheme = 'https';
             }
         }
 
-        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+        if (isset($this->server_object['HTTP_X_FORWARDED_PROTO'])) {
 
-            $temp = strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']);
+            $temp = strtolower($this->server_object['HTTP_X_FORWARDED_PROTO']);
 
             if ($temp == 'https') {
                 $scheme = 'https';
             }
         }
 
-        if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443') {
+        if (isset($this->server_object['SERVER_PORT']) && $this->server_object['SERVER_PORT'] == '443') {
             $scheme = 'https';
         }
         $scheme .= '://';
+
         $this->scheme = $scheme;
 
-        if ($scheme == 'https://') {
+        return $this;
+    }
+
+    /**
+     * Set value indicating if request is a secure protocol
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setIsSecure()
+    {
+        if ($this->scheme == 'https://') {
             $this->secure = 1;
         } else {
             $this->secure = 0;
         }
 
-        return $scheme;
+        return $this;
     }
 
     /**
-     * Is a secure protocol used for the Request?
+     * Set the User
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    public function isSecure()
-    {
-        $this->getScheme();
-
-        return $this->secure;
-    }
-
-    /**
-     * Get the User
-     *
-     * @return  string
-     * @since   1.0
-     */
-    public function getUser()
+    protected function setUser()
     {
         $user = '';
 
-        if (isset($_SERVER['PHP_AUTH_USER'])) {
-            $user = $_SERVER['PHP_AUTH_USER'];
+        if (isset($this->server_object['PHP_AUTH_USER'])) {
+            $user = $this->server_object['PHP_AUTH_USER'];
         }
 
         $this->user = $user;
 
-        return $user;
+        return $this;
     }
 
     /**
-     * Get the Password
+     * Set the Password
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    public function getPassword()
+    protected function setPassword()
     {
         $password = '';
 
-        if (isset($_SERVER['PHP_AUTH_PW'])) {
-            $password = $_SERVER['PHP_AUTH_PW'];
+        if (isset($this->server_object['PHP_AUTH_PW'])) {
+            $password = $this->server_object['PHP_AUTH_PW'];
         }
 
         $this->password = $password;
 
-        return $password;
+        return $this;
     }
 
     /**
-     * Host
+     * Set and Filter Host (potentially set port)
      *
      * @return  string
      * @since   1.0
-     * @throws  RequestException
+     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
-    public function getHost()
+    protected function setHost()
     {
-        $this->getScheme();
-        $this->getUser();
-        $this->getPassword();
+        if (empty($this->server_object['HTTP_HOST'])) {
 
-        if (empty($_SERVER['HTTP_HOST'])) {
+            if (empty($this->server_object['SERVER_NAME'])) {
 
-            if (empty($_SERVER['SERVER_NAME'])) {
-
-                if (empty($_SERVER['SERVER_ADDRESS'])) {
+                if (empty($this->server_object['SERVER_ADDRESS'])) {
                     $host = '';
                 } else {
-                    $host = $_SERVER['SERVER_ADDRESS'];
+                    $host = $this->server_object['SERVER_ADDRESS'];
                 }
             } else {
-                $host = $_SERVER['SERVER_NAME'];
+                $host = $this->server_object['SERVER_NAME'];
             }
+
         } else {
-            $temp = explode(':', $_SERVER['HTTP_HOST']);
+            $temp = explode(':', $this->server_object['HTTP_HOST']);
             $host = $temp[0];
             if (isset($temp[1])) {
                 $port = (int)$temp[1];
@@ -505,30 +457,34 @@ class Request implements RequestInterface
 
         if (preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $host)) {
         } else {
-            throw new RequestException
+            throw new InvalidArgumentException
             ('Request: Host value is invalid: ' . $host);
         }
 
         $this->host = $host;
 
-        return $host;
+        return $this;
     }
 
     /**
-     * Port
+     * Set Port
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    public function getPort()
+    protected function setPort()
     {
-        if (empty($_SERVER['SERVER_PORT'])) {
-            $port = '';
+        if ($this->port === null) {
         } else {
-            $port = $_SERVER['SERVER_PORT'];
+            // set in setHost
+            return $this;
         }
 
-        $this->getHost();
+        if (empty($this->server_object['SERVER_PORT'])) {
+            $port = '';
+        } else {
+            $port = $this->server_object['SERVER_PORT'];
+        }
 
         if ($this->scheme == 'https' && $port == '443') {
             $port = '';
@@ -537,30 +493,94 @@ class Request implements RequestInterface
             $port = '';
         }
 
-        if ((int)$this->port == 0) {
-            $this->port = $port;
-        }
+        $this->port = $port;
 
-        return $port;
+        return $this;
     }
 
     /**
-     * Authority
+     * Builds query parameters array with sorted key/value pairs
      *
-     * @var     string
+     * @return  $this
      * @since   1.0
      */
-    public function getAuthority()
+    protected function setQueryParameters()
     {
-        $auth = $this->getUser();
+        $query_string = $this->server_object['QUERY_STRING'];
+
+        if ($query_string == '') {
+            $this->query_parameters = array();
+
+            return $this;
+        }
+
+        $parameter_pairs = array();
+        $parts           = explode("&", $this->server_object['QUERY_STRING']);
+
+        if (is_array($parts) && count($parts) > 0) {
+            foreach ($parts as $keyAndValue) {
+                $pair                  = explode('=', $keyAndValue);
+                $key                   = rawurlencode(urldecode($pair[0]));
+                $value                 = rawurlencode(urldecode($pair[1]));
+                $parameter_pairs[$key] = $value;
+            }
+        }
+
+        if (count($parameter_pairs) > 0) {
+        } else {
+            $this->query_parameters = array();
+            return $this;
+        }
+
+        ksort($parameter_pairs);
+
+        $this->query_parameters = $parameter_pairs;
+
+        return $this;
+    }
+
+    /**
+     * Set normalized query string with sorted key/value pairs
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setQueryString()
+    {
+        $this->query_string = '';
+
+        if (count($this->query_parameters) === 0) {
+            return $this;
+        }
+
+        foreach ($this->query_parameters as $key => $value) {
+            if ($this->query_string === '') {
+            } else {
+                $this->query_string .= '&';
+            }
+            $this->query_string .= $key . '=' . $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set Authority
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setAuthority()
+    {
+        $auth = $this->user;
 
         if ($auth === '') {
         } else {
             $auth .= ':';
-            $auth .= $this->getPassword() . '/';
+            $auth .= $this->password . '/';
         }
 
-        $port = $this->getPort();
+        $port = $this->port;
 
         if ($port == '' || $port == 80 || $port == 443) {
             $port = '';
@@ -569,213 +589,95 @@ class Request implements RequestInterface
         }
 
         $authority = $auth;
-        $authority .= $this->getHost();
+        $authority .= $this->host;
         $authority .= $port;
 
         $this->authority = $authority;
 
-        return $authority;
+        return $this;
     }
 
     /**
-     * Builds normalized query string with alphabetized key/value pairs
+     * Set Content Type
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    public function getQueryString()
+    protected function setContentType()
     {
-        $query_string = $_SERVER['QUERY_STRING'];
+        $content_type_array = preg_split('/\s*[;,]\s*/', $this->server_object['HTTP_ACCEPT']);
 
-        if ($query_string == '') {
-            $this->query_string = '';
-            $this->parameters   = array();
-            return '';
-        }
+        $this->content_type = strtolower($content_type_array[0]);
 
-        $parameter_pairs = array();
-        $parameter_keys  = array();
-        $parts           = explode("&", $_SERVER['QUERY_STRING']);
+        return $this;
+    }
 
-        if (is_array($parts) && count($parts) > 0) {
-            foreach ($parts as $keyAndValue) {
-                $pair                  = explode('=', $keyAndValue);
-                $key                   = rawurlencode(urldecode($pair[0]));
-                $value                 = rawurlencode(urldecode($pair[1]));
-                $parameter_pairs[$key] = $value;
-                $parameter_keys[]      = $key;
-            }
-        }
+    /**
+     * Sets Base Url Value
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setBaseUrl()
+    {
+        $base_url = $this->scheme;
+        $base_url .= $this->authority;
 
-        if (count($parameter_pairs) > 0) {
+        if ($this->port == '' || $this->port == 80 || $this->port == 443) {
         } else {
-            $this->query_string = '';
-            $this->parameters   = array();
-            return '';
+            $base_url .= ':' . $this->port;
         }
 
-        array_multisort($parameter_keys, SORT_ASC, $parameter_pairs);
+        $this->base_url = $base_url;
 
-        $this->query_string = $query_string;
-        $this->parameters   = $parameter_pairs;
-
-        return $query_string;
-    }
-
-    /**
-     * Content Type
-     *
-     * @var     string
-     * @since   1.0
-     */
-    public function getContentType()
-    {
-        $content_type_array = preg_split('/\s*[;,]\s*/', $_SERVER['HTTP_ACCEPT']);
-
-        $this->mimetype = strtolower($content_type_array[0]);
-
-        return strtolower($content_type_array[0]);
-    }
-
-    /**
-     * Returns the Fragment
-     *
-     * @return  string
-     * @since   1.0
-     */
-    public function getFragment()
-    {
-        $uri = $this->getUri();
-
-        // todo: What????
-
-        if (isset($parsed['fragment'])) {
-            $fragment = $parsed['fragment'];
-        } else {
-            $fragment = '';
-        }
-
-        $this->fragment = $fragment;
-
-        return $fragment;
+        return $this;
     }
 
     /**
      * Returns Path
      *
-     * @var     string
+     * @return  $this
      * @since   1.0
      */
-    public function getPath()
+    protected function setPath()
     {
-        $uri = $this->getUri();
+        $path = $this->uri;
 
-        $path = $uri;
-
-        $path = ltrim($path, '/');
-
-        $fragment = $this->getFragment();
-
-        if ($fragment == '') {
-        } else {
-            $fragment = '#' . $fragment;
+        if (strpos($path, '?')) {
+            $path = substr($path, 0, strpos($path, '?'));
         }
-
-        $path = rtrim($path, $fragment);
-
-        $query_string = $this->getQueryString();
-        $path         = rtrim($path, $query_string);
-        $path         = rtrim($path, '?');
-
         if (strpos($path, 'index.php')) {
-            $path = substr($path, 0, strlen($path) - strlen('index.php'));
+            $path = substr($path, 0, strpos($path, 'index.php'));
         }
-
         $path = rtrim($path, '/');
 
         $this->path = $path;
 
-        return $path;
+        return $this;
     }
 
     /**
-     * Returns Url
+     * Sets Url Value
      *
-     * @var     string
+     * @return  $this
      * @since   1.0
      */
-    public function getUrl()
+    protected function setUrl()
     {
-        $url = $this->getScheme();
+        $url = $this->base_url;
 
-        $url .= $this->getHost();
+        $url .= $this->path;
 
-        if ($this->getPort() == '') {
-        } else {
-            $url .= ':' . $this->getPort();
+        if (strpos($this->uri, 'index.php')) {
+            $url .= '/index.php';
         }
 
-        $uri = $this->getUri();
-
-        $port = $this->getPort();
-        if ($port == '' || $port == 80 || $port == 443) {
-        } else {
-            $test = ':' . $port;
-            if (strpos($uri, $test)) {
-                $url .= ':' . $port;
-            }
-        }
-
-        $url .= $uri;
-
-        $fragment = $this->getFragment();
-        if ($fragment == '') {
-        } else {
-            $url .= '#' . $fragment;
+        if (strpos($this->uri, '?')) {
+            $url .= '?' . $this->query_string;
         }
 
         $this->url = $url;
 
-        return $url;
-    }
-
-    /**
-     * Returns Base Url
-     *
-     * @var     string
-     * @since   1.0
-     */
-    public function getBaseUrl()
-    {
-        $base_url = $this->getScheme();
-        $base_url .= $this->getAuthority();
-
-        $this->base_url = $base_url;
-
-        return $base_url;
-    }
-
-    /**
-     * Filter Input
-     *
-     * @param  string $key
-     * @param  mixed  $value
-     * @param  string $filter
-     * @param  array  $filter_options
-     *
-     * @return  mixed
-     * @since   1.0
-     * @throws  RequestException
-     */
-    protected function filter($key, $value = null, $filter, $filter_options)
-    {
-        try {
-            $value = $this->fieldhandler->filter($key, $value, $filter, $filter_options);
-        } catch (Exception $e) {
-            throw new RequestException
-            ('Request: Filter class Failed for Key: ' . $key . ' Filter: ' . $filter . ' ' . $e->getMessage());
-        }
-
-        return $value;
+        return $this;
     }
 }

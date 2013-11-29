@@ -10,7 +10,7 @@ namespace Molajo\Http;
 
 use stdClass;
 use CommonApi\Http\ClientInterface;
-use Exception\Http\ClientException;
+use CommonApi\Exception\InvalidArgumentException;
 
 /**
  * Http Client
@@ -22,6 +22,16 @@ use Exception\Http\ClientException;
  */
 class Client implements ClientInterface
 {
+    /**
+     * $server_object
+     *
+     * Injected copy of $_SERVER
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $server_object = null;
+
     /**
      * Ajax
      *
@@ -149,12 +159,17 @@ class Client implements ClientInterface
     );
 
     /**
-     * __construct
+     * Construct
+     *
+     * @param   object $server_object
      *
      * @since   1.0
      */
-    public function __construct()
-    {
+    protected function __construct(
+        $server_object = null
+    ) {
+        $this->server_object = $server_object;
+
         $this->getRemoteAddress();
         $this->getRemoteHost();
         $this->isAjax();
@@ -170,33 +185,17 @@ class Client implements ClientInterface
      *
      * @return  mixed
      * @since   1.0
-     * @throws  ClientException
+     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
-    public function get($key = null, $default = null)
+    public function get()
     {
-        $key = strtolower($key);
+        $results = new stdClass();
 
-        if ((string)$key === '*' || (string)$key == '') {
-
-            $results = new stdClass();
-
-            foreach ($this->property_array as $key) {
-                $results->$key = $this->$key;
-            }
-
-            return $results;
+        foreach ($this->property_array as $key) {
+            $results->$key = $this->$key;
         }
 
-        if (in_array($key, $this->property_array)) {
-        } else {
-            throw new ClientException('Client: Get for unknown key: ' . $key);
-        }
-
-        if ($this->$key === null) {
-            $this->$key = $default;
-        }
-
-        return $this->$key;
+        return $results;
     }
 
     /**
@@ -207,15 +206,15 @@ class Client implements ClientInterface
      */
     protected function getRemoteAddress()
     {
-        if (empty($_SERVER['HTTP_CLIENT_IP'])) {
-        } else {
-            $remote_address = $_SERVER['HTTP_CLIENT_IP'];
-        }
+        if (empty($this->server_object['HTTP_CLIENT_IP'])) {
+            if (empty($this->server_object['HTTP_X_FORWARDED_FOR'])) {
+                $remote_address = $this->server_object['REMOTE_ADDR'];
+            } else {
+                $remote_address = $this->server_object['HTTP_X_FORWARDED_FOR'];
+            }
 
-        if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $remote_address = $_SERVER['REMOTE_ADDR'];
         } else {
-            $remote_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            $remote_address = $this->server_object['HTTP_CLIENT_IP'];
         }
 
         $this->remote_address = $remote_address;
@@ -231,10 +230,10 @@ class Client implements ClientInterface
      */
     protected function getRemoteHost()
     {
-        if (empty($_SERVER['REMOTE_HOST'])) {
+        if (empty($this->server_object['REMOTE_HOST'])) {
             $remote_host = '';
         } else {
-            $remote_host = $_SERVER['REMOTE_HOST'];
+            $remote_host = $this->server_object['REMOTE_HOST'];
         }
 
         $this->remote_host = $remote_host;
@@ -252,9 +251,9 @@ class Client implements ClientInterface
     {
         $ajax = 0;
 
-        if (empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+        if (empty($this->server_object['HTTP_X_REQUESTED_WITH'])) {
         } else {
-            if (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if (strtolower($this->server_object['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
                 $ajax = 1;
             }
         }
@@ -272,9 +271,7 @@ class Client implements ClientInterface
      */
     protected function isCli()
     {
-        $is_cli = 0;
-
-        if (isset($_SERVER['HTTP_HOST'])) {
+        if (isset($this->server_object['HTTP_HOST'])) {
             $this->is_cli = 0;
         } else {
             $this->is_cli = 1;
@@ -297,7 +294,7 @@ class Client implements ClientInterface
     {
         $user_agent = '';
 
-        if (empty($_SERVER['HTTP_USER_AGENT'])) {
+        if (empty($this->server_object['HTTP_USER_AGENT'])) {
             $platform        = 'unknown';
             $desktop         = 0;
             $browser         = 'unknown';
@@ -307,7 +304,7 @@ class Client implements ClientInterface
             $is_mobile       = 0;
             $device          = 'unknown';
         } else {
-            $user_agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+            $user_agent = strtolower($this->server_object['HTTP_USER_AGENT']);
 
             /** Platform approximations */
             if (preg_match('/linux/i', $user_agent)) {
