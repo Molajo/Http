@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Http.git",
-                "reference": "1d7ef4095e1e517c2a632755b7eb620e0c6b5d42"
+                "reference": "2da9bdc3b6cede2ed04dea074b25c1079a10dcfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Http/zipball/1d7ef4095e1e517c2a632755b7eb620e0c6b5d42",
-                "reference": "1d7ef4095e1e517c2a632755b7eb620e0c6b5d42",
+                "url": "https://api.github.com/repos/CommonApi/Http/zipball/2da9bdc3b6cede2ed04dea074b25c1079a10dcfd",
+                "reference": "2da9bdc3b6cede2ed04dea074b25c1079a10dcfd",
                 "shasum": ""
             },
             "require": {
@@ -78,9 +78,9 @@
             ],
             "authors": [
                 {
-                    "name": "Amy Stephen",
+                    "name": "AmyStephen",
                     "email": "AmyStephen@Molajo.org",
-                    "homepage": "http://AmyStephen.com",
+                    "homepage": "http://Molajo.org",
                     "role": "Developer"
                 }
             ],
@@ -91,7 +91,7 @@
                 "api",
                 "http"
             ],
-            "time": "2013-11-30 08:14:41"
+            "time": "2013-11-30 09:07:30"
         }
     ],
     "packages-dev": [

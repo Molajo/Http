@@ -48,8 +48,8 @@ Class Redirect implements RedirectInterface
      * @since   1.0
      */
     public function __construct(
-        $url = '',
-        $status_code = 0
+        $url = '\\',
+        $status_code = 301
     ) {
         $this->url          = $url;
         $this->status_code  = $status_code;
