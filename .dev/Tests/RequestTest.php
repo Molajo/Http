@@ -27,21 +27,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     protected $server_object;
 
     /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp()
-    {
-
-    }
-
-    /**
      * Get the current value (or default) of the specified key
      *
      * @covers Molajo\Http\Request\Adapter::getMethod
      */
     public function testGet($key = null, $default = null, $filter = 'Alphanumeric', $filter_options = array())
     {
+        foo://username:password@example.com:8042/over/there/index.dtb?type=animal&name=narwhal#nose
+
         $this->server_object['REQUEST_METHOD']  = 'GET';
         $this->server_object['REQUEST_URI']     = '/base/path/index.php?name=value&amy=first';
         $this->server_object['HTTPS']           = null;
@@ -74,13 +67,5 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('http://molajo:crocodile/molajo.org/base/path/index.php?amy=first&name=value', $request->url);
 
         return $this;
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown()
-    {
     }
 }

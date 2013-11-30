@@ -10,7 +10,6 @@ namespace Molajo\Http;
 
 use stdClass;
 use CommonApi\Http\RequestInterface;
-use CommonApi\Model\FieldhandlerInterface;
 use CommonApi\Exception\InvalidArgumentException;
 
 /**
@@ -21,28 +20,33 @@ use CommonApi\Exception\InvalidArgumentException;
  * @copyright  2013 Amy Stephen. All rights reserved.
  * @since      1.0
  *
- * URI Syntax (RFC 3986)
+ * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
  *
- * http://tools.ietf.org/html/rfc3986
+ * scheme://user:password@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
+ *          \___________/ \_________/ \__/            \___/ \_/ \______________________/ \__/
+ *             |               |       |               |    |            |                |
+ *          userinfo         host     port             |    |          query           fragment
+ *         \____________________________/\_____________|____|/  \__/ \____/ \__/ \____/
+ *                     |                          |    |    |    |    |      |     |
+ *                authority                     path   |    |    key  value  key   value
+ *         \___________________________________________|____|/
+ *                          |                          |    |
+ *                  hierarchical part              filename |
+ *                                                        extension
  *
- * method          GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH
- *
- * url             http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value#fragment
- * base_url        http://molajo:crocodile/molajo.org:80
- *
- * uri             base/path/index.php?name=value#fragment
+ * url             http://username:secret@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
  *
  * scheme          http://
- * user            molajo:
- * password        crocodile
- * host            molajo.org
- * port            :80
- * base path       base/path/index.php?name=value#fragment
- *
- * authority       molajo:crocodile@molajo.org:80
- * path            base/path/
- * query_string    name=value
- * fragment        #fragment
+ * user            username
+ * password        password
+ * userinfo        username:password
+ * host            example.com
+ * port            8042
+ * authority       user:password@example.com:8042
+ * path            /over/there/index.php
+ * query           type=animal&name=narwhal
+ * parameters      array('type' => 'animal', 'name' => 'narwhal')
+ * fragment        #nose
  *
  */
 class Request implements RequestInterface
@@ -58,16 +62,6 @@ class Request implements RequestInterface
     protected $server_object = null;
 
     /**
-     * Request Uri
-     *
-     * base/path/index.php?name=value#fragment
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $uri = null;
-
-    /**
      * Method - GET, HEAD, POST, DELETE, PUT, PATCH
      *
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
@@ -78,12 +72,38 @@ class Request implements RequestInterface
     protected $method = null;
 
     /**
-     * Scheme - HTTP or HTTPS
+     * Content Type
      *
-     * http://www.iana.org/assignments/uri-schemes.html
+     * @var    array
+     * @since  1.0
+     */
+    protected $content_type = null;
+
+    /**
+     * Temporary Work Value
      *
      * @var    string
      * @since  1.0
+     */
+    protected $working_request_uri = null;
+
+    /**
+     * URL
+     *
+     * @link     http://tools.ietf.org/html/rfc3986#section-3
+     * @example  http://username:secret@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
+     * @var      string
+     * @since    1.0
+     */
+    protected $url = null;
+
+    /**
+     * Scheme - HTTP or HTTPS
+     *
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.1
+     * @example  http
+     * @var      string
+     * @since    1.0
      */
     protected $scheme = null;
 
@@ -93,112 +113,107 @@ class Request implements RequestInterface
      * @var    bool
      * @since  1.0
      */
-    protected $is_secure = false;
+    protected $secure = false;
 
     /**
      * User
      *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2.1
+     * @example  username
+     * @var      string
+     * @since    1.0
      */
     protected $user = null;
 
     /**
      * Password
      *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2.1
+     * @example  secret
+     * @var      string
+     * @since    1.0
      */
     protected $password = null;
 
     /**
+     * Userinfo
+     *
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2.1
+     * @example  username:secret
+     * @var      string
+     * @since    1.0
+     */
+    protected $userinfo = null;
+
+    /**
      * Host
      *
-     * http://localhost:99/molajo/index.php returns http:://localhost:99 (non-standard port)
-     *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2.2
+     * @example  example.com
+     * @var      string
+     * @since    1.0
      */
     protected $host = null;
 
     /**
      * Port
      *
-     * http://localhost/molajo/index.php returns 80
-     *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2.3
+     * @example  8042
+     * @var      string
+     * @since    1.0
      */
     protected $port = null;
 
     /**
      * Authority
      *
-     * molajo:crocodile@molajo.org:80
-     *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2
+     * @example  user:password@example.com:8042
+     * @var      string
+     * @since    1.0
      */
     protected $authority = null;
 
     /**
-     * Query String
+     * Base URL
      *
-     * ex name=value
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $query_string = null;
-
-    /**
-     * Query Parameters
-     *
-     * ex array('name' => value)
-     *
-     * @var    array
-     *
-     * @since  1.0
-     */
-    protected $query_parameters = array();
-
-    /**
-     * Content Type
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $content_type = null;
-
-    /**
-     * URL
-     *
-     * http://molajo:crocodile/molajo.org:80/base/path/index.php?name=value#fragment
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $url = null;
-
-    /**
-     * Base Url
-     *
-     * http://molajo:crocodile/molajo.org:80/
-     *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.2
+     * @example  http://user:password@example.com:8042
+     * @var      string
+     * @since    1.0
      */
     protected $base_url = null;
 
     /**
      * Path
      *
-     * ex base/path/
-     *
-     * @var    string
-     * @since  1.0
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.3
+     * @example  /over/there/index.php
+     * @var      string
+     * @since    1.0
      */
     protected $path = null;
+
+    /**
+     * Query String
+     *
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.4
+     * @example  type=animal&name=narwhal
+     * @var      string
+     * @since    1.0
+     */
+    protected $query = null;
+
+    /**
+     * Query Parameters
+     *
+     * @link     http://tools.ietf.org/html/rfc3986#section-3.4
+     * @example  array('type' => 'animal', 'name' => 'narwhal')
+     * @var      array
+     * @since    1.0
+     */
+    protected $parameters = array();
 
     /**
      * Property Array
@@ -207,21 +222,21 @@ class Request implements RequestInterface
      * @since  1.0
      */
     protected $property_array = array(
-        'uri',
         'method',
+        'content_type',
+        'base_url',
+        'url',
         'scheme',
-        'is_secure',
+        'secure',
         'user',
         'password',
+        'userinfo',
         'host',
         'port',
         'authority',
         'path',
-        'query_string',
-        'query_parameters',
-        'content_type',
-        'url',
-        'base_url'
+        'query',
+        'parameters'
     );
 
     /**
@@ -237,28 +252,28 @@ class Request implements RequestInterface
         $this->server_object = $server_object;
 
         $this->setMethod();
-        $this->setUri();
+        $this->setContentType();
         $this->setScheme();
         $this->setIsSecure();
         $this->setUser();
         $this->setPassword();
+        $this->setUserinfo();
         $this->setHost();
         $this->setPort();
+        $this->setAuthority();
         $this->setQueryParameters();
         $this->setQueryString();
-        $this->setAuthority();
-        $this->setContentType();
+        $this->setWorkingUri();
         $this->setBaseUrl();
         $this->setPath();
         $this->setUrl();
     }
 
     /**
-     * Get the current value (or default) of the specified key
+     * Build and return the Request Object
      *
      * @return  object
      * @since   1.0
-     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
     public function get()
     {
@@ -276,55 +291,37 @@ class Request implements RequestInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
     protected function setMethod()
     {
-        if ($this->method === null) {
-        } else {
-            return $this->method;
-        }
-
         $this->method = $this->server_object['REQUEST_METHOD'];
 
         $method_array = array('GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH');
 
         if (in_array($this->method, $method_array)) {
         } else {
-            throw new InvalidArgumentException
-            ('Request: Invalid $_SERVER[REQUEST_METHOD] value: ' . $this->server_object['REQUEST_METHOD']);
+            $this->method = 'GET';
         }
 
         return $this;
     }
 
     /**
-     * Get Uri
+     * Set Content Type
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    protected function setUri()
+    protected function setContentType()
     {
-        // Apache and IIS 6
-        if (isset($this->server_object['REQUEST_URI'])) {
-            $uri = $this->server_object['REQUEST_URI'];
+        $content_type_array = preg_split('/\s*[;,]\s*/', $this->server_object['HTTP_ACCEPT']);
 
-            // IIS 5 and PHP as CGI
-        } elseif (isset($this->server_object['ORIG_PATH_INFO'])) {
-            $uri = $this->server_object['ORIG_PATH_INFO'];
-
-            if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
-                $uri .= '?' . $this->server_object['QUERY_STRING'];
-            }
-
+        if (isset($content_type_array[0])) {
         } else {
-            $uri = '';
+            $this->content_type = 'GET';
         }
 
-        $uri = filter_var($uri, FILTER_SANITIZE_URL);
-
-        $this->uri = $uri;
+        $this->content_type = strtolower($content_type_array[0]);
 
         return $this;
     }
@@ -337,15 +334,16 @@ class Request implements RequestInterface
      */
     protected function setScheme()
     {
-        $scheme = 'http';
+        $this->scheme = 'http://';
 
         if (empty($this->server_object['HTTPS'])) {
-        } else {
-            $https = strtolower($this->server_object['HTTPS']);
+            return $this;
+        }
 
-            if ($https == 'on' || $https == '1') {
-                $scheme = 'https';
-            }
+        $https = strtolower($this->server_object['HTTPS']);
+
+        if ($https == 'on' || $https == '1') {
+            $this->scheme = 'https';
         }
 
         if (isset($this->server_object['HTTP_X_FORWARDED_PROTO'])) {
@@ -353,16 +351,18 @@ class Request implements RequestInterface
             $temp = strtolower($this->server_object['HTTP_X_FORWARDED_PROTO']);
 
             if ($temp == 'https') {
-                $scheme = 'https';
+                $this->scheme = 'https';
             }
         }
 
-        if (isset($this->server_object['SERVER_PORT']) && $this->server_object['SERVER_PORT'] == '443') {
-            $scheme = 'https';
+        if ($this->scheme == 'http://' || $this->scheme == 'https://') {
+        } else {
+            $this->scheme = 'http://';
         }
-        $scheme .= '://';
 
-        $this->scheme = $scheme;
+        if (isset($this->server_object['SERVER_PORT']) && $this->server_object['SERVER_PORT'] == '443') {
+            $this->scheme = 'https://';
+        }
 
         return $this;
     }
@@ -375,10 +375,10 @@ class Request implements RequestInterface
      */
     protected function setIsSecure()
     {
+        $this->secure = 0;
+
         if ($this->scheme == 'https://') {
             $this->secure = 1;
-        } else {
-            $this->secure = 0;
         }
 
         return $this;
@@ -392,13 +392,14 @@ class Request implements RequestInterface
      */
     protected function setUser()
     {
-        $user = '';
+        $this->user = '';
 
         if (isset($this->server_object['PHP_AUTH_USER'])) {
-            $user = $this->server_object['PHP_AUTH_USER'];
+        } else {
+            return $this;
         }
 
-        $this->user = $user;
+        $this->user = $this->server_object['PHP_AUTH_USER'];
 
         return $this;
     }
@@ -411,13 +412,37 @@ class Request implements RequestInterface
      */
     protected function setPassword()
     {
-        $password = '';
+        $this->password = '';
 
-        if (isset($this->server_object['PHP_AUTH_PW'])) {
-            $password = $this->server_object['PHP_AUTH_PW'];
+        if ($this->user === '') {
+            return $this;
         }
 
-        $this->password = $password;
+        if (isset($this->server_object['PHP_AUTH_PW'])) {
+        } else {
+            return $this;
+        }
+
+        $this->password = $this->server_object['PHP_AUTH_PW'];
+
+        return $this;
+    }
+
+    /**
+     * Set the Userinfo Value
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setUserinfo()
+    {
+        $this->userinfo = '';
+
+        if ($this->user === '') {
+            return $this;
+        }
+
+        $this->userinfo = $this->user . ':' . $this->password;
 
         return $this;
     }
@@ -480,86 +505,22 @@ class Request implements RequestInterface
             return $this;
         }
 
+        $this->port = '';
+
         if (empty($this->server_object['SERVER_PORT'])) {
-            $port = '';
-        } else {
-            $port = $this->server_object['SERVER_PORT'];
+            return $this;
         }
 
+        $port = $this->server_object['SERVER_PORT'];
+
         if ($this->scheme == 'https' && $port == '443') {
-            $port = '';
+            return $this;
         }
         if ($this->scheme == 'http' && $port == '80') {
-            $port = '';
+            return $this;
         }
 
         $this->port = $port;
-
-        return $this;
-    }
-
-    /**
-     * Builds query parameters array with sorted key/value pairs
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setQueryParameters()
-    {
-        $query_string = $this->server_object['QUERY_STRING'];
-
-        if ($query_string == '') {
-            $this->query_parameters = array();
-
-            return $this;
-        }
-
-        $parameter_pairs = array();
-        $parts           = explode("&", $this->server_object['QUERY_STRING']);
-
-        if (is_array($parts) && count($parts) > 0) {
-            foreach ($parts as $keyAndValue) {
-                $pair                  = explode('=', $keyAndValue);
-                $key                   = rawurlencode(urldecode($pair[0]));
-                $value                 = rawurlencode(urldecode($pair[1]));
-                $parameter_pairs[$key] = $value;
-            }
-        }
-
-        if (count($parameter_pairs) > 0) {
-        } else {
-            $this->query_parameters = array();
-            return $this;
-        }
-
-        ksort($parameter_pairs);
-
-        $this->query_parameters = $parameter_pairs;
-
-        return $this;
-    }
-
-    /**
-     * Set normalized query string with sorted key/value pairs
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setQueryString()
-    {
-        $this->query_string = '';
-
-        if (count($this->query_parameters) === 0) {
-            return $this;
-        }
-
-        foreach ($this->query_parameters as $key => $value) {
-            if ($this->query_string === '') {
-            } else {
-                $this->query_string .= '&';
-            }
-            $this->query_string .= $key . '=' . $value;
-        }
 
         return $this;
     }
@@ -572,42 +533,111 @@ class Request implements RequestInterface
      */
     protected function setAuthority()
     {
-        $auth = $this->user;
+        $this->authority = '';
 
-        if ($auth === '') {
+        if ($this->user === '') {
         } else {
-            $auth .= ':';
-            $auth .= $this->password . '/';
+            $this->authority = $this->user;
+            $this->authority .= ':';
+            $this->authority .= $this->password . '/';
         }
 
-        $port = $this->port;
+        $this->authority .= $this->host;
 
-        if ($port == '' || $port == 80 || $port == 443) {
-            $port = '';
+        if ($this->port == '' || $this->port == 80 || $this->port == 443) {
         } else {
-            $port = ':' . $port;
+            $this->authority .= $this->port;
         }
-
-        $authority = $auth;
-        $authority .= $this->host;
-        $authority .= $port;
-
-        $this->authority = $authority;
 
         return $this;
     }
 
     /**
-     * Set Content Type
+     * Builds query parameters array with sorted key/value pairs
      *
      * @return  $this
      * @since   1.0
      */
-    protected function setContentType()
+    protected function setQueryParameters()
     {
-        $content_type_array = preg_split('/\s*[;,]\s*/', $this->server_object['HTTP_ACCEPT']);
+        $this->parameters = array();
 
-        $this->content_type = strtolower($content_type_array[0]);
+        $query = $this->server_object['QUERY_STRING'];
+
+        if ($query == '') {
+            return $this;
+        }
+
+        $parameter_pairs = array();
+        $parts           = explode("&", $query);
+
+        if (is_array($parts) && count($parts) > 0) {
+            foreach ($parts as $keyAndValue) {
+                $pair                  = explode('=', $keyAndValue);
+                $key                   = rawurlencode(urldecode($pair[0]));
+                $value                 = rawurlencode(urldecode($pair[1]));
+                $parameter_pairs[$key] = $value;
+            }
+        }
+
+        if (count($parameter_pairs) > 0) {
+        } else {
+            return $this;
+        }
+
+        ksort($parameter_pairs);
+
+        $this->parameters = $parameter_pairs;
+
+        return $this;
+    }
+
+    /**
+     * Set normalized query string with sorted key/value pairs
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setQueryString()
+    {
+        $this->query = '';
+
+        if (count($this->parameters) === 0) {
+            return $this;
+        }
+
+        foreach ($this->parameters as $key => $value) {
+            if ($this->query === '') {
+            } else {
+                $this->query .= '&';
+            }
+            $this->query .= $key . '=' . $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set Temporary Uri
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setWorkingUri()
+    {
+        // IIS 5 and PHP as CGI
+        if (isset($this->server_object['ORIG_PATH_INFO'])) {
+            $uri = $this->server_object['ORIG_PATH_INFO'];
+
+            if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
+                $uri .= '?' . $this->server_object['QUERY_STRING'];
+            }
+
+        } else {
+            $uri = $this->server_object['REQUEST_URI'];
+        }
+
+        $this->working_request_uri = filter_var($uri, FILTER_SANITIZE_URL);
 
         return $this;
     }
@@ -620,15 +650,13 @@ class Request implements RequestInterface
      */
     protected function setBaseUrl()
     {
-        $base_url = $this->scheme;
-        $base_url .= $this->authority;
+        $this->base_url = $this->scheme;
+        $this->base_url .= $this->authority;
 
         if ($this->port == '' || $this->port == 80 || $this->port == 443) {
         } else {
-            $base_url .= ':' . $this->port;
+            $this->base_url .= ':' . $this->port;
         }
-
-        $this->base_url = $base_url;
 
         return $this;
     }
@@ -641,17 +669,17 @@ class Request implements RequestInterface
      */
     protected function setPath()
     {
-        $path = $this->uri;
+        $this->path = $this->working_request_uri;
 
-        if (strpos($path, '?')) {
-            $path = substr($path, 0, strpos($path, '?'));
+        if (strpos($this->path, '?')) {
+            $this->path = substr($this->path, 0, strpos($this->path, '?'));
         }
-        if (strpos($path, 'index.php')) {
-            $path = substr($path, 0, strpos($path, 'index.php'));
-        }
-        $path = rtrim($path, '/');
 
-        $this->path = $path;
+        if (strpos($this->path, 'index.php')) {
+            $this->path = substr($this->path, 0, strpos($this->path, 'index.php'));
+        }
+
+        $this->path = rtrim($this->path, '/');
 
         return $this;
     }
@@ -668,12 +696,12 @@ class Request implements RequestInterface
 
         $url .= $this->path;
 
-        if (strpos($this->uri, 'index.php')) {
+        if (strpos($this->working_request_uri, 'index.php')) {
             $url .= '/index.php';
         }
 
-        if (strpos($this->uri, '?')) {
-            $url .= '?' . $this->query_string;
+        if (strpos($this->working_request_uri, '?')) {
+            $url .= '?' . $this->query;
         }
 
         $this->url = $url;
