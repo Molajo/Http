@@ -10,7 +10,6 @@ namespace Molajo\Http;
 
 use stdClass;
 use CommonApi\Http\ClientInterface;
-use CommonApi\Exception\InvalidArgumentException;
 
 /**
  * Http Client
@@ -165,7 +164,7 @@ class Client implements ClientInterface
      *
      * @since   1.0
      */
-    protected function __construct(
+    public function __construct(
         $server_object = null
     ) {
         $this->server_object = $server_object;
@@ -180,28 +179,24 @@ class Client implements ClientInterface
     /**
      * Get the current value (or default) of the specified key
      *
-     * @param   string $key
-     * @param   mixed  $default
-     *
-     * @return  mixed
+     * @return  object
      * @since   1.0
-     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
     public function get()
     {
-        $results = new stdClass();
+        $client = new stdClass();
 
         foreach ($this->property_array as $key) {
-            $results->$key = $this->$key;
+            $client->$key = $this->$key;
         }
 
-        return $results;
+        return $client;
     }
 
     /**
      * Remote Address for Client
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
     protected function getRemoteAddress()
@@ -219,7 +214,7 @@ class Client implements ClientInterface
 
         $this->remote_address = $remote_address;
 
-        return $remote_address;
+        return $this;
     }
 
     /**
@@ -238,7 +233,7 @@ class Client implements ClientInterface
 
         $this->remote_host = $remote_host;
 
-        return $remote_host;
+        return $this;
     }
 
     /**
@@ -281,11 +276,7 @@ class Client implements ClientInterface
     }
 
     /**
-     * Get client information using HTTP_USER_AGENT (very rough and not very reliable)
-     *
-     * - might be *somewhat* helpful (*maybe* better than nothing) for very high-level guess about desktop versus mobile
-     *   in those cases where it's critical to handle the payload or interface differently on the server side
-     *   if this disturbs you to even read this comment avoid using this data and nothing will rub off on you.
+     * Get client information using HTTP_USER_AGENT (Warning: such data is not reliable)
      *
      * @return  object
      * @since   1.0
