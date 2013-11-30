@@ -31,7 +31,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Molajo\Http\Request\Adapter::getMethod
      */
-    public function testGet($key = null, $default = null, $filter = 'Alphanumeric', $filter_options = array())
+    public function testGet()
     {
         $this->server_object['REQUEST_METHOD']  = 'GET';
         $this->server_object['REQUEST_URI']     = '/over/there/index.php?type=animal&name=narwhal';

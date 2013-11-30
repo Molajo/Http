@@ -21,33 +21,6 @@ use CommonApi\Exception\InvalidArgumentException;
  * @since      1.0
  *
  * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
- *
- * scheme://user:password@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
- *          \___________/ \_________/ \__/            \___/ \_/ \______________________/ \__/
- *             |               |       |               |    |            |                |
- *          userinfo         host     port             |    |          query           fragment
- *         \____________________________/\_____________|____|/  \__/ \____/ \__/ \____/
- *                     |                          |    |    |    |    |      |     |
- *                authority                     path   |    |    key  value  key   value
- *         \___________________________________________|____|/
- *                          |                          |    |
- *                  hierarchical part              filename |
- *                                                        extension
- *
- * url             http://username:secret@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
- *
- * scheme          http://
- * user            username
- * password        password
- * userinfo        username:password
- * host            example.com
- * port            8042
- * authority       user:password@example.com:8042
- * path            /over/there/index.php
- * query           type=animal&name=narwhal
- * parameters      array('type' => 'animal', 'name' => 'narwhal')
- * fragment        #nose
- *
  */
 class Request implements RequestInterface
 {
@@ -261,10 +234,22 @@ class Request implements RequestInterface
     }
 
     /**
-     * Build and return the Request Object
+     * Get the request object, as defined by URI Syntax RFC 3986
      *
+     * scheme://user:password@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
+     *          \___________/ \_________/ \__/ \__________________/\______________________/ \__/
+     *             |               |       |          |    |    |            |                |
+     *          userinfo         host     port       path  |    |          query           fragment
+     *         \____________________________/              |    |  \__/ \____/ \__/ \____/
+     *                     |                               |    |    |    |      |     |
+     *                authority                            |    |    key  value  key   value
+     *
+     * - Returns method, content_type, base_url, url, scheme, secure (boolean), user, password,
+     *   userinfo, host, port, authority, path, query, parameters (named pair query array)
+     *
+     * @link    http://tools.ietf.org/html/rfc3986
      * @return  object
-     * @since   1.0
+     * @since   0.1
      */
     public function get()
     {
