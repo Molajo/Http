@@ -80,14 +80,6 @@ class Request implements RequestInterface
     protected $content_type = null;
 
     /**
-     * Temporary Work Value
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $working_request_uri = null;
-
-    /**
      * URL
      *
      * @link     http://tools.ietf.org/html/rfc3986#section-3
@@ -263,7 +255,6 @@ class Request implements RequestInterface
         $this->setAuthority();
         $this->setQueryParameters();
         $this->setQueryString();
-        $this->setWorkingUri();
         $this->setBaseUrl();
         $this->setPath();
         $this->setUrl();
@@ -318,7 +309,7 @@ class Request implements RequestInterface
 
         if (isset($content_type_array[0])) {
         } else {
-            $this->content_type = 'GET';
+            $this->content_type = 'text/html';
         }
 
         $this->content_type = strtolower($content_type_array[0]);
@@ -539,14 +530,14 @@ class Request implements RequestInterface
         } else {
             $this->authority = $this->user;
             $this->authority .= ':';
-            $this->authority .= $this->password . '/';
+            $this->authority .= $this->password . '@';
         }
 
         $this->authority .= $this->host;
 
         if ($this->port == '' || $this->port == 80 || $this->port == 443) {
         } else {
-            $this->authority .= $this->port;
+            $this->authority .= ':' . $this->port;
         }
 
         return $this;
@@ -618,12 +609,26 @@ class Request implements RequestInterface
     }
 
     /**
-     * Set Temporary Uri
+     * Sets Base Url Value
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
-    protected function setWorkingUri()
+    protected function setBaseUrl()
+    {
+        $this->base_url = $this->scheme;
+        $this->base_url .= $this->authority;
+
+        return $this;
+    }
+
+    /**
+     * Returns Path
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setPath()
     {
         // IIS 5 and PHP as CGI
         if (isset($this->server_object['ORIG_PATH_INFO'])) {
@@ -637,46 +642,10 @@ class Request implements RequestInterface
             $uri = $this->server_object['REQUEST_URI'];
         }
 
-        $this->working_request_uri = filter_var($uri, FILTER_SANITIZE_URL);
-
-        return $this;
-    }
-
-    /**
-     * Sets Base Url Value
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setBaseUrl()
-    {
-        $this->base_url = $this->scheme;
-        $this->base_url .= $this->authority;
-
-        if ($this->port == '' || $this->port == 80 || $this->port == 443) {
-        } else {
-            $this->base_url .= ':' . $this->port;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Returns Path
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setPath()
-    {
-        $this->path = $this->working_request_uri;
+        $this->path = filter_var($uri, FILTER_SANITIZE_URL);
 
         if (strpos($this->path, '?')) {
             $this->path = substr($this->path, 0, strpos($this->path, '?'));
-        }
-
-        if (strpos($this->path, 'index.php')) {
-            $this->path = substr($this->path, 0, strpos($this->path, 'index.php'));
         }
 
         $this->path = rtrim($this->path, '/');
@@ -692,19 +661,13 @@ class Request implements RequestInterface
      */
     protected function setUrl()
     {
-        $url = $this->base_url;
+        $this->url = $this->base_url;
+        $this->url .= $this->path;
 
-        $url .= $this->path;
-
-        if (strpos($this->working_request_uri, 'index.php')) {
-            $url .= '/index.php';
+        if ($this->query === '') {
+        } else {
+            $this->url .= '?' . $this->query;
         }
-
-        if (strpos($this->working_request_uri, '?')) {
-            $url .= '?' . $this->query;
-        }
-
-        $this->url = $url;
 
         return $this;
     }
