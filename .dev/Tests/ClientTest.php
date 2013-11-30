@@ -1,6 +1,6 @@
 <?php
 /**
- * Client Object Unit Tests
+ * Http Client Unit Tests
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -11,7 +11,7 @@ namespace Molajo\Tests;
 use Molajo\Http\Client;
 
 /**
- * Client Object Unit Tests
+ * Http Client Unit Tests
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
