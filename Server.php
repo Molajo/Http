@@ -1,6 +1,6 @@
 <?php
 /**
- * Server Service
+ * Http Server Object
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -9,11 +9,10 @@
 namespace Molajo\Http;
 
 use stdClass;
-use Exception\Http\ServerException;
 use CommonApi\Http\ServerInterface;
 
 /**
- * Server
+ * Http Server Object
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -22,6 +21,16 @@ use CommonApi\Http\ServerInterface;
  */
 class Server implements ServerInterface
 {
+    /**
+     * $server_object
+     *
+     * Injected copy of $_SERVER
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $server_object = null;
+
     /**
      * $_SERVER['PHP_AUTH_USER']
      *
@@ -131,12 +140,17 @@ class Server implements ServerInterface
     );
 
     /**
-     * __construct
+     * Construct
+     *
+     * @param   object $server_object
      *
      * @since   1.0
      */
-    public function __construct()
-    {
+    public function __construct(
+        $server_object = null
+    ) {
+        $this->server_object = $server_object;
+
         $this->setUser();
         $this->setPassword();
         $this->setDocumentRoot();
@@ -145,40 +159,24 @@ class Server implements ServerInterface
     }
 
     /**
-     * Get the current value (or default) of the specified key
+     * Get the server object, including the following elements:
      *
-     * @param   string $key
-     * @param   mixed  $default
+     * - user, password, document_root, entry_point, remote_addr, server_signature, server_software,
+     *  server_name, server_addr, server_port, server_admin
      *
-     * @return  mixed
-     * @since   1.0
-     * @throws  ServerException
+     * @link    http://tools.ietf.org/html/rfc3986
+     * @return  object
+     * @since   0.1
      */
-    public function get($key = null, $default = null)
+    public function get()
     {
-        $key = strtolower($key);
+        $server = new stdClass();
 
-        if ((string)$key === '*' || (string)$key === '') {
-
-            $results = new stdClass();
-
-            foreach ($this->property_array as $key) {
-                $results->$key = $this->$key;
-            }
-
-            return $results;
+        foreach ($this->property_array as $key) {
+            $server->$key = $this->$key;
         }
 
-        if (in_array($key, $this->property_array)) {
-        } else {
-            throw new ServerException('Server: Get for unknown key: ' . $key);
-        }
-
-        if ($this->$key === null) {
-            $this->$key = $default;
-        }
-
-        return $this->$key;
+        return $server;
     }
 
     /**
@@ -189,10 +187,10 @@ class Server implements ServerInterface
      */
     protected function setUser()
     {
-        if (empty($_SERVER['PHP_AUTH_USER'])) {
+        if (empty($this->server_object['PHP_AUTH_USER'])) {
             $user = '';
         } else {
-            $user = $_SERVER['PHP_AUTH_USER'];
+            $user = $this->server_object['PHP_AUTH_USER'];
         }
 
         $this->user = $user;
@@ -208,10 +206,10 @@ class Server implements ServerInterface
      */
     protected function setPassword()
     {
-        if (empty($_SERVER['PHP_AUTH_PW'])) {
+        if (empty($this->server_object['PHP_AUTH_PW'])) {
             $password = '';
         } else {
-            $password = $_SERVER['PHP_AUTH_PW'];
+            $password = $this->server_object['PHP_AUTH_PW'];
         }
 
         $this->password = $password;
@@ -227,10 +225,10 @@ class Server implements ServerInterface
      */
     protected function setDocumentRoot()
     {
-        if (empty($_SERVER['DOCUMENT_ROOT'])) {
+        if (empty($this->server_object['DOCUMENT_ROOT'])) {
             $document_root = '';
         } else {
-            $document_root = $_SERVER['DOCUMENT_ROOT'];
+            $document_root = $this->server_object['DOCUMENT_ROOT'];
         }
 
         $this->document_root = $document_root;
@@ -246,10 +244,10 @@ class Server implements ServerInterface
      */
     protected function setEntryPoint()
     {
-        if (empty($_SERVER['SCRIPT_FILENAME'])) {
+        if (empty($this->server_object['SCRIPT_FILENAME'])) {
             $entry_point = '';
         } else {
-            $entry_point = $_SERVER['SCRIPT_FILENAME'];
+            $entry_point = $this->server_object['SCRIPT_FILENAME'];
         }
 
         $this->entry_point = $entry_point;
@@ -265,13 +263,13 @@ class Server implements ServerInterface
      */
     protected function setServer()
     {
-        $this->remote_addr      = $_SERVER['REMOTE_ADDR'];
-        $this->server_signature = $_SERVER['SERVER_SIGNATURE'];
-        $this->server_software  = $_SERVER['SERVER_SOFTWARE'];
-        $this->server_name      = $_SERVER['SERVER_NAME'];
-        $this->server_addr      = $_SERVER['SERVER_ADDR'];
-        $this->server_port      = $_SERVER['SERVER_PORT'];
-        $this->server_admin     = $_SERVER['SERVER_ADMIN'];
+        $this->remote_addr      = $this->server_object['REMOTE_ADDR'];
+        $this->server_signature = $this->server_object['SERVER_SIGNATURE'];
+        $this->server_software  = $this->server_object['SERVER_SOFTWARE'];
+        $this->server_name      = $this->server_object['SERVER_NAME'];
+        $this->server_addr      = $this->server_object['SERVER_ADDR'];
+        $this->server_port      = $this->server_object['SERVER_PORT'];
+        $this->server_admin     = $this->server_object['SERVER_ADMIN'];
 
         return $this;
     }

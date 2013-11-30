@@ -5,7 +5,6 @@
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
- *
  */
 namespace Molajo\Http\Tests;
 
@@ -17,7 +16,6 @@ use Molajo\Http\Request;
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
- *
  */
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,9 +25,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     protected $server_object;
 
     /**
-     * Get the current value (or default) of the specified key
+     * Gets the Request Object
      *
-     * @covers Molajo\Http\Request\Adapter::getMethod
+     * @covers Molajo\Http\Request::get
      */
     public function testGet()
     {
