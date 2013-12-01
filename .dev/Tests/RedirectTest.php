@@ -6,7 +6,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Http\Tests;
+namespace Molajo\Tests\Http;
 
 use Molajo\Http\Redirect;
 
@@ -16,39 +16,36 @@ use Molajo\Http\Redirect;
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
- *
  */
-class RedirectTest
+class RedirectTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Redirect
+     * Redirect Object
      */
-    protected $redirect_object;
+    protected $client = null;
 
     /**
-     * Construct
+     * Get the Redirect Object
      *
-     * @param   string $url
-     * @param   int    $status_code
-     *
-     * @since   1.0
+     * @covers Molajo\Http\Redirect::get
      */
-    public function __construct()
+    public function testGet()
     {
+        ob_start();
 
-    }
+        $url = 'http://www.example.com';
+        $code = 302;
+        $class = 'Molajo\Http\Redirect';
+        $instance     = new $class($url, $code);
+        $instance->redirect();
+        $headers_list = headers_list();
+        header_remove();
+        var_dump($headers_list);
+        die;
 
-    /**
-     * Test what header was set
-     *
-     * @param   string $url
-     * @param   int    $status_code
-     *
-     * @since   1.0
-     */
-    public function testProperHeaderSet()
-    {
-        header("HTTP/1.1 302 Moved Temporarily");
-        var_dump(headers_list());
+
+
+        $this->assertEquals('127.0.0.1', $this->client->remote_address);
+
     }
 }

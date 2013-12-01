@@ -24,7 +24,7 @@ use CommonApi\Exception\UnexpectedValueException;
 Class Redirect implements RedirectInterface
 {
     /**
-     * $url
+     * Url
      *
      * @var    string
      * @since  1.0
@@ -32,12 +32,39 @@ Class Redirect implements RedirectInterface
     protected $url = null;
 
     /**
-     * $status_code
+     * Status Code
      *
      * @var    integer
      * @since  1.0
      */
     protected $status_code = 0;
+
+    /**
+     * Status Message
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $status_message = '';
+
+    /**
+     * HTTP response codes with associated messages
+     *
+     * @link   http://tools.ietf.org/html/rfc2616
+     * @var    array
+     * @since  1.0
+     */
+    protected $header_status = array(
+        300 => '300 Multiple Choices',
+        301 => '301 Moved Permanently',
+        302 => '302 Found',
+        303 => '303 See Other',
+        304 => '304 Not Modified',
+        305 => '305 Use Proxy',
+        306 => '306 (Reserved)',
+        307 => '307 Temporary Redirect',
+        308 => '308 Permanent Redirect'
+    );
 
     /**
      * Construct
@@ -51,14 +78,14 @@ Class Redirect implements RedirectInterface
         $url = '\\',
         $status_code = 301
     ) {
-        $this->url          = $url;
-        $this->status_code  = $status_code;
+        $this->url         = $url;
+        $this->status_code = $status_code;
     }
 
     /**
-     * Redirect Application
+     * Sets Redirect Headers for Application
      *
-     * @return  void
+     * @return  $this
      * @throws  \CommonApi\Exception\UnexpectedValueException
      * @since   0.1
      */
@@ -75,23 +102,16 @@ Class Redirect implements RedirectInterface
             $this->status_code = 301;
         }
 
-        if ($this->status_code == 302) {
-            header("HTTP/1.1 302 Moved Temporarily");
-        } elseif ($this->status_code == 303) {
-            header("HTTP/1.1 303 See Other");
-        } elseif ($this->status_code == 304) {
-            header("HTTP/1.1 304 Not Modified");
-        } elseif ($this->status_code == 305) {
-            header("HTTP/1.1 305 Use Proxy");
-        } elseif ($this->status_code == 307) {
-            header("HTTP/1.1 307 Temporary Redirect");
+        if (isset($this->header_status[$this->status_code])) {
         } else {
             $this->status_code = 301;
-            header("HTTP/1.1 301 Moved Permanently");
         }
 
+        $this->status_message = $this->header_status[$this->status_code];
+
+        header('Status: ' . $this->status_message);
         header("Location: " . htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8'));
 
-        exit();
+        return $this;
     }
 }
