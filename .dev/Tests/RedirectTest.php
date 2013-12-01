@@ -36,16 +36,19 @@ class RedirectTest
     public function __construct()
     {
 
-        $this->testProperHeaderSet();
-
     }
 
-    protected function testProperHeaderSet()
+    /**
+     * Test what header was set
+     *
+     * @param   string $url
+     * @param   int    $status_code
+     *
+     * @since   1.0
+     */
+    public function testProperHeaderSet()
     {
-        $url      = 'http://google.com';
-        $code     = 301;
-//        $instance = new Redirect($url, $code);
-//        $instance->redirect();
-        header_remove();
+        header("HTTP/1.1 302 Moved Temporarily");
+        var_dump(headers_list());
     }
 }
