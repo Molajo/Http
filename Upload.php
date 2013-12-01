@@ -9,7 +9,7 @@
 namespace Molajo\Http;
 
 use Exception\Http\UploadException;
-use CommonApi\Http\FileUploadInterface;
+use CommonApi\Http\UploadInterface;
 use CommonApi\Filesystem\FilesystemInterface;
 
 /**
@@ -20,7 +20,7 @@ use CommonApi\Filesystem\FilesystemInterface;
  * @copyright  2013 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class Upload implements FileUploadInterface
+class Upload implements UploadInterface
 {
     /**
      * $file_array contains $_FILE superglobal contents

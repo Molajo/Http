@@ -1,6 +1,6 @@
 <?php
 /**
- * FileUpload Test
+ * Upload Test
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -9,7 +9,7 @@
 namespace Molajo\Http\Test;
 
 /**
- * FileUpload Test
+ * Upload Test
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -33,14 +33,16 @@ class UploadTest extends \PHPUnit_Framework_TestCase
             copy(__DIR__ . '/test.txt', __DIR__ . '/Temp/test.txt');
         }
 
-        $file                               = array();
-        $file['name']                       = 'test.txt';
-        $file['type']                       = 'text/plain';
-        $file['tmp_name']                   = __DIR__ . '/Temp/test.txt';
-        $file['error']                      = 0;
-        $file['size']                       = 10219;
-        $files                              = array();
-        $files['upload_file']               = $file;
+        $file             = array();
+        $file['name']     = 'test.txt';
+        $file['type']     = 'text/plain';
+        $file['tmp_name'] = __DIR__ . '/Temp/test.txt';
+        $file['error']    = 0;
+        $file['size']     = 10219;
+
+        $files                = array();
+        $files['upload_file'] = $file;
+
         $options                            = array();
         $options['file_array']              = $files;
         $options['input_field_name']        = 'upload_file'; //matches the $files array entry
@@ -48,7 +50,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         $options['target_folder']           = __DIR__ . '/Target';
         $options['target_filename']         = 'newname.txt';
 
-        $class         = 'Molajo\\FileUpload\\Upload';
+        $class         = 'Molajo\\Upload\\Upload';
         $this->connect = new $class($options);
 
         return;
@@ -166,18 +168,6 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Set Upload Folder
-     *
-     * @covers \Molajo\Http\Upload::setTargetFolder
-     * @expectedException \Exception\Http\UploadException
-     */
-    public function testSetTargetFolderFail()
-    {
-        $target_path = __DIR__ . '/TargetDOESNOTEXIST';
-        $this->connect->setTargetFolder($target_path);
-    }
-
-    /**
      * Set Input Field Name
      *
      * @covers \Molajo\Http\Upload::setInputFieldName
@@ -190,37 +180,16 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Set Input Field Name
+     * Upload File
      *
-     * @covers \Molajo\Http\Upload::setInputFieldName
-     * @expectedException \Exception\Http\UploadException
+     * @covers \Molajo\Http\Upload::uploadFile
      */
-    public function testSetInputFieldNameFail()
+    public function testUploadFile()
     {
-        $input_field_name = 'upload_file_ISNOTDEFINEDINFORM';
-        $this->connect->setInputFieldName($input_field_name);
-    }
-
-    /**
-     * Set Overwrite Existing File
-     *
-     * @covers \Molajo\Http\Upload::setOverwriteExistingFile
-     */
-    public function testSetOverwriteExistingFileT()
-    {
-        $results = $this->connect->setOverwriteExistingFile(true);
-        $this->assertTrue(is_object($results));
-    }
-
-    /**
-     * Set Overwrite Existing File
-     *
-     * @covers \Molajo\Http\Upload::setOverwriteExistingFile
-     */
-    public function testSetOverwriteExistingFileF()
-    {
-        $results = $this->connect->setOverwriteExistingFile(false);
-        $this->assertTrue(is_object($results));
+        $this->connect->setOverwriteExistingFile(true);
+        $this->connect->upload();
+        $this->assertfileExists(__DIR__ . '/Target/newname.txt');
+        $this->assertfileNotExists(__DIR__ . '/Temp/test.txt');
     }
 
     /**
@@ -250,19 +219,6 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         }
         $this->connect->setOverwriteExistingFile(false);
         $this->connect->upload();
-    }
-
-    /**
-     * Upload File
-     *
-     * @covers \Molajo\Http\Upload::uploadFile
-     */
-    public function testUploadFile()
-    {
-        $this->connect->setOverwriteExistingFile(true);
-        $this->connect->upload();
-        $this->assertfileExists(__DIR__ . '/Target/newname.txt');
-        $this->assertfileNotExists(__DIR__ . '/Temp/test.txt');
     }
 
     /**

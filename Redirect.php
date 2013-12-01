@@ -92,6 +92,6 @@ Class Redirect implements RedirectInterface
 
         header("Location: " . htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8'));
 
-        //exit();
+        exit();
     }
 }

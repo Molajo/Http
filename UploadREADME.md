@@ -1,8 +1,8 @@
 =======
-FileUpload Package
+Upload Package
 =======
 
-[![Build Status](https://travis-ci.org/Molajo/FileUpload.png?branch=master)](https://travis-ci.org/Molajo/FileUpload)
+[![Build Status](https://travis-ci.org/Molajo/Upload.png?branch=master)](https://travis-ci.org/Molajo/Upload)
 
 Upload file processing, PHP Platform Independent.
 
@@ -29,9 +29,9 @@ file.
 
 ```html
     <html>
-        <head><title>Molajo FileUpload Package</title></head>
+        <head><title>Molajo Upload Package</title></head>
         <body>
-            <h2>Molajo FileUpload Example</h2>
+            <h2>Molajo Upload Example</h2>
             <form name='UploadFile' enctype='multipart/form-data' action='Upload.php' method='POST'>
                 Choose a file to upload:
                 <input type="file" name="UploadFile" id="proof" required
@@ -66,7 +66,7 @@ The values that are key to see area:
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload: Could not instantiate Molajo FileUpload Upload class ' . $e->getMessage());
+        ('Molajo Upload: Could not instantiate Molajo Upload Upload class ' . $e->getMessage());
     }
 
     // Now, execute the uploadFile method
@@ -75,7 +75,7 @@ The values that are key to see area:
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload: Upload failed ' . $e->getMessage());
+        ('Molajo Upload: Upload failed ' . $e->getMessage());
     }
 
 ```
@@ -187,7 +187,7 @@ and the additional extension value needed.
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload: Could not instantiate Molajo FileUpload Upload class ' . $e->getMessage());
+        ('Molajo Upload: Could not instantiate Molajo Upload Upload class ' . $e->getMessage());
     }
 
     // Now, execute the uploadFile method
@@ -196,7 +196,7 @@ and the additional extension value needed.
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload: Upload failed ' . $e->getMessage());
+        ('Molajo Upload: Upload failed ' . $e->getMessage());
     }
 
 ```
@@ -217,7 +217,7 @@ cannot exceed the `upload_max_filesize` `php.ini` setting or the MAX_FILE_SIZE v
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload Upload: Set Maximum File Size Failed. ' . $e->getMessage());
+        ('Molajo Upload Upload: Set Maximum File Size Failed. ' . $e->getMessage());
     }
 
 ```
@@ -238,7 +238,7 @@ method for this purpose. This value must match the `form name` value in the HTML
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload Upload: Set setTargetFolder Failed. ' . $e->getMessage());
+        ('Molajo Upload Upload: Set setTargetFolder Failed. ' . $e->getMessage());
     }
 
 ```
@@ -255,7 +255,7 @@ method for this purpose.
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload Upload: Set Target Folder Failed. ' . $e->getMessage());
+        ('Molajo Upload Upload: Set Target Folder Failed. ' . $e->getMessage());
     }
 
 ```
@@ -273,7 +273,7 @@ method, passing in `True`.
 
     } catch (Exception $e) {
         throw new UploadException
-        ('Molajo FileUpload Upload: Set Target Folder Failed. ' . $e->getMessage());
+        ('Molajo Upload Upload: Set Target Folder Failed. ' . $e->getMessage());
     }
 
 ```
@@ -286,19 +286,19 @@ the constructor, as described in the previous section.
 
 ```php
     protected $error_messages = array(
-        0   => 'Molajo FileUpload: There is no error, the file uploaded with success.',
-        1   => 'Molajo FileUpload: The uploaded file exceeds the upload_max_file_size directive in php.ini.',
-        2   => 'Molajo FileUpload: The uploaded file exceeds the MAX_FILE_SIZE directive specified in the HTML form.',
-        3   => 'Molajo FileUpload: The uploaded file was only partially uploaded.',
-        4   => 'Molajo FileUpload: No file was uploaded.',
-        6   => 'Molajo FileUpload: Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.',
-        7   => 'Molajo FileUpload: Failed to write file to disk. Introduced in PHP 5.1.0.',
-        100 => 'Molajo FileUpload=>setMaxFilesize Unit of Measure must be KB, MB, GB Invalid Value: ',
-        110 => 'Molajo FileUpload=>validateInputFieldName $input_field_name not in $_FILES super global: ',
-        120 => 'Molajo FileUpload=>validateUploadFileExists $_FILES $input_field_name tmp_name does not exist: ',
-        130 => 'Molajo FileUpload=>validateMimeType Mime type not allowed: ',
-        140 => 'Molajo FileUpload=>validateTargetFolder $target_folder is not available: ',
-        150 => 'Molajo FileUpload=>validateTargetFile: $target_file exists but $overwrite_existing_file is FALSE'
+        0   => 'Molajo Upload: There is no error, the file uploaded with success.',
+        1   => 'Molajo Upload: The uploaded file exceeds the upload_max_file_size directive in php.ini.',
+        2   => 'Molajo Upload: The uploaded file exceeds the MAX_FILE_SIZE directive specified in the HTML form.',
+        3   => 'Molajo Upload: The uploaded file was only partially uploaded.',
+        4   => 'Molajo Upload: No file was uploaded.',
+        6   => 'Molajo Upload: Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.',
+        7   => 'Molajo Upload: Failed to write file to disk. Introduced in PHP 5.1.0.',
+        100 => 'Molajo Upload=>setMaxFilesize Unit of Measure must be KB, MB, GB Invalid Value: ',
+        110 => 'Molajo Upload=>validateInputFieldName $input_field_name not in $_FILES super global: ',
+        120 => 'Molajo Upload=>validateUploadFileExists $_FILES $input_field_name tmp_name does not exist: ',
+        130 => 'Molajo Upload=>validateMimeType Mime type not allowed: ',
+        140 => 'Molajo Upload=>validateTargetFolder $target_folder is not available: ',
+        150 => 'Molajo Upload=>validateTargetFile: $target_file exists but $overwrite_existing_file is FALSE'
     );
 ```
 
@@ -316,7 +316,7 @@ the constructor, as described in the previous section.
 ```php
 {
     "require": {
-        "Molajo/FileUpload": "1.*"
+        "Molajo/Upload": "1.*"
     }
 }
 ```

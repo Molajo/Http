@@ -1,6 +1,6 @@
 <?php
 /**
- * Fieldhandler
+ * Unit Testing Bootstrap
  *
  * @package    Molajo
  * @copyright  2013 Amy Stephen. All rights reserved.
@@ -38,9 +38,10 @@ spl_autoload_register(
     }
 );
 
+/**
 $manual_redirect_test = __DIR__ . '/Tests/RedirectTest.php';
 include $manual_redirect_test;
 $class = 'Molajo\Http\Tests\RedirectTest';
 $instance = new $class();
 $instance->testProperHeaderSet();
-die;
+*/
