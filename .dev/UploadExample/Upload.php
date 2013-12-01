@@ -8,26 +8,29 @@
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 
-/**
- * To use the example, you must un-comment out this line. WARNING: PUT DIE() BACK WHEN DONE TESTING =)
- */
+// To use the example, you must un-comment out this line.
 die;
 include __DIR__ . '/../Bootstrap.php';
 
 use Molajo\Http\Upload;
-use Exception\Http\UploadException;
+use CommonApi\Exception\RuntimeException;
 
-$options['input_field_name']        = 'UploadFile';
-$options['target_folder']           = __DIR__ . '/Target';
-$options['target_filename']         = 'newname.' . pathinfo($_FILES['UploadFile']['name'], PATHINFO_EXTENSION);
-$options['overwrite_existing_file'] = true;
+$input_field_name_value        = 'UploadFile';
+$target_folder_value           = __DIR__ . '/Target';
+$target_filename_value         = 'newname.' . pathinfo($_FILES['UploadFile']['name'], PATHINFO_EXTENSION);
+$overwrite_existing_file_value = true;
 
-$connect = new Upload($options);
+$connect = new Upload(
+    $input_field_name = $input_field_name_value,
+    $target_folder = $target_folder_value,
+    $target_filename = $target_filename_value,
+    $overwrite_existing_file = $overwrite_existing_file_value
+);
 
 try {
     $connect->upload();
 } catch (Exception $e) {
-    throw new UploadException
+    throw new RuntimeException
     ('Molajo Upload: Upload failed ' . $e->getMessage());
 }
 

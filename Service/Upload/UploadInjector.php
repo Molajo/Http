@@ -1,12 +1,12 @@
 <?php
 /**
- * Fileupload Dependency Injector
+ * Upload Dependency Injector
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Fileupload;
+namespace Molajo\Service\Upload;
 
 use Exception;
 use Molajo\IoC\Handler\AbstractInjector;
@@ -14,14 +14,14 @@ use CommonApi\IoC\ServiceHandlerInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
- * Fileupload Service Dependency Injector
+ * Upload Service Dependency Injector
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class FileuploadInjector extends AbstractInjector implements ServiceHandlerInterface
+class UploadInjector extends AbstractInjector implements ServiceHandlerInterface
 {
     /**
      * Constructor
@@ -65,33 +65,112 @@ class FileuploadInjector extends AbstractInjector implements ServiceHandlerInter
      */
     public function instantiateService()
     {
-//todo: add to application configuration
-        $options = array();
-        if (isset($this->options['maximum_file_size'])) {
-            $options['maximum_file_size'] = $this->options['maximum_file_size'];
+        if (isset($this->options['error_messages'])) {
+            $error_messages = $this->options['error_messages'];
+        } else {
+            $error_messages = array(
+                0   => 'File(s) were uploaded successfully.',
+                1   => 'The uploaded file exceeds the upload_max_file_size directive in php.ini.',
+                2   => 'The uploaded file exceeds the MAX_FILE_SIZE directive specified in the HTML form.',
+                3   => 'The uploaded file was only partially uploaded.',
+                4   => 'No file was uploaded.',
+                6   => 'Upload failed. Missing a temporary folder.',
+                7   => 'Upload failed. Unable to write file to disk.',
+                100 => 'Unit of Measure must be KB, MB, GB invalid value: ',
+                110 => '$input_field_name not in $_FILES super global: ',
+                120 => '$_FILES $input_field_name tmp_name does not exist: ',
+                130 => 'Mime type not allowed: ',
+                140 => '$target_folder is not available: ',
+                150 => '$target_file exists but $overwrite_existing_file is FALSE'
+            );
         }
+
+        if (isset($this->options['maximum_file_size'])) {
+            $maximum_file_size = $this->options['maximum_file_size'];
+        } else {
+            $maximum_file_size = '2MB';
+        }
+
         if (isset($this->options['allowable_mimes_and_extensions'])) {
-            $options['allowable_mimes_and_extensions'] = $this->options['allowable_mimes_and_extensions'];
+            $allowable_mimes_and_extensions = $this->options['allowable_mimes_and_extensions'];
+        } else {
+            $allowable_mimes_and_extensions = array(
+                'image/bmp'                     => 'bmp',
+                'image/gif'                     => 'gif',
+                'image/jpeg'                    => 'jpeg,jpg',
+                'image/png'                     => 'png',
+                'image/tiff'                    => 'tiff',
+                'image/x-icon'                  => 'ico',
+                'audio/midi'                    => 'mid,midi',
+                'audio/mpeg'                    => 'mp2,mp3,mpga',
+                'audio/wav'                     => 'wav',
+                'audio/x-aiff'                  => 'aif,aifc,aiff',
+                'audio/x-pn-realaudio-plugin'   => 'rpm',
+                'audio/x-pn-realaudio'          => 'ram,rm',
+                'audio/x-realaudio'             => 'ra',
+                'audio/x-wav'                   => 'wav',
+                'video/mpeg'                    => 'mpeg',
+                'video/mpg'                     => 'mpg',
+                'video/quicktime'               => 'mov,qt',
+                'video/vnd.rn-realvideo'        => 'rv',
+                'video/webm'                    => 'webm',
+                'video/x-ms-wmv'                => 'wmv',
+                'video/x-msvideo'               => 'avi',
+                'application/pdf'               => 'pdf',
+                'application/vnd.ms-excel'      => 'xls',
+                'application/vnd.ms-powerpoint' => 'ppt',
+                'application/msword'            => 'doc',
+                'text/plain'                    => 'txt',
+                'text/csv'                      => 'csv',
+                'text/rtf'                      => 'rtf',
+                'application/zip'               => 'zip',
+                'application/x-tar'             => 'tar,tgz'
+            );
         }
         if (isset($this->options['target_folder'])) {
-            $options['target_folder'] = $this->options['target_folder'];
+            $target_folder = $this->options['target_folder'];
+        } else {
+            $target_folder = __DIR__;
         }
+
         if (isset($this->options['overwrite_existing_file'])) {
-            $options['overwrite_existing_file'] = $this->options['overwrite_existing_file'];
+            $overwrite_existing_file = $this->options['overwrite_existing_file'];
+        } else {
+            $overwrite_existing_file = 0;
         }
 
         /** Typically, this is all the application will provide */
-        if (isset($this->options['input_field_name'])) {
-            $options['input_field_name'] = $this->options['input_field_name'];
-        }
         if (isset($this->options['target_filename'])) {
-            $options['target_filename'] = $this->options['target_filename'];
+            $target_filename = $this->options['target_filename'];
+        } else {
+            // throw exception
         }
+
+        if (isset($this->options['input_field_name'])) {
+            $input_field_name = $this->options['input_field_name'];
+        } else {
+            // throw exception
+        }
+
+        // Load the Super Global
+        $file_array = $_FILES;
 
         try {
             $class                  = $this->service_namespace;
-            $this->service_instance = $class($options, $this->dependencies['Filesystem']);
+            $this->service_instance = $class(
+                $error_messages,
+                $maximum_file_size,
+                $allowable_mimes_and_extensions,
+                $target_folder,
+                $target_filename,
+                $input_field_name,
+                $overwrite_existing_file,
+                $file_array,
+                $this->dependencies['Filesystem']
+            );
+
             $this->service_instance->uploadFile();
+
         } catch (Exception $e) {
 
             throw new RuntimeException

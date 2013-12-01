@@ -8,8 +8,8 @@
  */
 namespace Molajo\Http;
 
-use Exception\Http\UploadException;
 use CommonApi\Http\UploadInterface;
+use CommonApi\Exception\RuntimeException;
 use CommonApi\Filesystem\FilesystemInterface;
 
 /**
@@ -23,9 +23,7 @@ use CommonApi\Filesystem\FilesystemInterface;
 class Upload implements UploadInterface
 {
     /**
-     * $file_array contains $_FILE superglobal contents
-     *
-     * Helps with Unit Testing to add a class property
+     * $file_array contains a copy of the $_FILE super global
      *
      * @var array
      */
@@ -34,8 +32,7 @@ class Upload implements UploadInterface
     /**
      * Error Messages
      *
-     * From: http://php.net/manual/en/features.file-upload.errors.php
-     *
+     * @link   http://php.net/manual/en/features.file-upload.errors.php
      * @var    array
      * @since  1.0
      */
@@ -171,259 +168,91 @@ class Upload implements UploadInterface
     /**
      * Filesystem, optional
      *
-     * @var     object  FilesystemInterface
+     * @var     object  CommonApi\Filesystem\FilesystemInterface
      * @since   1.0
      */
     protected $filesystem = null;
 
     /**
-     * Property Array
-     *
-     * @var    array
-     * @since  1.0
-     */
-    protected $property_array = array(
-        'error_codes',
-        'file_array',
-        'filesystem',
-        'allowable_mimes_and_extensions',
-        'maximum_file_size',
-        'target_folder',
-        'target_filename',
-        'input_field_name',
-        'overwrite_existing_file'
-    );
-
-    /**
      * Constructor
      *
-     * @param  array               $options
-     * @param  FilesystemInterface $filesystem (optional)
+     * @param string              $input_field_name
+     * @param string              $target_folder
+     * @param string              $target_filename
+     * @param int                 $overwrite_existing_file
+     * @param array               $files
+     * @param array               $error_messages
+     * @param string              $maximum_file_size
+     * @param array               $allowable_mimes_and_extensions
+     * @param FilesystemInterface $filesystem
      *
      * @since  1.0
      */
-    public function __construct($options = array(), FilesystemInterface $filesystem = null)
-    {
-        if (is_array($options)) {
+    public function __construct(
+        $input_field_name,
+        $target_folder,
+        $target_filename,
+        $overwrite_existing_file,
+        array $files = array(),
+        $form_token,
+        array $error_messages = array(),
+        $maximum_file_size = '2MB',
+        array $allowable_mimes_and_extensions = array(),
+        FilesystemInterface $filesystem = null
+    ) {
+        $this->target_folder           = $target_folder;
+        $this->target_filename         = $target_filename;
+        $this->input_field_name        = $input_field_name;
+        $this->overwrite_existing_file = $overwrite_existing_file;
+        $this->file_array              = $files;
+
+        if (count($this->error_messages) > 0) {
+            $this->error_messages = $error_messages;
+        }
+
+        if (trim((string)$maximum_file_size) === '') {
         } else {
-            $options = array();
+            $this->maximum_file_size = $maximum_file_size;
         }
 
-        $this->filesystem = $filesystem;
-
-        $this->file_array = $_FILES;
-
-        if (count($options) > 0) {
-            foreach ($this->property_array as $property) {
-                if (isset($options[$property])) {
-                    $this->$property = $options[$property];
-                }
-            }
-        }
-    }
-
-    /**
-     * Get the list of File Extensions associated with the Mime Type
-     *
-     * @param   string $mime_type
-     *
-     * @return  string
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function getType($mime_type)
-    {
-        $extensions = '';
-
-        if (isset($this->allowable_mimes_and_extensions[$mime_type])) {
-            $extensions = $this->allowable_mimes_and_extensions[$mime_type];
+        if (count($this->allowable_mimes_and_extensions) > 0) {
+            $this->allowable_mimes_and_extensions = $allowable_mimes_and_extensions;
         }
 
-        return $extensions;
-    }
-
-    /**
-     * Add Valid Mime Type and File Extension Entry to List
-     *
-     * @param   string $mime_type
-     * @param   string $extension
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function addType($mime_type, $extension)
-    {
-        $extensions = '';
-
-        if (isset($this->allowable_mimes_and_extensions[$mime_type])) {
-            $extensions = $this->allowable_mimes_and_extensions[$mime_type];
-        }
-
-        if ($extensions == '') {
-            $temp = array();
+        if ($filesystem === null) {
         } else {
-            $temp = explode(',', $extensions);
+            $this->filesystem = $filesystem;
         }
-
-        $temp[] = trim($extension);
-        sort($temp);
-        array_unique($temp);
-
-        if (count($temp) == 1) {
-            $extensions = $temp[0];
-        } else {
-            $extensions = implode(',', $temp);
-        }
-
-        $this->allowable_mimes_and_extensions[$mime_type] = $extensions;
-
-        return $this->allowable_mimes_and_extensions;
-    }
-
-    /**
-     * Remove Mime Type from List of Valid Values
-     *
-     * @param   string $mime_type
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function removeType($mime_type)
-    {
-        if (isset($this->allowable_mimes_and_extensions[$mime_type])) {
-            unset($this->allowable_mimes_and_extensions[$mime_type]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the maximum file size for upload
-     *
-     * @param   string $maximum_file_size
-     *
-     * @return  integer
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function setMaxFileSize($maximum_file_size)
-    {
-        $unit_of_measure = substr($maximum_file_size, strlen($maximum_file_size - 2), 2);
-
-        if ($unit_of_measure == 'KB'
-            || $unit_of_measure == 'MB'
-            || $unit_of_measure == 'GB'
-        ) {
-        } else {
-            throw new UploadException ($this->error_messages[100] . $unit_of_measure);
-        }
-
-        $measure                          = (int)substr($maximum_file_size, 0, strlen($maximum_file_size) - 2);
-        $this->maximum_file_size_in_bytes = $measure * $this->units_of_measure[$unit_of_measure];
-
-        return $this->maximum_file_size_in_bytes;
-    }
-
-    /**
-     * Set the target folder
-     *
-     * @param   string $target_folder
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    public function setTargetFolder($target_folder)
-    {
-        $this->target_folder = $target_folder;
-
-        return $this;
-    }
-
-    /**
-     * Set Input Field Name
-     *
-     * @param   string $input_field_name
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function setInputFieldName($input_field_name)
-    {
-        $this->input_field_name = $input_field_name;
-
-        return $this;
-    }
-
-    /**
-     * Set Overwrite Existing File
-     *
-     * @param   boolean $overwrite_existing_file
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  UploadException
-     */
-    public function setOverwriteExistingFile($overwrite_existing_file)
-    {
-        if ((boolean)$overwrite_existing_file === true) {
-            $this->overwrite_existing_file = true;
-        } else {
-            $this->overwrite_existing_file = false;
-        }
-
-        return $this;
     }
 
     /**
      * Upload File(s)
      *
-     * @param   null|string|array $target_filename
-     *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function upload($target_filename = null)
+    public function upload()
     {
-        if ($target_filename === null) {
-        } else {
-            $this->target_filename = $target_filename;
-        }
-
-        /**
-         *  Pre file processing
-         */
+        // Pre file processing
         $this->validateFormToken();
-
         $this->validateInputFieldName();
-
-        $this->createFileArray($target_filename);
-
+        $this->createFileArray();
         $this->validateTargetFolder();
 
-        /**
-         *  File processing
-         */
+        // For each uploaded file...
         foreach ($this->file_array as $item) {
 
             $upload_path_and_file = $item['tmp_name'];
 
             if ($item['error'] === 0) {
             } else {
-                throw new UploadException($item['error']);
+                throw new RuntimeException ('Http Upload Error: ' . $item['error']);
             }
 
             $this->validateUploadFileExists($upload_path_and_file);
 
             $this->validateMimeType($upload_path_and_file);
-
-            if ($target_filename === null) {
-            } else {
-                $this->target_filename = $target_filename;
-            }
 
             $upload_file     = basename($upload_path_and_file);
             $target_filename = $item['target_filename'];
@@ -456,18 +285,18 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateFormToken()
     {
         return $this;
 
-        try {
-            call_user_func_array(array(__NAMESPACE__ . '\Foo', 'test'), array('Philip'));
-        } catch (Exception $e) {
-            throw new UploadException($this->error_messages[105] . $e->getMessage());
-        }
+        $session_id = session_id();
+        $session_token = $_SESSION[$session_id];
 
+        if (isset($this->request_parameters[$session_token])) {
+
+        }
         return $this;
     }
 
@@ -476,13 +305,13 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateInputFieldName()
     {
         if (isset($this->file_array[$this->input_field_name])) {
         } else {
-            throw new UploadException($this->error_messages[110] . $this->input_field_name);
+            throw new RuntimeException($this->error_messages[110] . $this->input_field_name);
         }
 
         return $this;
@@ -493,7 +322,7 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     function createFileArray()
     {
@@ -546,7 +375,7 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateTargetFolder()
     {
@@ -558,7 +387,7 @@ class Upload implements UploadInterface
 
         if ($true_or_false === true) {
         } else {
-            throw new UploadException($this->error_messages[140] . $this->target_folder);
+            throw new RuntimeException($this->error_messages[140] . $this->target_folder);
         }
 
         return $this;
@@ -571,13 +400,13 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateUploadFileExists($upload_path_and_file)
     {
         if (file_exists($upload_path_and_file)) {
         } else {
-            throw new UploadException($this->error_messages[120] . $upload_path_and_file);
+            throw new RuntimeException($this->error_messages[120] . $upload_path_and_file);
         }
 
         return $this;
@@ -590,7 +419,7 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateMimeType($upload_path_and_file)
     {
@@ -599,7 +428,7 @@ class Upload implements UploadInterface
 
         if (isset($this->allowable_mimes_and_extensions[$mime_type])) {
         } else {
-            throw new UploadException($this->error_messages[130] . $mime_type);
+            throw new RuntimeException($this->error_messages[130] . $mime_type);
         }
 
         return $this;
@@ -612,7 +441,7 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  UploadException
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateTargetFile($target_path_and_file)
     {
@@ -623,7 +452,7 @@ class Upload implements UploadInterface
         }
 
         if ($true_or_false === true && $this->overwrite_existing_file === false) {
-            throw new UploadException($this->error_messages[150] . $target_path_and_file);
+            throw new RuntimeException($this->error_messages[150] . $target_path_and_file);
         }
 
         return $this;
