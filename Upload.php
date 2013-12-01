@@ -194,7 +194,6 @@ class Upload implements UploadInterface
         $target_filename,
         $overwrite_existing_file,
         array $files = array(),
-        $form_token,
         array $error_messages = array(),
         $maximum_file_size = '2MB',
         array $allowable_mimes_and_extensions = array(),

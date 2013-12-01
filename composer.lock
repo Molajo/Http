@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5bf7d7da9a44117be9719e2f5f355f46",
+    "hash": "0597646772f498fa85bc21bd8422b66a",
     "packages": [
         {
             "name": "commonapi/exception",
@@ -47,6 +47,50 @@
                 "exception"
             ],
             "time": "2013-11-23 06:20:36"
+        },
+        {
+            "name": "commonapi/filesystem",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CommonApi/Filesystem.git",
+                "reference": "b9fff2c5d2416722f2302a1bd546bc798615f72b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CommonApi/Filesystem/zipball/b9fff2c5d2416722f2302a1bd546bc798615f72b",
+                "reference": "b9fff2c5d2416722f2302a1bd546bc798615f72b",
+                "shasum": ""
+            },
+            "require": {
+                "commonapi/exception": ">=0.1",
+                "php": ">=5.3.10"
+            },
+            "type": "api",
+            "autoload": {
+                "psr-0": {
+                    "CommonApi\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "AmyStephen",
+                    "email": "AmyStephen@gmail.com",
+                    "homepage": "http://Molajo.org"
+                }
+            ],
+            "description": "Common Filesystem Api Interface",
+            "homepage": "https://github.com/CommonApi/Filesystem",
+            "keywords": [
+                "CommonApi",
+                "api",
+                "filesystem"
+            ],
+            "time": "2013-11-23 06:21:42"
         },
         {
             "name": "commonapi/http",
@@ -102,6 +146,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "commonapi/filesystem": 20,
         "commonapi/http": 20
     },
     "platform": {
