@@ -18,7 +18,7 @@ use Molajo\Http\Redirect;
  * @copyright  2013 Amy Stephen. All rights reserved.
  *
  */
-class RedirectTest extends \PHPUnit_Framework_TestCase
+class RedirectTest
 {
     /**
      * @var Redirect
@@ -26,21 +26,26 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
     protected $redirect_object;
 
     /**
-     * Gets the Redirect Object
+     * Construct
      *
-     * @covers Molajo\Http\Redirect::redirect
+     * @param   string $url
+     * @param   int    $status_code
+     *
+     * @since   1.0
      */
-    public function testRedirect()
+    public function __construct()
     {
-        /**
-        $url = '/feed/';
-        $code = 301;
 
-        $this->redirect_object = new Redirect($url, $code);
-        $redirect              = $this->redirect_object->redirect();
+        $this->testProperHeaderSet();
 
-        $this->assertRedirectTo('/feed/');
-        */
-        return $this;
+    }
+
+    protected function testProperHeaderSet()
+    {
+        $url      = 'http://google.com';
+        $code     = 301;
+//        $instance = new Redirect($url, $code);
+//        $instance->redirect();
+        header_remove();
     }
 }

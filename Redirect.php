@@ -71,18 +71,26 @@ Class Redirect implements RedirectInterface
             ('Redirect: Invalid or No Url provided for Redirect.');
         }
 
-        if ((int)$this->status_code == 0) {
-            $this->status_code = 302;
+        if ((int)$this->status_code === 0) {
+            $this->status_code = 301;
         }
 
-        if ($this->status_code == 301) {
-            header('HTTP/1.1 301 Moved Permanently');
-
-        } elseif ($this->status_code == 302) {
-            header('HTTP/1.1 302 Moved Temporarily');
+        if ($this->status_code == 302) {
+            header("HTTP/1.1 302 Moved Temporarily");
+        } elseif ($this->status_code == 303) {
+            header("HTTP/1.1 303 See Other");
+        } elseif ($this->status_code == 304) {
+            header("HTTP/1.1 304 Not Modified");
+        } elseif ($this->status_code == 305) {
+            header("HTTP/1.1 305 Use Proxy");
+        } elseif ($this->status_code == 307) {
+            header("HTTP/1.1 307 Temporary Redirect");
+        } else {
+            $this->status_code = 301;
+            header("HTTP/1.1 301 Moved Permanently");
         }
 
-        header('Location: ' . htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8'));
+        header("Location: " . htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8'));
 
         exit();
     }
