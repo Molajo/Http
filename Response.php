@@ -9,12 +9,8 @@
 namespace Molajo\Http;
 
 use DateTime;
-use DateTimeZone;
 use CommonApi\Http\ResponseInterface;
-use CommonApi\User\CookieInterface;
-use CommonApi\User\SessionInterface;
-use Exception\Http\ResponseException;
-use CommonApi\Model\FieldhandlerInterface;
+use CommonApi\Exception\UnexpectedValueException;
 
 /**
  * Http Response Class
@@ -29,10 +25,9 @@ class Response implements ResponseInterface
     /**
      * HTTP response codes with associated messages
      *
-     * http://restpatterns.org/
-     * http://tools.ietf.org/html/rfc2616
-     *
-     * @var array
+     * @link   http://tools.ietf.org/html/rfc2616
+     * @var    array
+     * @since  1.0
      */
     protected $header_status = array(
 
@@ -135,12 +130,12 @@ class Response implements ResponseInterface
     protected $status_message = null;
 
     /**
-     * Mimetype
+     * Content Type
      *
      * @var    string
      * @since  1.0
      */
-    protected $mimetype = 'text/html';
+    protected $content_type = 'text/html';
 
     /**
      * Expires Date
@@ -191,87 +186,58 @@ class Response implements ResponseInterface
     protected $length = 0;
 
     /**
-     * Fieldhandler Instance
-     *
-     * @var    object CommonApi\User\CookieInterface
-     * @since  1.0
-     */
-    protected $cookie = null;
-
-    /**
-     * Fieldhandler Instance
-     *
-     * @var    object CommonApi\User\SessionInterface;
-     * @since  1.0
-     */
-    protected $session = null;
-
-    /**
-     * Fieldhandler Instance
-     *
-     * @var    object CommonApi\Model\FieldhandlerInterface
-     * @since  1.0
-     */
-    protected $fieldhandler = null;
-
-    /**
      * Construct
      *
-     * @param   int                   $version
-     * @param   string                $charset
-     * @param   int                   $status_code
-     * @param   string                $mimetype
-     * @param   DateTime              $date
-     * @param   int                   $cachable
-     * @param   string                $language
-     * @param   null                  $body
-     * @param   FieldhandlerInterface $fieldhandler
+     * @param   string  $version
+     * @param   string  $charset
+     * @param   int     $status_code
+     * @param   string  $content_type
+     * @param   string  $expires_date
+     * @param   int     $cachable
+     * @param   string  $language
+     * @param   array   $headers
+     * @param   null    $body
      *
      * @since   1.0
-     * @throws  ResponseException
      */
     public function __construct(
         $version = '1.0',
         $charset = 'utf-8',
         $status_code = 200,
-        $mimetype = 'text/html',
+        $content_type = 'text/html',
         $expires_date = 'Fri, 14 Sep 2012 01:52:00 GMT',
         $cachable = 0,
         $language = 'en-GB',
-        $body = null,
-        FieldhandlerInterface $fieldhandler
+        array $headers = array(),
+        $body = null
     ) {
         if ((string)$version === '') {
             $version = '1.0';
         }
         $this->setVersion((string)$version);
 
-        /** Content Type Defaults */
         if ((string)$charset === '') {
-            $this->setCharset('utf-8');
-        } else {
-            $this->setCharset((string)$charset);
+            $charset = 'utf-8';
         }
+        $this->setCharset((string)$charset);
 
         if ((int)$status_code === 0) {
-            $this->setStatusCode(200);
-        } else {
-            $this->setStatusCode((int)$status_code);
+            $status_code = 200;
         }
+        $this->setStatusCode((int)$status_code);
 
-        if ((string)$mimetype === '') {
-            $this->setMimetype('text/html');
-        } else {
-            $this->setMimetype((string)$mimetype);
+        if ((string)$content_type === '') {
+            $content_type = 'text/html';
         }
-        $this->setHeader('Content-Type', $mimetype);
+        $this->setContentType((string)$content_type);
 
-        /** Cacheable */
+        $this->setHeader('Content-Type', $content_type);
+
         if ((int)$cachable === 0) {
+        } else {
             $this->setCachable($cachable);
         }
 
-        /** Language */
         if ($language === null) {
             $this->language = 'en-GB';
         } else {
@@ -282,10 +248,32 @@ class Response implements ResponseInterface
 
         $this->setBody((string)$body);
 
-        $this->cookies      = array();
-        $this->fieldhandler = $fieldhandler;
-
         return;
+    }
+
+    /**
+     * Send Headers and Body
+     *
+     * @return  string
+     * @since   1.0
+     */
+    public function send()
+    {
+        if ($this->canHaveBody()) {
+            $this->length = strlen($this->body);
+        } else {
+            $this->body   = '';
+            $this->length = 0;
+        }
+
+        if (headers_sent()) {
+        } else {
+            $this->sendHeaders();
+        }
+
+        $this->sendBody();
+
+        return $this->status_code;
     }
 
     /**
@@ -305,31 +293,30 @@ class Response implements ResponseInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  ResponseException
      */
-    public function setHeader($key, $value = null)
+    protected function setHeader($key, $value = null)
     {
         if ($value === null) {
-            if (isset($this->headers[$key])) {
-                unset($this->headers[$key]);
+            if (isset($this->headers[strtolower($key)])) {
+                unset($this->headers[strtolower($key)]);
             }
             return $this;
         }
 
-        if ($key == 'Content-Type') {
+        if (strtolower($key) == 'Content-Type') {
             $this->setContentType($value);
 
-        } elseif ($key == 'Last-Modified') {
+        } elseif (strtolower($key) == 'Last-Modified') {
             $this->setLastModifiedHeader($value);
 
-        } elseif ($key == 'Expires') {
+        } elseif (strtolower($key) == 'Expires') {
             $this->setExpiresHeader($value);
 
-        } elseif ($key == 'cacheable') {
+        } elseif (strtolower($key) == 'cacheable') {
             $this->setCacheControlHeader();
 
         } else {
-            $this->headers[$key] = $value;
+            $this->headers[strtolower($key)] = $value;
         }
 
         return $this;
@@ -344,9 +331,8 @@ class Response implements ResponseInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \Exception\Http\ResponseException
      */
-    public function setStatusCode($status_code = 200)
+    protected function setStatusCode($status_code = 200)
     {
         if ((int)$status_code === 0) {
             $status_code = 200;
@@ -363,11 +349,13 @@ class Response implements ResponseInterface
         }
 
         if (isset($this->header_status[$this->status_code])) {
-            $this->status_message = $this->header_status[$this->status_code];
-            return $this;
+        } else {
+            $this->status_code = 200;
         }
 
-        throw new ResponseException ('Http Response Status: ' . $status_code . 'is unknown.');
+        $this->status_message = $this->header_status[$this->status_code];
+
+        return $this;
     }
 
     /**
@@ -377,16 +365,17 @@ class Response implements ResponseInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \Exception\Http\ResponseException
+     * @throws  \CommonApi\Exception\UnexpectedValueException
      */
-    public function setBody($body)
+    protected function setBody($body)
     {
         if (is_string($body)
             || is_numeric($body)
             || is_null($body)
         ) {
         } else {
-            throw new ResponseException ('Httpresponse: Invalid Content');
+            throw new UnexpectedValueException
+                ('Http Response: Invalid Content');
         }
 
         $this->body = (string)$body;
@@ -394,92 +383,10 @@ class Response implements ResponseInterface
         if (isset($this->headers['Content-Length'])) {
             unset($this->headers['Content-Length']);
         }
+
         $this->headers['Content-Length'] = strlen($this->body);
 
         return $this;
-    }
-
-    /**
-     * Set HTTP response header
-     * Sets the defined browser cookie. Defaults to one year expiry on the root domain.
-     *
-     * @param   string $key
-     * @param   string $value
-     * @param   string $date
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \Exception\Http\ResponseException
-     */
-    public function setCookie($key = '', $value = null, $date = null)
-    {
-
-    }
-
-    /**
-     * Removes the defined browser cookie.
-     *
-     * @param   string $key
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \Exception\Http\ResponseException
-     */
-    public function unsetCookie($key)
-    {
-
-    }
-
-    /**
-     * Send Headers and Body
-     *
-     * @return  string
-     * @since   1.0
-     * @throws  ResponseException
-     */
-    public function send()
-    {
-        if ($this->canHaveBody()) {
-            $this->length = strlen($this->body);
-        } else {
-            $this->body   = '';
-            $this->length = 0;
-        }
-
-        if (headers_sent()) {
-        } else {
-            $this->sendHeaders();
-        }
-
-        $this->sendBody();
-
-        /**
-         * foreach ($this->cookies as $cookie) {
-         * if (empty($cookie->value)) {
-         * setcookie(
-         * $cookie->name,
-         * '',
-         * time() - 90000,
-         * $cookie->path,
-         * $cookie->domain,
-         * $cookie->secure,
-         * $cookie->httponly
-         * );
-         * } else {
-         * setcookie(
-         * $cookie->name,
-         * $cookie->value,
-         * $cookie->expires,
-         * $cookie->path,
-         * $cookie->domain,
-         * $cookie->secure,
-         * $cookie->httponly
-         * );
-         * }
-         * }
-         */
-
-        return $this->status_code;
     }
 
     /**
@@ -513,17 +420,16 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Sets the mimetype of this response.
+     * Sets the content_type of this response.
      *
-     * @param   string $mimetype
+     * @param   string $content_type
      *
      * @return  $this
      * @since   1.0
-     * @throws  ResponseException
      */
-    protected function setMimetype($mimetype = 'text/html')
+    protected function setContentType($content_type = 'text/html')
     {
-        $this->mimetype = (string)$mimetype;
+        $this->content_type = (string)$content_type;
 
         return $this;
     }
@@ -547,30 +453,6 @@ class Response implements ResponseInterface
             $this->cachable = 1;
             $this->setHeader('Cache-Control', 'max-age=3600, public');
         }
-
-        return $this;
-    }
-
-    /**
-     * Set Content Type Header
-     *
-     * @param   string $value
-     *
-     * @since   1.0
-     * @return  $this
-     * @throws  ResponseException
-     */
-    protected function setContentType($value)
-    {
-        if ($this->charset === null || $this->charset == '') {
-            $this->setCharset('utf-8');
-        }
-
-        if ((string)$value == '') {
-            $value = $this->mimetype . '; charset=' . $this->charset;
-        }
-
-        $this->headers['Content-Type'] = $value;
 
         return $this;
     }
@@ -717,7 +599,7 @@ class Response implements ResponseInterface
      * @since   1.0
      * @throws  ResponseException
      */
-    public function redirect($url = '', $redirect_code = 302)
+    protected function redirect($url = '', $redirect_code = 302)
     {
         header("Location: {$url}");
 

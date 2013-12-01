@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Http.git",
-                "reference": "2da9bdc3b6cede2ed04dea074b25c1079a10dcfd"
+                "reference": "650296506580fa85f9d697a08042cc63a9f52243"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Http/zipball/2da9bdc3b6cede2ed04dea074b25c1079a10dcfd",
-                "reference": "2da9bdc3b6cede2ed04dea074b25c1079a10dcfd",
+                "url": "https://api.github.com/repos/CommonApi/Http/zipball/650296506580fa85f9d697a08042cc63a9f52243",
+                "reference": "650296506580fa85f9d697a08042cc63a9f52243",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +91,7 @@
                 "api",
                 "http"
             ],
-            "time": "2013-11-30 09:07:30"
+            "time": "2013-12-01 04:55:44"
         }
     ],
     "packages-dev": [
