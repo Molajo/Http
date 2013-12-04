@@ -126,6 +126,21 @@ Redirecting to <a href="example.com">Example.com</a>.
 
         $this->assertEquals($this->body, $string);
     }
+
+    /**
+     * Verify Date Formatting
+     *
+     * @covers Molajo\Http\Response::setRedirect
+     */
+    public function testSend()
+    {
+        ob_start();
+        $this->redirect->send();
+        $rendered = ob_get_contents();
+        ob_end_clean();
+
+        $this->assertEquals($this->body, $rendered);
+    }
 }
 
 class RedirectStub extends Response

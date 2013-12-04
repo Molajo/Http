@@ -340,7 +340,7 @@ class Response implements ResponseInterface
 
         $this->sendHeaders();
 
-        if (strlen(trim($this->body))) {
+        if (strlen(trim($this->body)) > 0) {
             $this->sendBody();
         }
 
