@@ -13,14 +13,14 @@ if (! defined('PHP_VERSION_ID')) {
     define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
 }
 
-$base                               = substr(__DIR__, 0, strlen(__DIR__) - 5);
-$classmap                           = array();
-$classmap                           = createClassMap($base . '/vendor/commonapi/http', 'CommonApi\\Http\\');
-$results                            = createClassMap(
+$base     = substr(__DIR__, 0, strlen(__DIR__) - 5);
+$classmap = array();
+$classmap = createClassMap($base . '/vendor/commonapi/http', 'CommonApi\\Http\\');
+$results  = createClassMap(
     $base . '/vendor/commonapi/exception',
     'CommonApi\\Exception\\'
 );
-$classmap                                  = array_merge($classmap, $results);
+$classmap = array_merge($classmap, $results);
 
 $classmap['Molajo\\Http\\Client']   = $base . '/Client.php';
 $classmap['Molajo\\Http\\Redirect'] = $base . '/Redirect.php';
@@ -44,4 +44,4 @@ include $manual_redirect_test;
 $class = 'Molajo\Http\Tests\RedirectTest';
 $instance = new $class();
 $instance->testProperHeaderSet();
-*/
+ */

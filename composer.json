@@ -18,6 +18,9 @@
         "commonapi/http": "dev-master"
     },
 
+    "recommended": {
+        "molajo/filesystem": "dev-master"
+    },
     "support": {
         "event": "hello@molajo.org",
         "irc": "irc://irc.freenode.org/molajo"

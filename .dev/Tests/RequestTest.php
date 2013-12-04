@@ -22,7 +22,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * @var Request
      */
-    protected $server_object;
+    protected $request_object;
 
     /**
      * Gets the Request Object

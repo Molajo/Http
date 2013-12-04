@@ -18,12 +18,12 @@ include_once __DIR__ . '/Bootstrap.php';
 ob_start();
 
 // Set Redirect Parameters
-$url = 'http://www.example.com';
+$url  = 'http://www.example.com';
 $code = 301;
 
 // Create Redirect Class
-$class = 'Molajo\Http\Redirect';
-$instance     = new $class($url, $code);
+$class    = 'Molajo\Http\Redirect';
+$instance = new $class($url, $code);
 
 // Sets Headers
 $instance->redirect();

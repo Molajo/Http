@@ -63,77 +63,31 @@ class ResponseInjector extends AbstractInjector implements ServiceHandlerInterfa
      */
     public function instantiateService()
     {
-        if (isset($this->options['version'])) {
-            $version = '1.0';
+        if (isset($this->options['timezone'])) {
+            $timezone = $this->options['timezone'];
         } else {
-            $version = $this->options['version'];
-        }
-
-        if (isset($this->options['charset'])) {
-            $charset = 'utf-8';
-        } else {
-            $charset = $this->options['charset'];
-        }
-
-        if (isset($this->options['status_code'])) {
-            $status_code = 200;
-        } else {
-            $status_code = $this->options['status_code'];
-        }
-
-        if (isset($this->options['content_type'])) {
-            $content_type = 'text/html';
-        } else {
-            $content_type = $this->options['content_type'];
-        }
-
-        if (isset($this->options['expires_date'])) {
-            $expires_date = 'Fri, 14 Sep 2012 01:52:00 GMT';
-        } else {
-            $expires_date = $this->options['expires_date'];
-        }
-
-        if (isset($this->options['cachable'])) {
-            $cachable = 0;
-        } else {
-            $cachable = $this->options['cachable'];
-        }
-
-        if (isset($this->options['language'])) {
-            $language = 'en-GB';
-        } else {
-            $language = $this->options['language'];
-        }
-
-        if (isset($this->options['headers'])) {
-            $headers = array();
-        } else {
-            $headers = $this->options['headers'];
+            $timezone = 'UTC';
         }
 
         if (isset($this->options['body'])) {
-            $body = null;
-        } else {
             $body = $this->options['body'];
+        } else {
+            $body = '';
         }
+
+        $headers = array();
 
         $class = $this->options['service_namespace'];
 
         try {
             $this->service_instance = new $class(
-                $version,
-                $charset,
-                $status_code,
-                $content_type,
-                $expires_date,
-                $cachable,
-                $language,
+                $timezone,
                 $headers,
                 $body
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Request: Could not instantiate Handler: ' . $class);
+            ('Redirect: Could not instantiate Handler: ' . $class);
         }
 
         return $this;

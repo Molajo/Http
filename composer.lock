@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0597646772f498fa85bc21bd8422b66a",
+    "hash": "049725ef7a81f2ee609470f6b2fe567b",
     "packages": [
         {
             "name": "commonapi/exception",

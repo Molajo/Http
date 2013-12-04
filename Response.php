@@ -26,6 +26,7 @@ class Response implements ResponseInterface
      * HTTP response codes with associated messages
      *
      * @link   http://tools.ietf.org/html/rfc2616
+     * @link   http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
      * @var    array
      * @since  1.0
      */
@@ -98,6 +99,14 @@ class Response implements ResponseInterface
     );
 
     /**
+     * Status
+     *
+     * @var    int
+     * @since  1.0
+     */
+    protected $status = 200;
+
+    /**
      * Version
      *
      * @var    string
@@ -106,68 +115,36 @@ class Response implements ResponseInterface
     protected $version = '1.0';
 
     /**
-     * Charset
+     * Url
      *
      * @var    string
      * @since  1.0
      */
-    protected $charset = 'utf-8';
+    protected $url = null;
 
     /**
-     * Status Code
+     * Timezone
      *
      * @var    string
      * @since  1.0
      */
-    protected $status_code = 200;
+    protected $timezone = null;
 
     /**
-     * Status Message
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $status_message = null;
-
-    /**
-     * Content Type
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $content_type = 'text/html';
-
-    /**
-     * Expires Date
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $expires_date = null;
-
-    /**
-     * Version
-     *
-     * @var    string
-     * @since  1.0
-     */
-    protected $language = 'en-GB';
-
-    /**
-     * Cachable
-     *
-     * @var    boolean
-     * @since  1.0
-     */
-    protected $cachable = null;
-
-    /**
-     * HTTP response headers
+     * Headers
      *
      * @var    array
      * @since  1.0
      */
     protected $headers = array();
+
+    /**
+     * Formatted Headers
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $formatted_headers = array();
 
     /**
      * Body
@@ -178,431 +155,255 @@ class Response implements ResponseInterface
     protected $body = null;
 
     /**
-     * Length
-     *
-     * @var    int
-     * @since  1.0
-     */
-    protected $length = 0;
-
-    /**
      * Construct
      *
-     * @param   string  $version
-     * @param   string  $charset
-     * @param   int     $status_code
-     * @param   string  $content_type
-     * @param   string  $expires_date
-     * @param   int     $cachable
-     * @param   string  $language
-     * @param   array   $headers
-     * @param   null    $body
+     * @param   array $headers
+     * @param   null  $body
      *
      * @since   1.0
      */
     public function __construct(
-        $version = '1.0',
-        $charset = 'utf-8',
-        $status_code = 200,
-        $content_type = 'text/html',
-        $expires_date = 'Fri, 14 Sep 2012 01:52:00 GMT',
-        $cachable = 0,
-        $language = 'en-GB',
+        $timezone = 'UTC',
         array $headers = array(),
         $body = null
     ) {
-        if ((string)$version === '') {
-            $version = '1.0';
-        }
-        $this->setVersion((string)$version);
+        $this->timezone = $timezone;
 
-        if ((string)$charset === '') {
-            $charset = 'utf-8';
-        }
-        $this->setCharset((string)$charset);
-
-        if ((int)$status_code === 0) {
-            $status_code = 200;
-        }
-        $this->setStatusCode((int)$status_code);
-
-        if ((string)$content_type === '') {
-            $content_type = 'text/html';
-        }
-        $this->setContentType((string)$content_type);
-
-        $this->setHeader('Content-Type', $content_type);
-
-        if ((int)$cachable === 0) {
+        if (isset($headers['Status'])) {
+            $this->status = $headers['Status'];
+            unset($headers['Status']);
         } else {
-            $this->setCachable($cachable);
+            $this->status = 200;
         }
 
-        if ($language === null) {
-            $this->language = 'en-GB';
+        if (isset($headers['Version'])) {
+            $this->version = $headers['Version'];
+            unset($headers['Version']);
         } else {
-            $this->language = $language;
+            $this->version = '1.0';
         }
 
-        $this->setHeader('Content-Language', $this->language);
+        if (isset($headers['Location'])) {
+            $this->url = $headers['Location'];
+            unset($headers['Location']);
+            $this->setRedirect();
+        }
 
-        $this->setBody((string)$body);
+        $this->setStatus();
+
+        if ($this->status > 0 && $this->status < 200
+            || in_array($this->status, array(201, 204, 304))
+        ) {
+            $this->body = '';
+        } else {
+            $this->body = (string)$body;
+        }
+
+        $content_type = '';
+        if ($this->status == 204 || $this->status == 304) {
+            $this->body = '';
+
+        } else {
+            if (isset($headers['Content-Type'])) {
+                $content_type = $headers['Content-Type'];
+                unset($headers['Content-Type']);
+            } else {
+                $content_type = 'text/html';
+            }
+            $content_type .= ';';
+            if (isset($headers['Charset'])) {
+                $content_type .= ' charset=' . $headers['Charset'];
+                unset($headers['Charset']);
+            } else {
+                $content_type .= ' charset=UTF-8';
+            }
+        }
+        if (isset($headers['Content-Type'])) {
+            unset($headers['Content-Type']);
+        }
+        if (isset($headers['Charset'])) {
+            unset($headers['Charset']);
+        }
+
+        if ($this->body === '') {
+        } else {
+            $this->headers['Content-Type'] = $content_type;
+            if (isset($headers['Last-Modified'])) {
+                $this->headers['Last-Modified'] = $headers['Last-Modified'];
+            } else {
+                $this->headers['Last-Modified'] = $this->getDate();
+            }
+
+            $this->headers['Date'] = $this->getDate();
+
+            if (isset($headers['Language'])) {
+                $this->headers['Language'] = $headers['Language'];
+            } else {
+                $this->headers['Language'] = 'en-GB';
+            }
+
+            if (isset($headers['Cachable']) && $headers['Cachable'] === 1) {
+                $this->headers['Cache-Control'] = 'max-age=3600, public';
+            } else {
+                $this->headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate';
+                $this->headers['Pragma']        = 'no-cache';
+                $this->headers['Expires']       = $this->getDate();
+            }
+        }
+
+        if (isset($headers['Last-Modified'])) {
+            unset($headers['Last-Modified']);
+        }
+        if (isset($headers['Language'])) {
+            unset($headers['Language']);
+        }
+        if (isset($headers['Cachable'])) {
+            unset($headers['Cachable']);
+        }
+
+        if (count($headers) > 0) {
+            foreach ($headers as $key => $value) {
+                $key                 = (string)$key;
+                $this->headers[$key] = (string)$value;
+            }
+        }
 
         return;
     }
 
     /**
-     * Send Headers and Body
+     * Set Status
      *
      * @return  string
      * @since   1.0
      */
+    protected function setStatus()
+    {
+        if (isset($this->header_status[$this->status])) {
+        } else {
+            $this->status = 200;
+        }
+
+        $this->headers['Status'] = sprintf(
+            'HTTP/%s %s',
+            $this->version,
+            $this->header_status[$this->status]
+        );
+
+        return $this->headers['Status'];
+    }
+
+    /**
+     * Set Redirect
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function setRedirect()
+    {
+        $this->url = filter_var($this->url, FILTER_SANITIZE_URL);
+
+        if ((int)$this->status > 299 && (int)$this->status < 400) {
+        } else {
+            $this->status = 301;
+        }
+
+        $this->headers['Location'] = htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8');
+
+        return $this->headers['Location'];
+    }
+
+    /**
+     * Get Date
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function getDate()
+    {
+        $date = new DateTime();
+
+        $date->setTimezone(new \DateTimeZone($this->timezone));
+
+        return $date->format('D, d M Y H:i:s') . ' GMT';
+    }
+
+    /**
+     * Send Headers and Body
+     *
+     * @return  void
+     * @since   1.0
+     */
     public function send()
     {
-        if ($this->canHaveBody()) {
-            $this->length = strlen($this->body);
-        } else {
-            $this->body   = '';
-            $this->length = 0;
+        $this->setHeaders();
+
+        $this->sendHeaders();
+
+        if (strlen(trim($this->body))) {
+            $this->sendBody();
         }
 
-        if (headers_sent()) {
-        } else {
-            $this->sendHeaders();
-        }
-
-        $this->sendBody();
-
-        return $this->status_code;
+        return;
     }
 
     /**
-     * Set HTTP response header
+     * Send Headers
      *
-     * JSON Response
-     *
-     * $this->setHeader('Content-Type', 'application/json');
-     *
-     * Download a PDF
-     *
-     * $this->setHeader('Content-Type', 'application/pdf');
-     * $this->setHeader('Content-Disposition', 'attachment; filename="downloaded.pdf"');
-     *
-     * @param   string      $key
-     * @param   null|string $value
-     *
-     * @return  $this
+     * @return  array
      * @since   1.0
      */
-    protected function setHeader($key, $value = null)
+    protected function setHeaders()
     {
-        if ($value === null) {
-            if (isset($this->headers[strtolower($key)])) {
-                unset($this->headers[strtolower($key)]);
-            }
-            return $this;
-        }
-
-        if (strtolower($key) == 'Content-Type') {
-            $this->setContentType($value);
-
-        } elseif (strtolower($key) == 'Last-Modified') {
-            $this->setLastModifiedHeader($value);
-
-        } elseif (strtolower($key) == 'Expires') {
-            $this->setExpiresHeader($value);
-
-        } elseif (strtolower($key) == 'cacheable') {
-            $this->setCacheControlHeader();
-
-        } else {
-            $this->headers[strtolower($key)] = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set Status Code
-     *
-     * RFC1945 (HTTP/1.0), RFC2616 (HTTP/1.1), and RFC2518 (WebDAV)
-     *
-     * @param   int $status_code
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setStatusCode($status_code = 200)
-    {
-        if ((int)$status_code === 0) {
-            $status_code = 200;
-        }
-
-        $this->status_code = (int)$status_code;
-
-        if ($this->status_code == 204
-            || $this->status_code == 304
-        ) {
-            if (isset($this->headers['Content-Type'])) {
-                unset($this->headers['Content-Type']);
-            }
-        }
-
-        if (isset($this->header_status[$this->status_code])) {
-        } else {
-            $this->status_code = 200;
-        }
-
-        $this->status_message = $this->header_status[$this->status_code];
-
-        return $this;
-    }
-
-    /**
-     * Set the Body
-     *
-     * @param   string $body
-     *
-     * @return  $this
-     * @since   1.0
-     * @throws  \CommonApi\Exception\UnexpectedValueException
-     */
-    protected function setBody($body)
-    {
-        if (is_string($body)
-            || is_numeric($body)
-            || is_null($body)
-        ) {
-        } else {
-            throw new UnexpectedValueException
-                ('Http Response: Invalid Content');
-        }
-
-        $this->body = (string)$body;
+        $this->formatted_headers = array();
 
         if (isset($this->headers['Content-Length'])) {
             unset($this->headers['Content-Length']);
         }
 
-        $this->headers['Content-Length'] = strlen($this->body);
-
-        return $this;
-    }
-
-    /**
-     * Sets the charset of this response.
-     *
-     * @param   int $version
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setVersion($version = '1.0')
-    {
-        $this->version = (string)$version;
-
-        return $this;
-    }
-
-    /**
-     * Sets the charset of this response.
-     *
-     * @param   string $charset
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setCharset($charset = 'utf-8')
-    {
-        $this->charset = (string)$charset;
-
-        return $this;
-    }
-
-    /**
-     * Sets the content_type of this response.
-     *
-     * @param   string $content_type
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setContentType($content_type = 'text/html')
-    {
-        $this->content_type = (string)$content_type;
-
-        return $this;
-    }
-
-    /**
-     * Set Cachable
-     *
-     * @param   int $cachable
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setCachable($cachable = 1)
-    {
-        if ((int)$cachable == 0) {
-            $this->cachable = 0;
-            $this->setHeader('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
-            $this->setHeader('Pragma', 'no-cache');
-            $this->setHeader('Expires', $this->expires_date);
-        } else {
-            $this->cachable = 1;
-            $this->setHeader('Cache-Control', 'max-age=3600, public');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set Last Modified Datetime Header
-     *
-     * @param   DateTime $date
-     *
-     * @since   1.0
-     * @return  $this
-     * @throws  ResponseException
-     */
-    protected function setLastModifiedHeader($last_modified_date)
-    {
-        if ($this->cachable == '1') {
-            $this->headers['Last-Modified'] = gmdate('D, d M Y H:i:s', time() + 900) . ' GMT';
-        } else {
-            $this->headers['Last-Modified'] = $last_modified_date;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set Expires Date Header
-     *
-     * @param   string $expires_date
-     *
-     * @since   1.0
-     * @return  $this
-     * @throws  ResponseException
-     */
-    protected function setExpiresHeader($expires_date)
-    {
-        if ($this->cachable == '1') {
-            $this->headers['Expires'] = 'Mon, 1 Jan 2001 00:00:00 GMT';
-        } else {
-            $this->headers['Expires'] = $expires_date;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Cache-Control
-     *
-     * @param   string $value
-     *
-     * @since   1.0
-     * @return  $this
-     * @throws  ResponseException
-     */
-    protected function setCacheControlHeader($value = '')
-    {
-        if ($this->cachable == '1') {
-            $this->headers['Cache-Control'] = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Pragma
-     *
-     * @param   string $value
-     *
-     * @since   1.0
-     * @return  $this
-     * @throws  ResponseException
-     */
-    protected function setPragmaHeader($value)
-    {
-        if ($this->cachable == '1') {
-            $this->headers['Pragma'] = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Send Headers and Body
-     *
-     * @return  string
-     * @since   1.0
-     * @throws  ResponseException
-     */
-    protected function sendHeaders()
-    {
-        if (strpos(PHP_SAPI, 'cgi') === 0) {
-            header('Status: ' . $this->status_code . ' ' . $this->status_message);
-        } else {
-            $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-            header($protocol . ' ' . $this->status_code . ' ' . $this->status_message);
+        if (strlen($this->body) > 0) {
+            $this->headers['Content-Length'] = strlen($this->body);
         }
 
         foreach ($this->headers as $name => $values) {
             $header_values = explode("\n", $values);
             foreach ($header_values as $value) {
-                header("$name: $value", false);
+                $this->formatted_headers[] = "$name: $value";
             }
         }
 
-        flush();
+        return $this->formatted_headers;
     }
 
     /**
-     * Send Headers and Body
+     * Send Headers
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
-     * @throws  ResponseException
      */
-    protected function sendBody()
+    public function sendHeaders()
     {
-        if ($this->canHaveBody()) {
-            $this->length = strlen($this->body);
-        } else {
-            $this->body   = '';
-            $this->length = 0;
+        if (headers_sent()) {
+            return $this;
         }
 
-        echo $this->body;
+        foreach ($this->formatted_headers as $header) {
+            header($header, false);
+        }
 
-        flush();
+        return $this;
     }
 
     /**
-     * Can Have Body
+     * Send Headers
      *
-     * @return  string
+     * @return  void
      * @since   1.0
-     * @throws  ResponseException
      */
-    protected function canHaveBody()
+    public function sendBody()
     {
-        return true;
-    }
+        echo (string)$this->body;
 
-    /**
-     * Can Have Body
-     *
-     * @return  string
-     * @since   1.0
-     * @throws  ResponseException
-     */
-    protected function redirect($url = '', $redirect_code = 302)
-    {
-        header("Location: {$url}");
-
-        exit;
+        return;
     }
 }

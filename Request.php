@@ -1,6 +1,6 @@
 <?php
 /**
- * Request
+ * Http Request Class
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -13,7 +13,7 @@ use CommonApi\Http\RequestInterface;
 use CommonApi\Exception\InvalidArgumentException;
 
 /**
- * Request Class
+ * Http Request Class
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -238,11 +238,11 @@ class Request implements RequestInterface
      *
      * scheme://user:password@example.com:8042/over/there/index.php?type=animal&name=narwhal#nose
      *          \___________/ \_________/ \__/ \__________________/\______________________/ \__/
-     *             |               |       |          |    |    |            |                |
-     *          userinfo         host     port       path  |    |          query           fragment
-     *         \____________________________/              |    |  \__/ \____/ \__/ \____/
-     *                     |                               |    |    |    |      |     |
-     *                authority                            |    |    key  value  key   value
+     *             |               |       |          |                      |                |
+     *          userinfo         host     port       path                  query           fragment
+     *         \____________________________/                      \__/ \____/ \__/ \____/
+     *                     |                                         |    |      |     |
+     *                authority                                      key  value  key   value
      *
      * - Returns method, content_type, base_url, url, scheme, secure (boolean), user, password,
      *   userinfo, host, port, authority, path, query, parameters (named pair query array)

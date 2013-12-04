@@ -14,7 +14,7 @@
 include __DIR__ . '/../Bootstrap.php';
 
 use Molajo\Http\Upload;
-use Exception\Http\UploadException;
+use CommonApi\Exception\RuntimeException;
 
 $options['input_field_name']        = 'UploadFile';
 $options['target_folder']           = __DIR__ . '/Target';
@@ -25,7 +25,7 @@ $connect = new Upload($options);
 try {
     $connect->upload();
 } catch (Exception $e) {
-    throw new UploadException
+    throw new RuntimeException
     ('Molajo Upload: Upload failed ' . $e->getMessage());
 }
 

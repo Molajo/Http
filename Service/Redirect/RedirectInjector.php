@@ -32,8 +32,8 @@ class RedirectInjector extends AbstractInjector implements ServiceHandlerInterfa
      */
     public function __construct(array $options = array())
     {
-        $options['service_name']             = basename(__DIR__);
-        $options['service_namespace']        = 'Molajo\\Http\\Redirect';
+        $options['service_name']      = basename(__DIR__);
+        $options['service_namespace'] = 'Molajo\\Http\\Response';
 
         parent::__construct($options);
     }
@@ -62,22 +62,42 @@ class RedirectInjector extends AbstractInjector implements ServiceHandlerInterfa
      */
     public function instantiateService()
     {
-        $class = $this->options['service_namespace'];
+        if (isset($this->options['timezone'])) {
+            $timezone = $this->options['timezone'];
+        } else {
+            $timezone = 'UTC';
+        }
 
-        if (isset($this->options['redirect_to'])) {
+        if (isset($this->options['url'])) {
+            $url = $this->options['url'];
         } else {
             throw new RuntimeException('Redirect Service: No Redirect URL provided');
         }
 
-        if (isset($this->options['redirect_status_code'])) {
+        if (isset($this->options['status'])) {
+            $status = $this->options['status'];
         } else {
-            $this->options['redirect_status_code'] = 302;
+            $status = 302;
         }
+
+        if (isset($this->options['body'])) {
+            $body = $this->options['body'];
+        } else {
+            $body = '';
+        }
+
+        $headers = array(
+            'Location' => $url,
+            'Status'   => $status
+        );
+
+        $class = $this->options['service_namespace'];
 
         try {
             $this->service_instance = new $class(
-                $this->options['redirect_to'],
-                $this->options['redirect_status_code']
+                $timezone,
+                $headers,
+                $body
             );
         } catch (Exception $e) {
             throw new RuntimeException

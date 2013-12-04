@@ -25,7 +25,7 @@ class Upload implements UploadInterface
     /**
      * $file_array contains a copy of the $_FILE super global
      *
-     * @var array
+     * @since  1.0
      */
     protected $file_array = array();
 
@@ -214,7 +214,7 @@ class Upload implements UploadInterface
             $this->maximum_file_size = $maximum_file_size;
         }
 
-        if (count($this->allowable_mimes_and_extensions) > 0) {
+        if (count($allowable_mimes_and_extensions) > 0) {
             $this->allowable_mimes_and_extensions = $allowable_mimes_and_extensions;
         }
 
@@ -290,7 +290,7 @@ class Upload implements UploadInterface
     {
         return $this;
 
-        $session_id = session_id();
+        $session_id    = session_id();
         $session_token = $_SESSION[$session_id];
 
         if (isset($this->request_parameters[$session_token])) {
@@ -450,7 +450,7 @@ class Upload implements UploadInterface
             $true_or_false = file_exists($target_path_and_file);
         }
 
-        if ($true_or_false === true && $this->overwrite_existing_file === false) {
+        if ($true_or_false === true && $this->overwrite_existing_file === 0) {
             throw new RuntimeException($this->error_messages[150] . $target_path_and_file);
         }
 
