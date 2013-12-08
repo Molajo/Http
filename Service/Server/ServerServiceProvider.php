@@ -1,27 +1,27 @@
 <?php
 /**
- * Client Dependency Injector
+ * Server Service Provider
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Client;
+namespace Molajo\Service\Server;
 
 use Exception;
-use Molajo\IoC\Handler\AbstractInjector;
-use CommonApi\IoC\ServiceHandlerInterface;
+use Molajo\IoC\AbstractServiceProvider;
+use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
- * Client Service Dependency Injector
+ * Server Service Provider
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ClientInjector extends AbstractInjector implements ServiceHandlerInterface
+class ServerServiceProvider extends AbstractServiceProvider implements ServiceProviderInterface
 {
     /**
      * Constructor
@@ -34,13 +34,13 @@ class ClientInjector extends AbstractInjector implements ServiceHandlerInterface
     {
         $options['service_name']             = basename(__DIR__);
         $options['store_instance_indicator'] = true;
-        $options['service_namespace']        = null;
+        $options['service_namespace']        = 'Molajo\\Http\\Server';
 
         parent::__construct($options);
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceHandlerInterface
+     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -63,7 +63,7 @@ class ClientInjector extends AbstractInjector implements ServiceHandlerInterface
      */
     public function instantiateService()
     {
-        $class = 'Molajo\\Http\\Client';
+        $class = $this->options['service_namespace'];
 
         try {
             $this->service_instance = new $class(
@@ -71,7 +71,7 @@ class ClientInjector extends AbstractInjector implements ServiceHandlerInterface
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Client: Could not instantiate Handler: ' . $class);
+            ('Server: Could not instantiate Handler: ' . $class);
         }
 
         return $this;

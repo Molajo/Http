@@ -1,27 +1,27 @@
 <?php
 /**
- * Server Dependency Injector
+ * Request Service Provider
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Server;
+namespace Molajo\Service\Request;
 
 use Exception;
-use Molajo\IoC\Handler\AbstractInjector;
-use CommonApi\IoC\ServiceHandlerInterface;
+use Molajo\IoC\AbstractServiceProvider;
+use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
 
 /**
- * Server Service Dependency Injector
+ * Request Service Provider
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2013 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ServerInjector extends AbstractInjector implements ServiceHandlerInterface
+class RequestServiceProvider extends AbstractServiceProvider implements ServiceProviderInterface
 {
     /**
      * Constructor
@@ -34,13 +34,13 @@ class ServerInjector extends AbstractInjector implements ServiceHandlerInterface
     {
         $options['service_name']             = basename(__DIR__);
         $options['store_instance_indicator'] = true;
-        $options['service_namespace']        = 'Molajo\\Http\\Server';
+        $options['service_namespace']        = 'Molajo\\Http\\Request';
 
         parent::__construct($options);
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceHandlerInterface
+     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -71,7 +71,7 @@ class ServerInjector extends AbstractInjector implements ServiceHandlerInterface
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Server: Could not instantiate Handler: ' . $class);
+            ('Request: Could not instantiate Handler: ' . $class);
         }
 
         return $this;
