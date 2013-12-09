@@ -22,12 +22,12 @@ $results  = createClassMap(
 );
 $classmap = array_merge($classmap, $results);
 
-$classmap['Molajo\\Http\\Client']   = $base . '/Client.php';
-$classmap['Molajo\\Http\\Redirect'] = $base . '/Redirect.php';
-$classmap['Molajo\\Http\\Request']  = $base . '/Request.php';
-$classmap['Molajo\\Http\\Response'] = $base . '/Response.php';
-$classmap['Molajo\\Http\\Server']   = $base . '/Server.php';
-$classmap['Molajo\\Http\\Upload']   = $base . '/Upload.php';
+$classmap['Molajo\\Http\\Client']   = $base . '/Source/Client.php';
+$classmap['Molajo\\Http\\Redirect'] = $base . '/Source/Redirect.php';
+$classmap['Molajo\\Http\\Request']  = $base . '/Source/Request.php';
+$classmap['Molajo\\Http\\Response'] = $base . '/Source/Response.php';
+$classmap['Molajo\\Http\\Server']   = $base . '/Source/Server.php';
+$classmap['Molajo\\Http\\Upload']   = $base . '/Source/Upload.php';
 ksort($classmap);
 
 spl_autoload_register(

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "049725ef7a81f2ee609470f6b2fe567b",
+    "hash": "a98f5234df6dc739eda5af25350656f4",
     "packages": [
         {
             "name": "commonapi/exception",
@@ -54,12 +54,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Filesystem.git",
-                "reference": "b9fff2c5d2416722f2302a1bd546bc798615f72b"
+                "reference": "6e71ea49d66e0208984ab130d9b169637cbb08eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Filesystem/zipball/b9fff2c5d2416722f2302a1bd546bc798615f72b",
-                "reference": "b9fff2c5d2416722f2302a1bd546bc798615f72b",
+                "url": "https://api.github.com/repos/CommonApi/Filesystem/zipball/6e71ea49d66e0208984ab130d9b169637cbb08eb",
+                "reference": "6e71ea49d66e0208984ab130d9b169637cbb08eb",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
                 "api",
                 "filesystem"
             ],
-            "time": "2013-11-23 06:21:42"
+            "time": "2013-12-09 01:29:58"
         },
         {
             "name": "commonapi/http",
