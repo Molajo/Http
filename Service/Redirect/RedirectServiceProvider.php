@@ -91,7 +91,7 @@ class RedirectServiceProvider extends AbstractServiceProvider implements Service
             'Status'   => $status
         );
 
-        $class = $this->options['service_namespace'];
+        $class = $this->service_namespace;
 
         try {
             $this->service_instance = new $class(

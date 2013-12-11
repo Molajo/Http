@@ -77,7 +77,7 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
 
         $headers = array();
 
-        $class = $this->options['service_namespace'];
+        $class = $this->service_namespace;
 
         try {
             $this->service_instance = new $class(

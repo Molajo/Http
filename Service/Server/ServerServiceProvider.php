@@ -63,7 +63,7 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
      */
     public function instantiateService()
     {
-        $class = $this->options['service_namespace'];
+        $class = $this->service_namespace;
 
         try {
             $this->service_instance = new $class(
@@ -75,5 +75,19 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
         }
 
         return $this;
+    }
+
+    /**
+     * Logic contained within this method is invoked after the Service Class construction
+     *  and can be used for setter logic or other post-construction processing
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function onAfterInstantiation()
+    {
+        $results = $this->service_instance->get();
+
+        $this->service_instance = $results;
     }
 }
