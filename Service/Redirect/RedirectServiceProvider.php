@@ -36,9 +36,6 @@ class RedirectServiceProvider extends AbstractServiceProvider implements Service
         $options['service_namespace'] = 'Molajo\\Http\\Redirect';
 
         parent::__construct($options);
-
-        var_dump($options);
-        die;
     }
 
     /**
