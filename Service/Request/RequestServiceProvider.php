@@ -40,21 +40,6 @@ class RequestServiceProvider extends AbstractServiceProvider implements ServiceP
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
-     * Retrieve a list of Interface dependencies and return the data ot the controller.
-     *
-     * @return  array
-     * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
-     */
-    public function setDependencies(array $reflection = null)
-    {
-        $this->reflection = array();
-
-        return $this->dependencies;
-    }
-
-    /**
      * Instantiate Class
      *
      * @return  $this

@@ -51,6 +51,8 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
     {
         $this->reflection = array();
 
+        $this->dependencies['rendered_page'] = array();
+
         return $this->dependencies;
     }
 
@@ -72,7 +74,7 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
         if (isset($this->options['body'])) {
             $body = $this->options['body'];
         } else {
-            $body = '';
+            $body = $this->dependencies['rendered_page'];
         }
 
         $headers = array();
