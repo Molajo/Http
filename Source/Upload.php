@@ -3,7 +3,7 @@
  * File Upload
  *
  * @package    Molajo
- * @copyright  2013 Amy Stephen. All rights reserved.
+ * @copyright  2014 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Http;
@@ -17,7 +17,7 @@ use CommonApi\Filesystem\FilesystemInterface;
  *
  * @package    Molajo
  * @license    MIT
- * @copyright  2013 Amy Stephen. All rights reserved.
+ * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
 class Upload implements UploadInterface
