@@ -9,9 +9,9 @@
 namespace Molajo\Service\Response;
 
 use Exception;
-use Molajo\IoC\AbstractServiceProvider;
-use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
+use CommonApi\IoC\ServiceProviderInterface;
+use Molajo\IoC\AbstractServiceProvider;
 
 /**
  * Response Service Provider

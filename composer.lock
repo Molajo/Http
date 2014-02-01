@@ -20,11 +20,11 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.10"
+                "php": ">=5.4"
             },
             "type": "api",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "CommonApi\\Exception\\": ""
                 }
             },
@@ -64,11 +64,11 @@
             },
             "require": {
                 "commonapi/exception": ">=0.1",
-                "php": ">=5.3.10"
+                "php": ">=5.4"
             },
             "type": "api",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "CommonApi\\Filesystem\\": ""
                 }
             },
@@ -108,11 +108,11 @@
             },
             "require": {
                 "commonapi/exception": ">=0.1",
-                "php": ">=5.3.10"
+                "php": ">=5.4"
             },
             "type": "api",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "CommonApi\\Http\\": ""
                 }
             },
@@ -150,7 +150,7 @@
         "commonapi/http": 20
     },
     "platform": {
-        "php": ">=5.3.10"
+        "php": ">=5.4"
     },
     "platform-dev": [
 
