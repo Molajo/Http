@@ -17,17 +17,13 @@
         "commonapi/filesystem": "dev-master",
         "commonapi/http": "dev-master"
     },
-
-    "recommended": {
-        "molajo/filesystem": "dev-master"
-    },
     "support": {
         "event": "hello@molajo.org",
         "irc": "irc://irc.freenode.org/molajo"
     },
     "autoload": {
         "psr-4": {
-            "Molajo\\Http": "./"
+            "Molajo\\Http\\": "Source/"
         }
     }
 }
