@@ -51,6 +51,8 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
     {
         $this->reflection = array();
 
+        $this->dependencies['Runtimedata'] = array();
+
         return $this->dependencies;
     }
 
@@ -89,5 +91,20 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
         $results = $this->service_instance->get();
 
         $this->service_instance = $results;
+    }
+
+    /**
+     * Service Provider Controller requests any Services (other than the current service) to be saved
+     *
+     * @return  array
+     * @since   1.0
+     */
+    public function setServices()
+    {
+        $this->dependencies['Runtimedata']->request->server = $this->sortObject($this->service_instance);
+
+        $this->set_services['Runtimedata'] = $this->dependencies['Runtimedata'];
+
+        return $this->set_services;
     }
 }

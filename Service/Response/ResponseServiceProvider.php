@@ -52,6 +52,7 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
         $this->reflection = array();
 
         $this->dependencies['rendered_page'] = array();
+        $this->dependencies['Runtimedata'] = array();
 
         return $this->dependencies;
     }

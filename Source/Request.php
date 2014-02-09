@@ -249,7 +249,7 @@ class Request implements RequestInterface
      *
      * @link    http://tools.ietf.org/html/rfc3986
      * @return  object
-     * @since   0.1
+     * @since   1.0
      */
     public function get()
     {

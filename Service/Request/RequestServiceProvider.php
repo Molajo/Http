@@ -40,6 +40,23 @@ class RequestServiceProvider extends AbstractServiceProvider implements ServiceP
     }
 
     /**
+     * Identify Class Dependencies for Constructor Injection
+     *
+     * @return  array
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException;
+     */
+    public function setDependencies(array $reflection = null)
+    {
+        $this->reflection = null;
+
+        $options                           = array();
+        $this->dependencies['Runtimedata'] = $options;
+
+        return $this->dependencies;
+    }
+
+    /**
      * Instantiate Class
      *
      * @return  $this
@@ -74,5 +91,20 @@ class RequestServiceProvider extends AbstractServiceProvider implements ServiceP
         $results = $this->service_instance->get();
 
         $this->service_instance = $results;
+    }
+
+    /**
+     * Service Provider Controller requests any Services (other than the current service) to be saved
+     *
+     * @return  array
+     * @since   1.0
+     */
+    public function setServices()
+    {
+        $this->dependencies['Runtimedata']->request->data = $this->service_instance;
+
+        $this->set_services['Runtimedata'] = $this->dependencies['Runtimedata'];
+
+        return $this->set_services;
     }
 }
