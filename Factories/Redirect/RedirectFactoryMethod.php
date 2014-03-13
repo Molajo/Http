@@ -1,46 +1,46 @@
 <?php
 /**
- * Response Service Provider
+ * Redirect Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Response;
+namespace Molajo\Factories\Redirect;
 
 use Exception;
 use CommonApi\Exception\RuntimeException;
-use CommonApi\IoC\ServiceProviderInterface;
-use Molajo\IoC\AbstractServiceProvider;
+use CommonApi\IoC\FactoryMethodInterface;
+use CommonApi\IoC\FactoryMethodBatchSchedulingInterface;
+use Molajo\IoC\FactoryBase;
 
 /**
- * Response Service Provider
+ * Redirect Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ResponseServiceProvider extends AbstractServiceProvider implements ServiceProviderInterface
+class RedirectFactoryMethod extends FactoryBase implements FactoryMethodInterface, FactoryMethodBatchSchedulingInterface
 {
     /**
      * Constructor
      *
-     * @param  array $option
+     * @param  $options
      *
      * @since  1.0
      */
     public function __construct(array $options = array())
     {
-        $options['service_namespace']        = 'Molajo\\Http\\Response';
-        $options['store_instance_indicator'] = true;
-        $options['service_name']             = basename(__DIR__);
+        $options['product_name']      = basename(__DIR__);
+        $options['product_namespace'] = 'Molajo\\Http\\Redirect';
 
         parent::__construct($options);
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
+     * Instantiate a new handler and inject it into the Adapter for the FactoryMethodInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -50,9 +50,6 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
     public function setDependencies(array $reflection = null)
     {
         $this->reflection = array();
-
-        $this->dependencies['rendered_page'] = array();
-        $this->dependencies['Runtimedata'] = array();
 
         return $this->dependencies;
     }
@@ -64,7 +61,7 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException;
      */
-    public function instantiateService()
+    public function instantiateClass()
     {
         if (isset($this->options['timezone'])) {
             $timezone = $this->options['timezone'];
@@ -72,18 +69,33 @@ class ResponseServiceProvider extends AbstractServiceProvider implements Service
             $timezone = 'UTC';
         }
 
+        if (isset($this->options['url'])) {
+            $url = $this->options['url'];
+        } else {
+            throw new RuntimeException('Redirect Factory: No Redirect URL provided');
+        }
+
+        if (isset($this->options['status'])) {
+            $status = $this->options['status'];
+        } else {
+            $status = 302;
+        }
+
         if (isset($this->options['body'])) {
             $body = $this->options['body'];
         } else {
-            $body = $this->dependencies['rendered_page'];
+            $body = '';
         }
 
-        $headers = array();
+        $headers = array(
+            'Location' => $url,
+            'Status'   => $status
+        );
 
-        $class = $this->service_namespace;
+        $class = $this->product_namespace;
 
         try {
-            $this->service_instance = new $class(
+            $this->product_result = new $class(
                 $timezone,
                 $headers,
                 $body

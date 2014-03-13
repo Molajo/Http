@@ -1,27 +1,28 @@
 <?php
 /**
- * Upload Service Provider
+ * Upload Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Upload;
+namespace Molajo\Factories\Upload;
 
 use Exception;
-use Molajo\IoC\AbstractServiceProvider;
-use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
+use CommonApi\IoC\FactoryMethodInterface;
+use CommonApi\IoC\FactoryMethodBatchSchedulingInterface;
+use Molajo\IoC\FactoryBase;
 
 /**
- * Upload Service Provider
+ * Upload Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class UploadServiceProvider extends AbstractServiceProvider implements ServiceProviderInterface
+class UploadFactoryMethod extends FactoryBase implements FactoryMethodInterface, FactoryMethodBatchSchedulingInterface
 {
     /**
      * Constructor
@@ -32,15 +33,15 @@ class UploadServiceProvider extends AbstractServiceProvider implements ServicePr
      */
     public function __construct(array $options = array())
     {
-        $options['service_name']             = basename(__DIR__);
+        $options['product_name']             = basename(__DIR__);
         $options['store_instance_indicator'] = true;
-        $options['service_namespace']        = 'Molajo\\Http\\Upload';
+        $options['product_namespace']        = 'Molajo\\Http\\Upload';
 
         parent::__construct($options);
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
+     * Instantiate a new handler and inject it into the Adapter for the FactoryMethodInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -63,7 +64,7 @@ class UploadServiceProvider extends AbstractServiceProvider implements ServicePr
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException;
      */
-    public function instantiateService()
+    public function instantiateClass()
     {
         if (isset($this->options['error_messages'])) {
             $error_messages = $this->options['error_messages'];
@@ -156,8 +157,8 @@ class UploadServiceProvider extends AbstractServiceProvider implements ServicePr
         $file_array = $_FILES;
 
         try {
-            $class                  = $this->service_namespace;
-            $this->service_instance = $class(
+            $class                = $this->product_namespace;
+            $this->product_result = $class(
                 $error_messages,
                 $maximum_file_size,
                 $allowable_mimes_and_extensions,
@@ -169,12 +170,12 @@ class UploadServiceProvider extends AbstractServiceProvider implements ServicePr
                 $this->dependencies['Filesystem']
             );
 
-            $this->service_instance->uploadFile();
+            $this->product_result->uploadFile();
 
         } catch (Exception $e) {
 
             throw new RuntimeException
-            ('Http Upload Service Locator Instance Failed for ' . $this->service_namespace
+            ('Http Upload Service Locator Instance Failed for ' . $this->product_namespace
             . ' failed.' . $e->getMessage());
         }
 

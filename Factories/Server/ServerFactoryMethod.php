@@ -1,27 +1,28 @@
 <?php
 /**
- * Server Service Provider
+ * Server Factory Method
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  */
-namespace Molajo\Service\Server;
+namespace Molajo\Factories\Server;
 
 use Exception;
-use Molajo\IoC\AbstractServiceProvider;
-use CommonApi\IoC\ServiceProviderInterface;
 use CommonApi\Exception\RuntimeException;
+use CommonApi\IoC\FactoryMethodInterface;
+use CommonApi\IoC\FactoryMethodBatchSchedulingInterface;
+use Molajo\IoC\FactoryBase;
 
 /**
- * Server Service Provider
+ * Server Factory Method
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ServerServiceProvider extends AbstractServiceProvider implements ServiceProviderInterface
+class ServerFactoryMethod extends FactoryBase implements FactoryMethodInterface, FactoryMethodBatchSchedulingInterface
 {
     /**
      * Constructor
@@ -32,15 +33,15 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
      */
     public function __construct(array $options = array())
     {
-        $options['service_name']             = basename(__DIR__);
+        $options['product_name']             = basename(__DIR__);
         $options['store_instance_indicator'] = true;
-        $options['service_namespace']        = 'Molajo\\Http\\Server';
+        $options['product_namespace']        = 'Molajo\\Http\\Server';
 
         parent::__construct($options);
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the ServiceProviderInterface
+     * Instantiate a new handler and inject it into the Adapter for the FactoryMethodInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -63,12 +64,12 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException;
      */
-    public function instantiateService()
+    public function instantiateClass()
     {
-        $class = $this->service_namespace;
+        $class = $this->product_namespace;
 
         try {
-            $this->service_instance = new $class(
+            $this->product_result = new $class(
                 $_SERVER
             );
         } catch (Exception $e) {
@@ -80,7 +81,7 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
     }
 
     /**
-     * Logic contained within this method is invoked after the Service Class construction
+     * Logic contained within this method is invoked after the class construction
      *  and can be used for setter logic or other post-construction processing
      *
      * @return  $this
@@ -88,23 +89,23 @@ class ServerServiceProvider extends AbstractServiceProvider implements ServicePr
      */
     public function onAfterInstantiation()
     {
-        $results = $this->service_instance->get();
+        $results = $this->product_result->get();
 
-        $this->service_instance = $results;
+        $this->product_result = $results;
     }
 
     /**
-     * Service Provider Controller requests any Services (other than the current service) to be saved
+     * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
      * @since   1.0
      */
-    public function setServices()
+    public function setContainerEntries()
     {
-        $this->dependencies['Runtimedata']->request->server = $this->sortObject($this->service_instance);
+        $this->dependencies['Runtimedata']->request->server = $this->sortObject($this->product_result);
 
-        $this->set_services['Runtimedata'] = $this->dependencies['Runtimedata'];
+        $this->set_container_entries['Runtimedata'] = $this->dependencies['Runtimedata'];
 
-        return $this->set_services;
+        return $this->set_container_entries;
     }
 }
