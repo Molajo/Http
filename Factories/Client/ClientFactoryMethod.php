@@ -10,9 +10,9 @@ namespace Molajo\Factories\Client;
 
 use Exception;
 use CommonApi\Exception\RuntimeException;
-use CommonApi\IoC\FactoryMethodInterface;
-use CommonApi\IoC\FactoryMethodBatchSchedulingInterface;
-use Molajo\IoC\FactoryBase;
+use CommonApi\IoC\FactoryInterface;
+use CommonApi\IoC\FactoryBatchInterface;
+use Molajo\IoC\FactoryMethodBase;
 
 /**
  * Client Factory Method
@@ -22,7 +22,7 @@ use Molajo\IoC\FactoryBase;
  * @copyright  2014 Amy Stephen. All rights reserved.
  * @since      1.0
  */
-class ClientFactoryMethod extends FactoryBase implements FactoryMethodInterface, FactoryMethodBatchSchedulingInterface
+class ClientFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
 {
     /**
      * Constructor
@@ -41,7 +41,6 @@ class ClientFactoryMethod extends FactoryBase implements FactoryMethodInterface,
     }
 
     /**
-     * Instantiate a new handler and inject it into the Adapter for the FactoryMethodInterface
      * Retrieve a list of Interface dependencies and return the data ot the controller.
      *
      * @return  array
@@ -72,7 +71,7 @@ class ClientFactoryMethod extends FactoryBase implements FactoryMethodInterface,
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Client: Could not instantiate Handler: ' . $class);
+            ('Client: Could not instantiate Factory Class: ' . $class);
         }
 
         return $this;
