@@ -525,6 +525,8 @@ class Request implements RequestInterface
             $this->authority .= ':' . $this->port;
         }
 
+        $this->authority .= '/';
+
         return $this;
     }
 
@@ -632,6 +634,8 @@ class Request implements RequestInterface
         if (strpos($this->path, '?')) {
             $this->path = substr($this->path, 0, strpos($this->path, '?'));
         }
+
+        $this->path = ltrim($this->path, '/');
 
         $this->path = rtrim($this->path, '/');
 
