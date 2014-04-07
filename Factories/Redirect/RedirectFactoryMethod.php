@@ -44,7 +44,7 @@ class RedirectFactoryMethod extends FactoryMethodBase implements FactoryInterfac
      *
      * @return  array
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = null)
     {
@@ -58,7 +58,7 @@ class RedirectFactoryMethod extends FactoryMethodBase implements FactoryInterfac
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException;
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
     {
