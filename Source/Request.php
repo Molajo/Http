@@ -18,7 +18,7 @@ use CommonApi\Exception\InvalidArgumentException;
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
- * @since      1.0
+ * @since      1.0.0
  *
  * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
  */
