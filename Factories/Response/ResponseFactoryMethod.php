@@ -60,7 +60,7 @@ class ResponseFactoryMethod extends FactoryMethodBase implements FactoryInterfac
     /**
      * Instantiate Class
      *
-     * @return  $this
+     * @return  $this$this->rendered_page
      * @since   1.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
