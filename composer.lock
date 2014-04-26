@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a98f5234df6dc739eda5af25350656f4",
+    "hash": "a180546786dcd0991f905876c64f7ba0",
     "packages": [
         {
             "name": "commonapi/exception",
-            "version": "v0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Exception.git",
-                "reference": "28ad30ec17ef62c90a86b87aa5ee41d37828c435"
+                "reference": "71844ffbc3b8d8d317fd8ebe4eafc7306c0f426c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Exception/zipball/28ad30ec17ef62c90a86b87aa5ee41d37828c435",
-                "reference": "28ad30ec17ef62c90a86b87aa5ee41d37828c435",
+                "url": "https://api.github.com/repos/CommonApi/Exception/zipball/71844ffbc3b8d8d317fd8ebe4eafc7306c0f426c",
+                "reference": "71844ffbc3b8d8d317fd8ebe4eafc7306c0f426c",
                 "shasum": ""
             },
             "require": {
@@ -35,8 +35,9 @@
             "authors": [
                 {
                     "name": "AmyStephen",
-                    "email": "AmyStephen@gmail.com",
-                    "homepage": "http://Molajo.org"
+                    "email": "AmyStephen@Molajo.org",
+                    "homepage": "http://Molajo.org",
+                    "role": "Developer"
                 }
             ],
             "description": "Common Exception Api Interface",
@@ -46,7 +47,7 @@
                 "api",
                 "exception"
             ],
-            "time": "2013-11-23 06:20:36"
+            "time": "2014-02-09 18:55:28"
         },
         {
             "name": "commonapi/filesystem",
@@ -54,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Filesystem.git",
-                "reference": "6e71ea49d66e0208984ab130d9b169637cbb08eb"
+                "reference": "fa744a9b72db99bf3fc2e37853bc1a1e3764803e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Filesystem/zipball/6e71ea49d66e0208984ab130d9b169637cbb08eb",
-                "reference": "6e71ea49d66e0208984ab130d9b169637cbb08eb",
+                "url": "https://api.github.com/repos/CommonApi/Filesystem/zipball/fa744a9b72db99bf3fc2e37853bc1a1e3764803e",
+                "reference": "fa744a9b72db99bf3fc2e37853bc1a1e3764803e",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +91,7 @@
                 "api",
                 "filesystem"
             ],
-            "time": "2013-12-09 01:29:58"
+            "time": "2014-02-09 18:55:20"
         },
         {
             "name": "commonapi/http",
@@ -98,12 +99,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CommonApi/Http.git",
-                "reference": "650296506580fa85f9d697a08042cc63a9f52243"
+                "reference": "d47791a18d876a87a68c7c4e6986919b2733fdcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CommonApi/Http/zipball/650296506580fa85f9d697a08042cc63a9f52243",
-                "reference": "650296506580fa85f9d697a08042cc63a9f52243",
+                "url": "https://api.github.com/repos/CommonApi/Http/zipball/d47791a18d876a87a68c7c4e6986919b2733fdcf",
+                "reference": "d47791a18d876a87a68c7c4e6986919b2733fdcf",
                 "shasum": ""
             },
             "require": {
@@ -135,7 +136,7 @@
                 "api",
                 "http"
             ],
-            "time": "2013-12-01 04:55:44"
+            "time": "2014-03-27 09:36:19"
         }
     ],
     "packages-dev": [
@@ -144,7 +145,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "commonapi/filesystem": 20,
         "commonapi/http": 20
