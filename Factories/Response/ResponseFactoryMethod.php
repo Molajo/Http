@@ -90,7 +90,9 @@ class ResponseFactoryMethod extends FactoryMethodBase implements FactoryInterfac
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Redirect: Could not instantiate Handler: ' . $class);
+            (
+                'Redirect: Could not instantiate Handler: ' . $class
+            );
         }
 
         return $this;

@@ -423,6 +423,7 @@ class Response implements ResponseInterface
      * Initialise body based on status
      *
      * @param string $body
+     *
      * @return  Response $body
      *
      * @return  Response
@@ -512,7 +513,7 @@ class Response implements ResponseInterface
      * Set Headers Language
      *
      * @param   array $headers
-     * @param string $property
+     * @param string  $property
      *
      * @return  array
      * @since   1.0
@@ -574,7 +575,7 @@ class Response implements ResponseInterface
     /**
      * Unset Header Array Entry
      *
-     * @param  array  $headers
+     * @param  array $headers
      * @param string $entry
      *
      * @return array

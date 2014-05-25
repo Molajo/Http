@@ -74,7 +74,9 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Request: Could not instantiate Handler: ' . $class);
+            (
+                'Request: Could not instantiate Handler: ' . $class
+            );
         }
 
         return $this;

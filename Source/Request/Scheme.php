@@ -99,7 +99,7 @@ class Scheme
         $server_object
     ) {
         $this->server_object = $server_object;
-        $this->properties = new stdClass();
+        $this->properties    = new stdClass();
     }
 
     /**

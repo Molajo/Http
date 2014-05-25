@@ -71,7 +71,9 @@ class ClientFactoryMethod extends FactoryMethodBase implements FactoryInterface,
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Client: Could not instantiate Factory Class: ' . $class);
+            (
+                'Client: Could not instantiate Factory Class: ' . $class
+            );
         }
 
         return $this;

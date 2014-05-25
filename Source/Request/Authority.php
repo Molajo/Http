@@ -276,7 +276,7 @@ class Authority
     {
         $host = '';
 
-        if (! empty($this->server_object[$server_object])) {
+        if (!empty($this->server_object[$server_object])) {
             $host = $this->server_object[$server_object];
         }
 

@@ -250,16 +250,16 @@ class Request implements RequestInterface
     /**
      * Process Request Subclass
      *
-     * @param   string  $class
+     * @param   string $class
      *
      * @return  $this
      * @since   1.0
      */
     public function setRequestSubclass($class)
     {
-        $fqn = 'Molajo\\Http\\Request\\' . $class;
+        $fqn      = 'Molajo\\Http\\Request\\' . $class;
         $instance = new $fqn($this->server_object, $this->scheme);
-        $results = $instance->set();
+        $results  = $instance->set();
 
         foreach ($results as $key => $value) {
             $this->$key = $value;

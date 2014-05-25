@@ -26,7 +26,9 @@ try {
     $connect->upload();
 } catch (Exception $e) {
     throw new RuntimeException
-    ('Molajo Upload: Upload failed ' . $e->getMessage());
+    (
+        'Molajo Upload: Upload failed ' . $e->getMessage()
+    );
 }
 
 /**

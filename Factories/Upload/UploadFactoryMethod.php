@@ -174,8 +174,10 @@ class UploadFactoryMethod extends FactoryMethodBase implements FactoryInterface,
         } catch (Exception $e) {
 
             throw new RuntimeException
-            ('Http Upload Service Locator Instance Failed for ' . $this->product_namespace
-            . ' failed.' . $e->getMessage());
+            (
+                'Http Upload Service Locator Instance Failed for ' . $this->product_namespace
+                . ' failed.' . $e->getMessage()
+            );
         }
 
         return $this;

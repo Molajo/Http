@@ -36,21 +36,22 @@ class Upload implements UploadInterface
      * @var    array
      * @since  1.0
      */
-    protected $error_messages = array(
-        0   => 'File(s) were uploaded successfully.',
-        1   => 'The uploaded file exceeds the upload_max_file_size directive in php.ini.',
-        2   => 'The uploaded file exceeds the MAX_FILE_SIZE directive specified in the HTML form.',
-        3   => 'The uploaded file was only partially uploaded.',
-        4   => 'No file was uploaded.',
-        6   => 'Upload failed. Missing a temporary folder.',
-        7   => 'Upload failed. Unable to write file to disk.',
-        100 => 'Unit of Measure must be KB, MB, GB invalid value: ',
-        110 => '$input_field_name not in $_FILES super global: ',
-        120 => '$_FILES $input_field_name tmp_name does not exist: ',
-        130 => 'Mime type not allowed: ',
-        140 => '$target_folder is not available: ',
-        150 => '$target_file exists but $overwrite_existing_file is FALSE'
-    );
+    protected $error_messages
+        = array(
+            0   => 'File(s) were uploaded successfully.',
+            1   => 'The uploaded file exceeds the upload_max_file_size directive in php.ini.',
+            2   => 'The uploaded file exceeds the MAX_FILE_SIZE directive specified in the HTML form.',
+            3   => 'The uploaded file was only partially uploaded.',
+            4   => 'No file was uploaded.',
+            6   => 'Upload failed. Missing a temporary folder.',
+            7   => 'Upload failed. Unable to write file to disk.',
+            100 => 'Unit of Measure must be KB, MB, GB invalid value: ',
+            110 => '$input_field_name not in $_FILES super global: ',
+            120 => '$_FILES $input_field_name tmp_name does not exist: ',
+            130 => 'Mime type not allowed: ',
+            140 => '$target_folder is not available: ',
+            150 => '$target_file exists but $overwrite_existing_file is FALSE'
+        );
 
     /**
      * Allowable File Extensions and Mime Types
@@ -58,38 +59,39 @@ class Upload implements UploadInterface
      * @var    array
      * @since  1.0
      */
-    protected $allowable_mimes_and_extensions = array(
-        'image/bmp'                     => 'bmp',
-        'image/gif'                     => 'gif',
-        'image/jpeg'                    => 'jpeg,jpg',
-        'image/png'                     => 'png',
-        'image/tiff'                    => 'tiff',
-        'image/x-icon'                  => 'ico',
-        'audio/midi'                    => 'mid,midi',
-        'audio/mpeg'                    => 'mp2,mp3,mpga',
-        'audio/wav'                     => 'wav',
-        'audio/x-aiff'                  => 'aif,aifc,aiff',
-        'audio/x-pn-realaudio-plugin'   => 'rpm',
-        'audio/x-pn-realaudio'          => 'ram,rm',
-        'audio/x-realaudio'             => 'ra',
-        'audio/x-wav'                   => 'wav',
-        'video/mpeg'                    => 'mpeg',
-        'video/mpg'                     => 'mpg',
-        'video/quicktime'               => 'mov,qt',
-        'video/vnd.rn-realvideo'        => 'rv',
-        'video/webm'                    => 'webm',
-        'video/x-ms-wmv'                => 'wmv',
-        'video/x-msvideo'               => 'avi',
-        'application/pdf'               => 'pdf',
-        'application/vnd.ms-excel'      => 'xls',
-        'application/vnd.ms-powerpoint' => 'ppt',
-        'application/msword'            => 'doc',
-        'text/plain'                    => 'txt',
-        'text/csv'                      => 'csv',
-        'text/rtf'                      => 'rtf',
-        'application/zip'               => 'zip',
-        'application/x-tar'             => 'tar,tgz'
-    );
+    protected $allowable_mimes_and_extensions
+        = array(
+            'image/bmp'                     => 'bmp',
+            'image/gif'                     => 'gif',
+            'image/jpeg'                    => 'jpeg,jpg',
+            'image/png'                     => 'png',
+            'image/tiff'                    => 'tiff',
+            'image/x-icon'                  => 'ico',
+            'audio/midi'                    => 'mid,midi',
+            'audio/mpeg'                    => 'mp2,mp3,mpga',
+            'audio/wav'                     => 'wav',
+            'audio/x-aiff'                  => 'aif,aifc,aiff',
+            'audio/x-pn-realaudio-plugin'   => 'rpm',
+            'audio/x-pn-realaudio'          => 'ram,rm',
+            'audio/x-realaudio'             => 'ra',
+            'audio/x-wav'                   => 'wav',
+            'video/mpeg'                    => 'mpeg',
+            'video/mpg'                     => 'mpg',
+            'video/quicktime'               => 'mov,qt',
+            'video/vnd.rn-realvideo'        => 'rv',
+            'video/webm'                    => 'webm',
+            'video/x-ms-wmv'                => 'wmv',
+            'video/x-msvideo'               => 'avi',
+            'application/pdf'               => 'pdf',
+            'application/vnd.ms-excel'      => 'xls',
+            'application/vnd.ms-powerpoint' => 'ppt',
+            'application/msword'            => 'doc',
+            'text/plain'                    => 'txt',
+            'text/csv'                      => 'csv',
+            'text/rtf'                      => 'rtf',
+            'application/zip'               => 'zip',
+            'application/x-tar'             => 'tar,tgz'
+        );
 
     /**
      * Allowable File Extensions and Mime Types
@@ -97,11 +99,12 @@ class Upload implements UploadInterface
      * @var    array
      * @since  1.0
      */
-    protected $not_used_allowable_mimes_and_extensions = array(
-        'text/css'                      => 'css',
-        'application/x-javascript'      => 'js',
-        'application/x-shockwave-flash' => 'swf'
-    );
+    protected $not_used_allowable_mimes_and_extensions
+        = array(
+            'text/css'                      => 'css',
+            'application/x-javascript'      => 'js',
+            'application/x-shockwave-flash' => 'swf'
+        );
 
     /**
      * Conversion from Unit of Measure to Bytes Table
@@ -109,11 +112,12 @@ class Upload implements UploadInterface
      * @var    array
      * @since  1.0
      */
-    protected $units_of_measure = array(
-        'KB' => 1024,
-        'MB' => 1048576,
-        'GB' => 1073741824
-    );
+    protected $units_of_measure
+        = array(
+            'KB' => 1024,
+            'MB' => 1048576,
+            'GB' => 1073741824
+        );
 
     /**
      * Maximum File Size expressed in unit of measure
@@ -351,7 +355,7 @@ class Upload implements UploadInterface
                 $i = 0;
 
                 foreach ($files_raw as $item => $value) {
-                    $this->file_array[$i ++][$files_element] = $value;
+                    $this->file_array[$i++][$files_element] = $value;
                 }
 
                 if (is_array($this->target_filename)
@@ -362,7 +366,7 @@ class Upload implements UploadInterface
                     $this->file_array[0]['target_filename'] = null;
                 }
 
-                $count ++;
+                $count++;
             }
         }
 

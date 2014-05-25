@@ -53,10 +53,11 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $timezone   = 'UTC';
-        $url        = 'http://google.com';
-        $status     = 301;
-        $this->body = '
+        $timezone = 'UTC';
+        $url      = 'http://google.com';
+        $status   = 301;
+        $this->body
+                  = '
 <!DOCTYPE html>
 <html>
 <head>

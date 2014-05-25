@@ -87,7 +87,9 @@ class ServerFactoryMethod extends FactoryMethodBase implements FactoryInterface,
             );
         } catch (Exception $e) {
             throw new RuntimeException
-            ('Server: Could not instantiate Handler: ' . $class);
+            (
+                'Server: Could not instantiate Handler: ' . $class
+            );
         }
 
         return $this;
