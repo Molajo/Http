@@ -144,6 +144,14 @@ class Client implements ClientInterface
     protected $platform = null;
 
     /**
+     * Client
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $client = null;
+
+    /**
      * Devices
      *
      * @var    array
@@ -300,11 +308,27 @@ class Client implements ClientInterface
             $this->browsers = $browsers;
         }
 
+        $this->client = new stdClass();
+        $this->setClientData();
+    }
+
+    /**
+     * Process Request
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function setClientData()
+    {
         $this->getRemoteAddress();
-        $this->setStandardProperty('REMOTE_HOST', 'remote_host');
+        $this->setRemoteHost('REMOTE_HOST', 'remote_host');
         $this->isAjax();
         $this->isCli();
         $this->setClient();
+
+        foreach ($this->property_array as $key) {
+            $this->client->$key = $this->$key;
+        }
     }
 
     /**
@@ -315,13 +339,7 @@ class Client implements ClientInterface
      */
     public function get()
     {
-        $client = new stdClass();
-
-        foreach ($this->property_array as $key) {
-            $client->$key = $this->$key;
-        }
-
-        return $client;
+        return $this->client;
     }
 
     /**
