@@ -131,6 +131,10 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         $files                = array();
         $files['upload_file'] = $file;
 
+        //todo:
+        $request = new \stdClass();
+        $session = new \stdClass();
+
         // Instantiate Class
         $class         = 'Molajo\\Http\\Upload';
         $this->connect = new $class(
@@ -138,6 +142,8 @@ class UploadTest extends \PHPUnit_Framework_TestCase
             $target_folder,
             $target_filename,
             $overwrite_existing_file,
+            $request,
+            $session,
             $files,
             $this->error_messages,
             $this->maximum_file_size,
@@ -190,6 +196,9 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         $files                = array();
         $files['upload_file'] = $file;
 
+        $request = new \stdClass();
+        $session = new \stdClass();
+
         // Instantiate Class
         $class         = 'Molajo\\Http\\Upload';
         $this->connect = new $class(
@@ -197,6 +206,8 @@ class UploadTest extends \PHPUnit_Framework_TestCase
             $target_folder,
             $target_filename,
             $overwrite_existing_file,
+            $request,
+            $session,
             $files,
             $this->error_messages,
             $this->maximum_file_size,

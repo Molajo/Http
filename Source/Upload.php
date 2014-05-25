@@ -30,6 +30,20 @@ class Upload implements UploadInterface
     protected $file_array = array();
 
     /**
+     * $request_parameters contains a copy of the $_SERVER super global
+     *
+     * @since  1.0
+     */
+    protected $request_parameters;
+
+    /**
+     * $session contains a copy of the $_SESSION super global
+     *
+     * @since  1.0
+     */
+    protected $session;
+
+    /**
      * Error Messages
      *
      * @link   http://php.net/manual/en/features.file-upload.errors.php
@@ -185,6 +199,8 @@ class Upload implements UploadInterface
      * @param string              $target_filename
      * @param int                 $overwrite_existing_file
      * @param array               $files
+     * @param object              $request_parameters
+     * @param object              $session
      * @param array               $error_messages
      * @param string              $maximum_file_size
      * @param array               $allowable_mimes_and_extensions
@@ -197,6 +213,8 @@ class Upload implements UploadInterface
         $target_folder,
         $target_filename,
         $overwrite_existing_file,
+        $request_parameters,
+        $session,
         array $files = array(),
         array $error_messages = array(),
         $maximum_file_size = '2MB',
@@ -208,6 +226,8 @@ class Upload implements UploadInterface
         $this->input_field_name        = $input_field_name;
         $this->overwrite_existing_file = $overwrite_existing_file;
         $this->file_array              = $files;
+        $this->request_parameters      = $request_parameters;
+        $this->session                 = $session;
 
         $this->editUploadInput($error_messages, $maximum_file_size, $allowable_mimes_and_extensions);
 
@@ -298,8 +318,8 @@ class Upload implements UploadInterface
     {
         return $this;
 
-        $session_id    = session_id();
-        $session_token = $_SESSION[$session_id];
+        $session_id    = $this->session[$session_id];
+        $session_token = $this->session[$session_token];
 
         if (isset($this->request_parameters[$session_token])) {
 
@@ -330,7 +350,7 @@ class Upload implements UploadInterface
      * @return  $this
      * @since   1.0
      */
-    function createFileArray()
+    protected function createFileArray()
     {
         $raw = $this->file_array[$this->input_field_name];
 
@@ -424,7 +444,7 @@ class Upload implements UploadInterface
     /**
      * Process a single Upload File
      *
-     * @param   object  $item
+     * @param   object $item
      *
      * @return  $this
      * @since   1.0
@@ -436,7 +456,8 @@ class Upload implements UploadInterface
         $this->validateUploadPathFile($upload_path_and_file);
 
         $target_path_and_file = $this->validateTargetPathFileName(
-            $item['target_filename'], basename($upload_path_and_file)
+            $item['target_filename'],
+            basename($upload_path_and_file)
         );
 
         $this->uploadFile($upload_path_and_file, $target_path_and_file);
@@ -502,8 +523,8 @@ class Upload implements UploadInterface
     /**
      * Validate the Target Path and Filename
      *
-     * @param   string  $target_filename
-     * @param   string  $upload_file
+     * @param   string $target_filename
+     * @param   string $upload_file
      *
      * @return  string
      * @since   1.0

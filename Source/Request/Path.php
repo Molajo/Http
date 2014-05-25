@@ -121,7 +121,13 @@ class Path
     {
         $uri = $this->server_object['ORIG_PATH_INFO'];
 
-        if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
+        $query_string = '';
+        if (isset($this->server_object['QUERY_STRING'])) {
+            $query_string = $this->server_object['QUERY_STRING'];
+        }
+
+        if (trim($query_string) === '') {
+        } else {
             $uri .= '?' . $this->server_object['QUERY_STRING'];
         }
 
