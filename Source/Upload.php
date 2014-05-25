@@ -386,11 +386,7 @@ class Upload implements UploadInterface
         $this->file_array[0]['error']    = $raw['error'];
         $this->file_array[0]['size']     = $raw['size'];
 
-        if (is_array($this->target_filename)) {
-            $this->getTargetFileName();
-        } else {
-            $this->file_array[0]['target_filename'] = $this->target_filename;
-        }
+        $this->getTargetFileName(0, true);
     }
 
     /**
@@ -411,13 +407,7 @@ class Upload implements UploadInterface
                 $this->file_array[$i++][$files_element] = $value;
             }
 
-            if (is_array($this->target_filename)
-                && isset($this->target_filename[$count])
-            ) {
-                $this->getTargetFileName();
-            } else {
-                $this->file_array[0]['target_filename'] = null;
-            }
+            $this->getTargetFileName($count, false);
 
             $count++;
         }
@@ -426,12 +416,25 @@ class Upload implements UploadInterface
     /**
      * Get Target File Name
      *
-     * @return  string
+     * @param   int  $count
+     * @param   bool $single
+     *
+     * @return  $this
      * @since   1.0
      */
-    protected function getTargetFileName()
+    protected function getTargetFileName($count = 0, $single=true)
     {
-        $this->file_array[0]['target_filename'] = $this->target_filename[0];
+        if (is_array($this->target_filename)
+            && isset($this->target_filename[$count])
+        ) {
+            $this->file_array[0]['target_filename'] = $this->target_filename[0];
+        } elseif ($single === true) {
+            $this->file_array[0]['target_filename'] = $this->target_filename;
+        } else {
+            $this->file_array[0]['target_filename'] = null;
+        }
+
+        return $this;
     }
 
     /**

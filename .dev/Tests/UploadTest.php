@@ -104,7 +104,24 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     /**
      * Upload Single File
      *
+     * @covers \Molajo\Http\Upload::__construct
+     * @covers \Molajo\Http\Upload::editUploadInput
      * @covers \Molajo\Http\Upload::process
+     * @covers \Molajo\Http\Upload::preProcessingFileUpload
+     * @covers \Molajo\Http\Upload::validateFormToken
+     * @covers \Molajo\Http\Upload::validateInputFieldName
+     * @covers \Molajo\Http\Upload::createFileArray
+     * @covers \Molajo\Http\Upload::createFileArraySingleFile
+     * @covers \Molajo\Http\Upload::createFileArrayMultipleFiles
+     * @covers \Molajo\Http\Upload::getTargetFileName
+     * @covers \Molajo\Http\Upload::validateTargetFolder
+     * @covers \Molajo\Http\Upload::uploadSingleFile
+     * @covers \Molajo\Http\Upload::validateUploadPathFile
+     * @covers \Molajo\Http\Upload::validateUploadFileExists
+     * @covers \Molajo\Http\Upload::validateMimeType
+     * @covers \Molajo\Http\Upload::validateTargetPathFileName
+     * @covers \Molajo\Http\Upload::validateTargetFile
+     * @covers \Molajo\Http\Upload::uploadFile
      */
     public function testSingleFileUpload()
     {
