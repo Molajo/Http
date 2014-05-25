@@ -55,10 +55,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('8042', $request->port);
         $this->assertEquals(array('name' => 'narwhal', 'type' => 'animal'), $request->parameters);
         $this->assertEquals('name=narwhal&type=animal', $request->query);
-        $this->assertEquals('username:password@example.com:8042', $request->authority);
+        $this->assertEquals('username:password@example.com:8042/', $request->authority);
         $this->assertEquals('text/html', $request->content_type);
-        $this->assertEquals('http://username:password@example.com:8042', $request->base_url);
-        $this->assertEquals('/over/there/index.php', $request->path);
+        $this->assertEquals('http://username:password@example.com:8042/', $request->base_url);
+        $this->assertEquals('over/there/index.php', $request->path);
         $this->assertEquals(
             'http://username:password@example.com:8042/over/there/index.php?name=narwhal&type=animal',
             $request->url

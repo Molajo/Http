@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1400978681">
+  <project timestamp="1400978681">
+    <package name="Molajo\Factories\Client">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Client/ClientFactoryMethod.php">
+        <class name="ClientFactoryMethod" namespace="Molajo\Factories\Client">
+          <metrics methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="42" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="setDependencies" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="64" type="method" name="instantiateClass" crap="6" count="0"/>
+        <line num="65" type="stmt" count="0"/>
+        <line num="66" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="87" type="method" name="onAfterInstantiation" crap="2" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="100" type="method" name="setContainerEntries" crap="2" count="0"/>
+        <line num="101" type="stmt" count="0"/>
+        <line num="102" type="stmt" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="106" type="stmt" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <metrics loc="108" ncloc="59" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="42" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Molajo\Factories\Request">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Request/RequestFactoryMethod.php">
+        <class name="RequestFactoryMethod" namespace="Molajo\Factories\Request">
+          <metrics methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="0" elements="43" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="setDependencies" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="67" type="method" name="instantiateClass" crap="6" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="90" type="method" name="onAfterInstantiation" crap="2" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="95" type="stmt" count="0"/>
+        <line num="103" type="method" name="setContainerEntries" crap="2" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <metrics loc="111" ncloc="62" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="0" elements="43" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Molajo\Factories\Response">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Response/ResponseFactoryMethod.php">
+        <class name="ResponseFactoryMethod" namespace="Molajo\Factories\Response">
+          <metrics methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="0" elements="43" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="setDependencies" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="55" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="58" type="stmt" count="0"/>
+        <line num="67" type="method" name="instantiateClass" crap="20" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="85" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="93" type="stmt" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <metrics loc="98" ncloc="62" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="0" elements="43" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Molajo\Factories\Server">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Server/ServerFactoryMethod.php">
+        <class name="ServerFactoryMethod" namespace="Molajo\Factories\Server">
+          <metrics methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="42" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="setDependencies" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="66" type="method" name="instantiateClass" crap="6" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="89" type="method" name="onAfterInstantiation" crap="2" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="93" type="stmt" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="102" type="method" name="setContainerEntries" crap="2" count="0"/>
+        <line num="103" type="stmt" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="106" type="stmt" count="0"/>
+        <line num="108" type="stmt" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <metrics loc="110" ncloc="61" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="0" elements="42" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Molajo\Factories\Upload">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Upload/UploadFactoryMethod.php">
+        <class name="UploadFactoryMethod" namespace="Molajo\Factories\Upload">
+          <metrics methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="116" coveredstatements="0" elements="119" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="38" type="stmt" count="0"/>
+        <line num="40" type="stmt" count="0"/>
+        <line num="41" type="stmt" count="0"/>
+        <line num="50" type="method" name="setDependencies" crap="2" count="0"/>
+        <line num="51" type="stmt" count="0"/>
+        <line num="52" type="stmt" count="0"/>
+        <line num="53" type="stmt" count="0"/>
+        <line num="54" type="stmt" count="0"/>
+        <line num="56" type="stmt" count="0"/>
+        <line num="57" type="stmt" count="0"/>
+        <line num="66" type="method" name="instantiateClass" crap="90" count="0"/>
+        <line num="67" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="70" type="stmt" count="0"/>
+        <line num="71" type="stmt" count="0"/>
+        <line num="72" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="75" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="0"/>
+        <line num="77" type="stmt" count="0"/>
+        <line num="78" type="stmt" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="0"/>
+        <line num="81" type="stmt" count="0"/>
+        <line num="82" type="stmt" count="0"/>
+        <line num="83" type="stmt" count="0"/>
+        <line num="84" type="stmt" count="0"/>
+        <line num="85" type="stmt" count="0"/>
+        <line num="86" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <line num="91" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="94" type="stmt" count="0"/>
+        <line num="95" type="stmt" count="0"/>
+        <line num="96" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="0"/>
+        <line num="98" type="stmt" count="0"/>
+        <line num="99" type="stmt" count="0"/>
+        <line num="100" type="stmt" count="0"/>
+        <line num="101" type="stmt" count="0"/>
+        <line num="102" type="stmt" count="0"/>
+        <line num="103" type="stmt" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="106" type="stmt" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <line num="108" type="stmt" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <line num="111" type="stmt" count="0"/>
+        <line num="112" type="stmt" count="0"/>
+        <line num="113" type="stmt" count="0"/>
+        <line num="114" type="stmt" count="0"/>
+        <line num="115" type="stmt" count="0"/>
+        <line num="116" type="stmt" count="0"/>
+        <line num="117" type="stmt" count="0"/>
+        <line num="118" type="stmt" count="0"/>
+        <line num="119" type="stmt" count="0"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="121" type="stmt" count="0"/>
+        <line num="122" type="stmt" count="0"/>
+        <line num="123" type="stmt" count="0"/>
+        <line num="124" type="stmt" count="0"/>
+        <line num="125" type="stmt" count="0"/>
+        <line num="126" type="stmt" count="0"/>
+        <line num="127" type="stmt" count="0"/>
+        <line num="128" type="stmt" count="0"/>
+        <line num="129" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <line num="131" type="stmt" count="0"/>
+        <line num="132" type="stmt" count="0"/>
+        <line num="133" type="stmt" count="0"/>
+        <line num="134" type="stmt" count="0"/>
+        <line num="136" type="stmt" count="0"/>
+        <line num="137" type="stmt" count="0"/>
+        <line num="138" type="stmt" count="0"/>
+        <line num="139" type="stmt" count="0"/>
+        <line num="140" type="stmt" count="0"/>
+        <line num="143" type="stmt" count="0"/>
+        <line num="144" type="stmt" count="0"/>
+        <line num="145" type="stmt" count="0"/>
+        <line num="147" type="stmt" count="0"/>
+        <line num="149" type="stmt" count="0"/>
+        <line num="150" type="stmt" count="0"/>
+        <line num="151" type="stmt" count="0"/>
+        <line num="153" type="stmt" count="0"/>
+        <line num="156" type="stmt" count="0"/>
+        <line num="158" type="stmt" count="0"/>
+        <line num="159" type="stmt" count="0"/>
+        <line num="160" type="stmt" count="0"/>
+        <line num="161" type="stmt" count="0"/>
+        <line num="162" type="stmt" count="0"/>
+        <line num="163" type="stmt" count="0"/>
+        <line num="164" type="stmt" count="0"/>
+        <line num="165" type="stmt" count="0"/>
+        <line num="166" type="stmt" count="0"/>
+        <line num="167" type="stmt" count="0"/>
+        <line num="168" type="stmt" count="0"/>
+        <line num="169" type="stmt" count="0"/>
+        <line num="170" type="stmt" count="0"/>
+        <line num="172" type="stmt" count="0"/>
+        <line num="174" type="stmt" count="0"/>
+        <line num="176" type="stmt" count="0"/>
+        <line num="177" type="stmt" count="0"/>
+        <line num="178" type="stmt" count="0"/>
+        <line num="179" type="stmt" count="0"/>
+        <line num="181" type="stmt" count="0"/>
+        <line num="182" type="stmt" count="0"/>
+        <metrics loc="183" ncloc="140" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="116" coveredstatements="0" elements="119" coveredelements="0"/>
+      </file>
+    </package>
+    <package name="Molajo\Http">
+      <file name="/Users/amystephen/Sites/Molajo/Http/Source/Client.php">
+        <class name="Client" namespace="Molajo\Http">
+          <metrics methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="173" coveredstatements="5" elements="180" coveredelements="6"/>
+        </class>
+        <line num="167" type="method" name="__construct" crap="2" count="0"/>
+        <line num="170" type="stmt" count="0"/>
+        <line num="172" type="stmt" count="0"/>
+        <line num="173" type="stmt" count="0"/>
+        <line num="174" type="stmt" count="0"/>
+        <line num="175" type="stmt" count="0"/>
+        <line num="176" type="stmt" count="0"/>
+        <line num="177" type="stmt" count="0"/>
+        <line num="185" type="method" name="get" crap="2" count="1"/>
+        <line num="187" type="stmt" count="1"/>
+        <line num="189" type="stmt" count="1"/>
+        <line num="190" type="stmt" count="1"/>
+        <line num="191" type="stmt" count="1"/>
+        <line num="193" type="stmt" count="1"/>
+        <line num="202" type="method" name="getRemoteAddress" crap="12" count="0"/>
+        <line num="204" type="stmt" count="0"/>
+        <line num="205" type="stmt" count="0"/>
+        <line num="206" type="stmt" count="0"/>
+        <line num="207" type="stmt" count="0"/>
+        <line num="208" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="0"/>
+        <line num="212" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="226" type="method" name="getRemoteHost" crap="6" count="0"/>
+        <line num="228" type="stmt" count="0"/>
+        <line num="229" type="stmt" count="0"/>
+        <line num="230" type="stmt" count="0"/>
+        <line num="231" type="stmt" count="0"/>
+        <line num="234" type="stmt" count="0"/>
+        <line num="236" type="stmt" count="0"/>
+        <line num="245" type="method" name="isAjax" crap="12" count="0"/>
+        <line num="247" type="stmt" count="0"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="250" type="stmt" count="0"/>
+        <line num="251" type="stmt" count="0"/>
+        <line num="252" type="stmt" count="0"/>
+        <line num="253" type="stmt" count="0"/>
+        <line num="256" type="stmt" count="0"/>
+        <line num="258" type="stmt" count="0"/>
+        <line num="267" type="method" name="isCli" crap="6" count="0"/>
+        <line num="269" type="stmt" count="0"/>
+        <line num="270" type="stmt" count="0"/>
+        <line num="271" type="stmt" count="0"/>
+        <line num="272" type="stmt" count="0"/>
+        <line num="275" type="stmt" count="0"/>
+        <line num="284" type="method" name="setClient" crap="156" count="0"/>
+        <line num="286" type="stmt" count="0"/>
+        <line num="288" type="stmt" count="0"/>
+        <line num="289" type="stmt" count="0"/>
+        <line num="290" type="stmt" count="0"/>
+        <line num="291" type="stmt" count="0"/>
+        <line num="292" type="stmt" count="0"/>
+        <line num="293" type="stmt" count="0"/>
+        <line num="294" type="stmt" count="0"/>
+        <line num="295" type="stmt" count="0"/>
+        <line num="296" type="stmt" count="0"/>
+        <line num="297" type="stmt" count="0"/>
+        <line num="298" type="stmt" count="0"/>
+        <line num="301" type="stmt" count="0"/>
+        <line num="302" type="stmt" count="0"/>
+        <line num="303" type="stmt" count="0"/>
+        <line num="304" type="stmt" count="0"/>
+        <line num="305" type="stmt" count="0"/>
+        <line num="306" type="stmt" count="0"/>
+        <line num="307" type="stmt" count="0"/>
+        <line num="308" type="stmt" count="0"/>
+        <line num="311" type="stmt" count="0"/>
+        <line num="314" type="stmt" count="0"/>
+        <line num="315" type="stmt" count="0"/>
+        <line num="316" type="stmt" count="0"/>
+        <line num="317" type="stmt" count="0"/>
+        <line num="320" type="stmt" count="0"/>
+        <line num="324" type="stmt" count="0"/>
+        <line num="325" type="stmt" count="0"/>
+        <line num="326" type="stmt" count="0"/>
+        <line num="327" type="stmt" count="0"/>
+        <line num="328" type="stmt" count="0"/>
+        <line num="329" type="stmt" count="0"/>
+        <line num="330" type="stmt" count="0"/>
+        <line num="331" type="stmt" count="0"/>
+        <line num="332" type="stmt" count="0"/>
+        <line num="333" type="stmt" count="0"/>
+        <line num="334" type="stmt" count="0"/>
+        <line num="335" type="stmt" count="0"/>
+        <line num="336" type="stmt" count="0"/>
+        <line num="337" type="stmt" count="0"/>
+        <line num="338" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="340" type="stmt" count="0"/>
+        <line num="341" type="stmt" count="0"/>
+        <line num="343" type="stmt" count="0"/>
+        <line num="345" type="stmt" count="0"/>
+        <line num="346" type="stmt" count="0"/>
+        <line num="347" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="0"/>
+        <line num="350" type="stmt" count="0"/>
+        <line num="351" type="stmt" count="0"/>
+        <line num="352" type="stmt" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="0"/>
+        <line num="361" type="stmt" count="0"/>
+        <line num="362" type="stmt" count="0"/>
+        <line num="364" type="stmt" count="0"/>
+        <line num="366" type="stmt" count="0"/>
+        <line num="367" type="stmt" count="0"/>
+        <line num="368" type="stmt" count="0"/>
+        <line num="369" type="stmt" count="0"/>
+        <line num="370" type="stmt" count="0"/>
+        <line num="371" type="stmt" count="0"/>
+        <line num="372" type="stmt" count="0"/>
+        <line num="373" type="stmt" count="0"/>
+        <line num="377" type="stmt" count="0"/>
+        <line num="378" type="stmt" count="0"/>
+        <line num="379" type="stmt" count="0"/>
+        <line num="380" type="stmt" count="0"/>
+        <line num="381" type="stmt" count="0"/>
+        <line num="382" type="stmt" count="0"/>
+        <line num="383" type="stmt" count="0"/>
+        <line num="384" type="stmt" count="0"/>
+        <line num="385" type="stmt" count="0"/>
+        <line num="386" type="stmt" count="0"/>
+        <line num="387" type="stmt" count="0"/>
+        <line num="388" type="stmt" count="0"/>
+        <line num="389" type="stmt" count="0"/>
+        <line num="390" type="stmt" count="0"/>
+        <line num="391" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="0"/>
+        <line num="393" type="stmt" count="0"/>
+        <line num="394" type="stmt" count="0"/>
+        <line num="395" type="stmt" count="0"/>
+        <line num="396" type="stmt" count="0"/>
+        <line num="397" type="stmt" count="0"/>
+        <line num="398" type="stmt" count="0"/>
+        <line num="399" type="stmt" count="0"/>
+        <line num="400" type="stmt" count="0"/>
+        <line num="401" type="stmt" count="0"/>
+        <line num="402" type="stmt" count="0"/>
+        <line num="403" type="stmt" count="0"/>
+        <line num="404" type="stmt" count="0"/>
+        <line num="405" type="stmt" count="0"/>
+        <line num="406" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
+        <line num="409" type="stmt" count="0"/>
+        <line num="410" type="stmt" count="0"/>
+        <line num="411" type="stmt" count="0"/>
+        <line num="412" type="stmt" count="0"/>
+        <line num="413" type="stmt" count="0"/>
+        <line num="414" type="stmt" count="0"/>
+        <line num="415" type="stmt" count="0"/>
+        <line num="416" type="stmt" count="0"/>
+        <line num="417" type="stmt" count="0"/>
+        <line num="418" type="stmt" count="0"/>
+        <line num="419" type="stmt" count="0"/>
+        <line num="420" type="stmt" count="0"/>
+        <line num="421" type="stmt" count="0"/>
+        <line num="422" type="stmt" count="0"/>
+        <line num="423" type="stmt" count="0"/>
+        <line num="425" type="stmt" count="0"/>
+        <line num="427" type="stmt" count="0"/>
+        <line num="428" type="stmt" count="0"/>
+        <line num="429" type="stmt" count="0"/>
+        <line num="430" type="stmt" count="0"/>
+        <line num="431" type="stmt" count="0"/>
+        <line num="432" type="stmt" count="0"/>
+        <line num="433" type="stmt" count="0"/>
+        <line num="434" type="stmt" count="0"/>
+        <line num="437" type="stmt" count="0"/>
+        <line num="438" type="stmt" count="0"/>
+        <line num="439" type="stmt" count="0"/>
+        <line num="440" type="stmt" count="0"/>
+        <line num="441" type="stmt" count="0"/>
+        <line num="442" type="stmt" count="0"/>
+        <line num="443" type="stmt" count="0"/>
+        <line num="444" type="stmt" count="0"/>
+        <line num="445" type="stmt" count="0"/>
+        <line num="447" type="stmt" count="0"/>
+        <line num="450" type="stmt" count="0"/>
+        <metrics loc="449" ncloc="294" classes="1" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="173" coveredstatements="5" elements="180" coveredelements="6"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/Source/Request.php">
+        <class name="Request" namespace="Molajo\Http">
+          <metrics methods="17" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="177" coveredstatements="5" elements="194" coveredelements="6"/>
+        </class>
+        <line num="214" type="method" name="__construct" crap="2" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="219" type="stmt" count="0"/>
+        <line num="220" type="stmt" count="0"/>
+        <line num="221" type="stmt" count="0"/>
+        <line num="222" type="stmt" count="0"/>
+        <line num="223" type="stmt" count="0"/>
+        <line num="224" type="stmt" count="0"/>
+        <line num="225" type="stmt" count="0"/>
+        <line num="226" type="stmt" count="0"/>
+        <line num="227" type="stmt" count="0"/>
+        <line num="228" type="stmt" count="0"/>
+        <line num="229" type="stmt" count="0"/>
+        <line num="230" type="stmt" count="0"/>
+        <line num="231" type="stmt" count="0"/>
+        <line num="232" type="stmt" count="0"/>
+        <line num="233" type="stmt" count="0"/>
+        <line num="234" type="stmt" count="0"/>
+        <line num="254" type="method" name="get" crap="2" count="1"/>
+        <line num="256" type="stmt" count="1"/>
+        <line num="258" type="stmt" count="1"/>
+        <line num="259" type="stmt" count="1"/>
+        <line num="260" type="stmt" count="1"/>
+        <line num="262" type="stmt" count="1"/>
+        <line num="271" type="method" name="setMethod" crap="6" count="0"/>
+        <line num="273" type="stmt" count="0"/>
+        <line num="275" type="stmt" count="0"/>
+        <line num="277" type="stmt" count="0"/>
+        <line num="278" type="stmt" count="0"/>
+        <line num="279" type="stmt" count="0"/>
+        <line num="282" type="stmt" count="0"/>
+        <line num="291" type="method" name="setContentType" crap="6" count="0"/>
+        <line num="293" type="stmt" count="0"/>
+        <line num="295" type="stmt" count="0"/>
+        <line num="296" type="stmt" count="0"/>
+        <line num="297" type="stmt" count="0"/>
+        <line num="300" type="stmt" count="0"/>
+        <line num="302" type="stmt" count="0"/>
+        <line num="311" type="method" name="setScheme" crap="110" count="0"/>
+        <line num="313" type="stmt" count="0"/>
+        <line num="315" type="stmt" count="0"/>
+        <line num="316" type="stmt" count="0"/>
+        <line num="319" type="stmt" count="0"/>
+        <line num="321" type="stmt" count="0"/>
+        <line num="322" type="stmt" count="0"/>
+        <line num="323" type="stmt" count="0"/>
+        <line num="325" type="stmt" count="0"/>
+        <line num="327" type="stmt" count="0"/>
+        <line num="329" type="stmt" count="0"/>
+        <line num="330" type="stmt" count="0"/>
+        <line num="331" type="stmt" count="0"/>
+        <line num="332" type="stmt" count="0"/>
+        <line num="334" type="stmt" count="0"/>
+        <line num="335" type="stmt" count="0"/>
+        <line num="336" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="340" type="stmt" count="0"/>
+        <line num="341" type="stmt" count="0"/>
+        <line num="343" type="stmt" count="0"/>
+        <line num="352" type="method" name="setIsSecure" crap="6" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="356" type="stmt" count="0"/>
+        <line num="357" type="stmt" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="0"/>
+        <line num="369" type="method" name="setUser" crap="6" count="0"/>
+        <line num="371" type="stmt" count="0"/>
+        <line num="373" type="stmt" count="0"/>
+        <line num="374" type="stmt" count="0"/>
+        <line num="375" type="stmt" count="0"/>
+        <line num="378" type="stmt" count="0"/>
+        <line num="380" type="stmt" count="0"/>
+        <line num="389" type="method" name="setPassword" crap="12" count="0"/>
+        <line num="391" type="stmt" count="0"/>
+        <line num="393" type="stmt" count="0"/>
+        <line num="394" type="stmt" count="0"/>
+        <line num="397" type="stmt" count="0"/>
+        <line num="398" type="stmt" count="0"/>
+        <line num="399" type="stmt" count="0"/>
+        <line num="402" type="stmt" count="0"/>
+        <line num="404" type="stmt" count="0"/>
+        <line num="413" type="method" name="setUserinfo" crap="6" count="0"/>
+        <line num="415" type="stmt" count="0"/>
+        <line num="417" type="stmt" count="0"/>
+        <line num="418" type="stmt" count="0"/>
+        <line num="421" type="stmt" count="0"/>
+        <line num="423" type="stmt" count="0"/>
+        <line num="433" type="method" name="setHost" crap="42" count="0"/>
+        <line num="435" type="stmt" count="0"/>
+        <line num="437" type="stmt" count="0"/>
+        <line num="439" type="stmt" count="0"/>
+        <line num="440" type="stmt" count="0"/>
+        <line num="441" type="stmt" count="0"/>
+        <line num="442" type="stmt" count="0"/>
+        <line num="444" type="stmt" count="0"/>
+        <line num="445" type="stmt" count="0"/>
+        <line num="448" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
+        <line num="450" type="stmt" count="0"/>
+        <line num="451" type="stmt" count="0"/>
+        <line num="452" type="stmt" count="0"/>
+        <line num="453" type="stmt" count="0"/>
+        <line num="454" type="stmt" count="0"/>
+        <line num="456" type="stmt" count="0"/>
+        <line num="459" type="stmt" count="0"/>
+        <line num="460" type="stmt" count="0"/>
+        <line num="462" type="stmt" count="0"/>
+        <line num="465" type="stmt" count="0"/>
+        <line num="467" type="stmt" count="0"/>
+        <line num="476" type="method" name="setPort" crap="56" count="0"/>
+        <line num="478" type="stmt" count="0"/>
+        <line num="479" type="stmt" count="0"/>
+        <line num="481" type="stmt" count="0"/>
+        <line num="484" type="stmt" count="0"/>
+        <line num="486" type="stmt" count="0"/>
+        <line num="487" type="stmt" count="0"/>
+        <line num="490" type="stmt" count="0"/>
+        <line num="492" type="stmt" count="0"/>
+        <line num="493" type="stmt" count="0"/>
+        <line num="495" type="stmt" count="0"/>
+        <line num="496" type="stmt" count="0"/>
+        <line num="499" type="stmt" count="0"/>
+        <line num="501" type="stmt" count="0"/>
+        <line num="510" type="method" name="setAuthority" crap="30" count="0"/>
+        <line num="512" type="stmt" count="0"/>
+        <line num="514" type="stmt" count="0"/>
+        <line num="515" type="stmt" count="0"/>
+        <line num="516" type="stmt" count="0"/>
+        <line num="517" type="stmt" count="0"/>
+        <line num="518" type="stmt" count="0"/>
+        <line num="521" type="stmt" count="0"/>
+        <line num="523" type="stmt" count="0"/>
+        <line num="524" type="stmt" count="0"/>
+        <line num="525" type="stmt" count="0"/>
+        <line num="528" type="stmt" count="0"/>
+        <line num="530" type="stmt" count="0"/>
+        <line num="539" type="method" name="setQueryParameters" crap="42" count="0"/>
+        <line num="541" type="stmt" count="0"/>
+        <line num="543" type="stmt" count="0"/>
+        <line num="545" type="stmt" count="0"/>
+        <line num="546" type="stmt" count="0"/>
+        <line num="549" type="stmt" count="0"/>
+        <line num="550" type="stmt" count="0"/>
+        <line num="552" type="stmt" count="0"/>
+        <line num="553" type="stmt" count="0"/>
+        <line num="554" type="stmt" count="0"/>
+        <line num="555" type="stmt" count="0"/>
+        <line num="556" type="stmt" count="0"/>
+        <line num="557" type="stmt" count="0"/>
+        <line num="558" type="stmt" count="0"/>
+        <line num="559" type="stmt" count="0"/>
+        <line num="561" type="stmt" count="0"/>
+        <line num="562" type="stmt" count="0"/>
+        <line num="563" type="stmt" count="0"/>
+        <line num="566" type="stmt" count="0"/>
+        <line num="568" type="stmt" count="0"/>
+        <line num="570" type="stmt" count="0"/>
+        <line num="579" type="method" name="setQueryString" crap="20" count="0"/>
+        <line num="581" type="stmt" count="0"/>
+        <line num="583" type="stmt" count="0"/>
+        <line num="584" type="stmt" count="0"/>
+        <line num="587" type="stmt" count="0"/>
+        <line num="588" type="stmt" count="0"/>
+        <line num="589" type="stmt" count="0"/>
+        <line num="590" type="stmt" count="0"/>
+        <line num="592" type="stmt" count="0"/>
+        <line num="593" type="stmt" count="0"/>
+        <line num="595" type="stmt" count="0"/>
+        <line num="604" type="method" name="setBaseUrl" crap="2" count="0"/>
+        <line num="606" type="stmt" count="0"/>
+        <line num="607" type="stmt" count="0"/>
+        <line num="609" type="stmt" count="0"/>
+        <line num="618" type="method" name="setPath" crap="30" count="0"/>
+        <line num="621" type="stmt" count="0"/>
+        <line num="622" type="stmt" count="0"/>
+        <line num="624" type="stmt" count="0"/>
+        <line num="625" type="stmt" count="0"/>
+        <line num="626" type="stmt" count="0"/>
+        <line num="628" type="stmt" count="0"/>
+        <line num="629" type="stmt" count="0"/>
+        <line num="632" type="stmt" count="0"/>
+        <line num="634" type="stmt" count="0"/>
+        <line num="635" type="stmt" count="0"/>
+        <line num="636" type="stmt" count="0"/>
+        <line num="638" type="stmt" count="0"/>
+        <line num="640" type="stmt" count="0"/>
+        <line num="642" type="stmt" count="0"/>
+        <line num="651" type="method" name="setUrl" crap="6" count="0"/>
+        <line num="653" type="stmt" count="0"/>
+        <line num="654" type="stmt" count="0"/>
+        <line num="656" type="stmt" count="0"/>
+        <line num="657" type="stmt" count="0"/>
+        <line num="658" type="stmt" count="0"/>
+        <line num="661" type="stmt" count="0"/>
+        <line num="664" type="stmt" count="0"/>
+        <metrics loc="663" ncloc="396" classes="1" methods="17" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="177" coveredstatements="5" elements="194" coveredelements="6"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/Source/Response.php">
+        <class name="Response" namespace="Molajo\Http">
+          <metrics methods="8" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="124" coveredstatements="16" elements="132" coveredelements="19"/>
+        </class>
+        <line num="165" type="method" name="__construct" crap="552" count="0"/>
+        <line num="170" type="stmt" count="0"/>
+        <line num="172" type="stmt" count="0"/>
+        <line num="173" type="stmt" count="0"/>
+        <line num="174" type="stmt" count="0"/>
+        <line num="175" type="stmt" count="0"/>
+        <line num="176" type="stmt" count="0"/>
+        <line num="179" type="stmt" count="0"/>
+        <line num="180" type="stmt" count="0"/>
+        <line num="181" type="stmt" count="0"/>
+        <line num="182" type="stmt" count="0"/>
+        <line num="183" type="stmt" count="0"/>
+        <line num="186" type="stmt" count="0"/>
+        <line num="187" type="stmt" count="0"/>
+        <line num="188" type="stmt" count="0"/>
+        <line num="189" type="stmt" count="0"/>
+        <line num="190" type="stmt" count="0"/>
+        <line num="192" type="stmt" count="0"/>
+        <line num="194" type="stmt" count="0"/>
+        <line num="195" type="stmt" count="0"/>
+        <line num="196" type="stmt" count="0"/>
+        <line num="197" type="stmt" count="0"/>
+        <line num="198" type="stmt" count="0"/>
+        <line num="199" type="stmt" count="0"/>
+        <line num="202" type="stmt" count="0"/>
+        <line num="203" type="stmt" count="0"/>
+        <line num="204" type="stmt" count="0"/>
+        <line num="206" type="stmt" count="0"/>
+        <line num="207" type="stmt" count="0"/>
+        <line num="208" type="stmt" count="0"/>
+        <line num="209" type="stmt" count="0"/>
+        <line num="210" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="0"/>
+        <line num="213" type="stmt" count="0"/>
+        <line num="214" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="0"/>
+        <line num="216" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="218" type="stmt" count="0"/>
+        <line num="221" type="stmt" count="0"/>
+        <line num="222" type="stmt" count="0"/>
+        <line num="223" type="stmt" count="0"/>
+        <line num="224" type="stmt" count="0"/>
+        <line num="225" type="stmt" count="0"/>
+        <line num="226" type="stmt" count="0"/>
+        <line num="228" type="stmt" count="0"/>
+        <line num="229" type="stmt" count="0"/>
+        <line num="230" type="stmt" count="0"/>
+        <line num="231" type="stmt" count="0"/>
+        <line num="232" type="stmt" count="0"/>
+        <line num="233" type="stmt" count="0"/>
+        <line num="234" type="stmt" count="0"/>
+        <line num="237" type="stmt" count="0"/>
+        <line num="239" type="stmt" count="0"/>
+        <line num="240" type="stmt" count="0"/>
+        <line num="241" type="stmt" count="0"/>
+        <line num="242" type="stmt" count="0"/>
+        <line num="245" type="stmt" count="0"/>
+        <line num="246" type="stmt" count="0"/>
+        <line num="247" type="stmt" count="0"/>
+        <line num="248" type="stmt" count="0"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="250" type="stmt" count="0"/>
+        <line num="254" type="stmt" count="0"/>
+        <line num="255" type="stmt" count="0"/>
+        <line num="256" type="stmt" count="0"/>
+        <line num="257" type="stmt" count="0"/>
+        <line num="258" type="stmt" count="0"/>
+        <line num="259" type="stmt" count="0"/>
+        <line num="260" type="stmt" count="0"/>
+        <line num="261" type="stmt" count="0"/>
+        <line num="262" type="stmt" count="0"/>
+        <line num="264" type="stmt" count="0"/>
+        <line num="265" type="stmt" count="0"/>
+        <line num="266" type="stmt" count="0"/>
+        <line num="267" type="stmt" count="0"/>
+        <line num="268" type="stmt" count="0"/>
+        <line num="269" type="stmt" count="0"/>
+        <line num="271" type="stmt" count="0"/>
+        <line num="280" type="method" name="setStatus" crap="2.01" count="1"/>
+        <line num="282" type="stmt" count="1"/>
+        <line num="283" type="stmt" count="1"/>
+        <line num="284" type="stmt" count="0"/>
+        <line num="287" type="stmt" count="1"/>
+        <line num="288" type="stmt" count="1"/>
+        <line num="289" type="stmt" count="1"/>
+        <line num="290" type="stmt" count="1"/>
+        <line num="291" type="stmt" count="1"/>
+        <line num="293" type="stmt" count="1"/>
+        <line num="302" type="method" name="setRedirect" crap="3.04" count="4"/>
+        <line num="304" type="stmt" count="4"/>
+        <line num="306" type="stmt" count="4"/>
+        <line num="307" type="stmt" count="4"/>
+        <line num="308" type="stmt" count="0"/>
+        <line num="311" type="stmt" count="4"/>
+        <line num="313" type="stmt" count="4"/>
+        <line num="322" type="method" name="getDate" crap="1" count="1"/>
+        <line num="324" type="stmt" count="1"/>
+        <line num="326" type="stmt" count="1"/>
+        <line num="328" type="stmt" count="1"/>
+        <line num="337" type="method" name="send" crap="6" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="341" type="stmt" count="0"/>
+        <line num="343" type="stmt" count="0"/>
+        <line num="344" type="stmt" count="0"/>
+        <line num="345" type="stmt" count="0"/>
+        <line num="347" type="stmt" count="0"/>
+        <line num="356" type="method" name="setHeaders" crap="30" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="0"/>
+        <line num="361" type="stmt" count="0"/>
+        <line num="362" type="stmt" count="0"/>
+        <line num="364" type="stmt" count="0"/>
+        <line num="365" type="stmt" count="0"/>
+        <line num="366" type="stmt" count="0"/>
+        <line num="368" type="stmt" count="0"/>
+        <line num="369" type="stmt" count="0"/>
+        <line num="370" type="stmt" count="0"/>
+        <line num="371" type="stmt" count="0"/>
+        <line num="372" type="stmt" count="0"/>
+        <line num="373" type="stmt" count="0"/>
+        <line num="375" type="stmt" count="0"/>
+        <line num="384" type="method" name="sendHeaders" crap="12" count="0"/>
+        <line num="386" type="stmt" count="0"/>
+        <line num="387" type="stmt" count="0"/>
+        <line num="390" type="stmt" count="0"/>
+        <line num="391" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="0"/>
+        <line num="394" type="stmt" count="0"/>
+        <line num="403" type="method" name="sendBody" crap="2" count="0"/>
+        <line num="405" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="0"/>
+        <metrics loc="409" ncloc="284" classes="1" methods="8" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="124" coveredstatements="16" elements="132" coveredelements="17"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/Source/Server.php">
+        <class name="Server" namespace="Molajo\Http">
+          <metrics methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="5" elements="51" coveredelements="6"/>
+        </class>
+        <line num="149" type="method" name="__construct" crap="2" count="0"/>
+        <line num="152" type="stmt" count="0"/>
+        <line num="154" type="stmt" count="0"/>
+        <line num="155" type="stmt" count="0"/>
+        <line num="156" type="stmt" count="0"/>
+        <line num="157" type="stmt" count="0"/>
+        <line num="158" type="stmt" count="0"/>
+        <line num="159" type="stmt" count="0"/>
+        <line num="171" type="method" name="get" crap="2" count="1"/>
+        <line num="173" type="stmt" count="1"/>
+        <line num="175" type="stmt" count="1"/>
+        <line num="176" type="stmt" count="1"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="188" type="method" name="setUser" crap="6" count="0"/>
+        <line num="190" type="stmt" count="0"/>
+        <line num="191" type="stmt" count="0"/>
+        <line num="192" type="stmt" count="0"/>
+        <line num="193" type="stmt" count="0"/>
+        <line num="196" type="stmt" count="0"/>
+        <line num="198" type="stmt" count="0"/>
+        <line num="207" type="method" name="setPassword" crap="6" count="0"/>
+        <line num="209" type="stmt" count="0"/>
+        <line num="210" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="0"/>
+        <line num="212" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="226" type="method" name="setDocumentRoot" crap="6" count="0"/>
+        <line num="228" type="stmt" count="0"/>
+        <line num="229" type="stmt" count="0"/>
+        <line num="230" type="stmt" count="0"/>
+        <line num="231" type="stmt" count="0"/>
+        <line num="234" type="stmt" count="0"/>
+        <line num="236" type="stmt" count="0"/>
+        <line num="245" type="method" name="setEntryPoint" crap="6" count="0"/>
+        <line num="247" type="stmt" count="0"/>
+        <line num="248" type="stmt" count="0"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="250" type="stmt" count="0"/>
+        <line num="253" type="stmt" count="0"/>
+        <line num="255" type="stmt" count="0"/>
+        <line num="264" type="method" name="setServer" crap="2" count="0"/>
+        <line num="266" type="stmt" count="0"/>
+        <line num="267" type="stmt" count="0"/>
+        <line num="268" type="stmt" count="0"/>
+        <line num="269" type="stmt" count="0"/>
+        <line num="270" type="stmt" count="0"/>
+        <line num="271" type="stmt" count="0"/>
+        <line num="272" type="stmt" count="0"/>
+        <line num="274" type="stmt" count="0"/>
+        <line num="277" type="stmt" count="0"/>
+        <metrics loc="276" ncloc="134" classes="1" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="5" elements="51" coveredelements="6"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/Source/Upload.php">
+        <class name="Upload" namespace="Molajo\Http" fullPackage="Molajo" package="Molajo">
+          <metrics methods="9" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="103" coveredstatements="21" elements="112" coveredelements="22"/>
+        </class>
+        <line num="191" type="method" name="__construct" crap="30" count="0"/>
+        <line num="202" type="stmt" count="0"/>
+        <line num="203" type="stmt" count="0"/>
+        <line num="204" type="stmt" count="0"/>
+        <line num="205" type="stmt" count="0"/>
+        <line num="206" type="stmt" count="0"/>
+        <line num="208" type="stmt" count="0"/>
+        <line num="209" type="stmt" count="0"/>
+        <line num="210" type="stmt" count="0"/>
+        <line num="212" type="stmt" count="0"/>
+        <line num="213" type="stmt" count="0"/>
+        <line num="214" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="218" type="stmt" count="0"/>
+        <line num="219" type="stmt" count="0"/>
+        <line num="221" type="stmt" count="0"/>
+        <line num="222" type="stmt" count="0"/>
+        <line num="223" type="stmt" count="0"/>
+        <line num="225" type="stmt" count="0"/>
+        <line num="234" type="method" name="upload" crap="6.40" count="2"/>
+        <line num="237" type="stmt" count="2"/>
+        <line num="238" type="stmt" count="2"/>
+        <line num="239" type="stmt" count="2"/>
+        <line num="240" type="stmt" count="2"/>
+        <line num="243" type="stmt" count="2"/>
+        <line num="245" type="stmt" count="2"/>
+        <line num="247" type="stmt" count="2"/>
+        <line num="248" type="stmt" count="2"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="252" type="stmt" count="2"/>
+        <line num="254" type="stmt" count="2"/>
+        <line num="256" type="stmt" count="2"/>
+        <line num="257" type="stmt" count="2"/>
+        <line num="260" type="stmt" count="2"/>
+        <line num="261" type="stmt" count="2"/>
+        <line num="262" type="stmt" count="0"/>
+        <line num="263" type="stmt" count="0"/>
+        <line num="264" type="stmt" count="2"/>
+        <line num="267" type="stmt" count="2"/>
+        <line num="269" type="stmt" count="1"/>
+        <line num="270" type="stmt" count="0"/>
+        <line num="271" type="stmt" count="0"/>
+        <line num="272" type="stmt" count="0"/>
+        <line num="273" type="stmt" count="1"/>
+        <line num="276" type="stmt" count="1"/>
+        <line num="277" type="stmt" count="1"/>
+        <line num="279" type="stmt" count="1"/>
+        <line num="289" type="method" name="validateFormToken" crap="6" count="0"/>
+        <line num="291" type="stmt" count="0"/>
+        <line num="309" type="method" name="validateInputFieldName" crap="6" count="0"/>
+        <line num="311" type="stmt" count="0"/>
+        <line num="312" type="stmt" count="0"/>
+        <line num="313" type="stmt" count="0"/>
+        <line num="316" type="stmt" count="0"/>
+        <line num="326" type="method" name="createFileArray" crap="56" count="0"/>
+        <line num="328" type="stmt" count="0"/>
+        <line num="330" type="stmt" count="0"/>
+        <line num="333" type="stmt" count="0"/>
+        <line num="335" type="stmt" count="0"/>
+        <line num="336" type="stmt" count="0"/>
+        <line num="337" type="stmt" count="0"/>
+        <line num="338" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="341" type="stmt" count="0"/>
+        <line num="342" type="stmt" count="0"/>
+        <line num="343" type="stmt" count="0"/>
+        <line num="344" type="stmt" count="0"/>
+        <line num="346" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="0"/>
+        <line num="350" type="stmt" count="0"/>
+        <line num="351" type="stmt" count="0"/>
+        <line num="353" type="stmt" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="355" type="stmt" count="0"/>
+        <line num="357" type="stmt" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="0"/>
+        <line num="360" type="stmt" count="0"/>
+        <line num="361" type="stmt" count="0"/>
+        <line num="362" type="stmt" count="0"/>
+        <line num="365" type="stmt" count="0"/>
+        <line num="366" type="stmt" count="0"/>
+        <line num="369" type="stmt" count="0"/>
+        <line num="379" type="method" name="validateTargetFolder" crap="12" count="0"/>
+        <line num="381" type="stmt" count="0"/>
+        <line num="382" type="stmt" count="0"/>
+        <line num="383" type="stmt" count="0"/>
+        <line num="384" type="stmt" count="0"/>
+        <line num="387" type="stmt" count="0"/>
+        <line num="388" type="stmt" count="0"/>
+        <line num="389" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="0"/>
+        <line num="404" type="method" name="validateUploadFileExists" crap="6" count="0"/>
+        <line num="406" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
+        <line num="411" type="stmt" count="0"/>
+        <line num="423" type="method" name="validateMimeType" crap="6" count="0"/>
+        <line num="425" type="stmt" count="0"/>
+        <line num="426" type="stmt" count="0"/>
+        <line num="428" type="stmt" count="0"/>
+        <line num="429" type="stmt" count="0"/>
+        <line num="430" type="stmt" count="0"/>
+        <line num="433" type="stmt" count="0"/>
+        <line num="445" type="method" name="validateTargetFile" crap="20" count="0"/>
+        <line num="447" type="stmt" count="0"/>
+        <line num="448" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
+        <line num="450" type="stmt" count="0"/>
+        <line num="453" type="stmt" count="0"/>
+        <line num="454" type="stmt" count="0"/>
+        <line num="457" type="stmt" count="0"/>
+        <line num="460" type="stmt" count="0"/>
+        <metrics loc="459" ncloc="287" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="103" coveredstatements="21" elements="112" coveredelements="21"/>
+      </file>
+    </package>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/autoload.php">
+      <line num="5" type="stmt" count="0"/>
+      <line num="7" type="stmt" count="0"/>
+      <metrics loc="7" ncloc="5" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="2" coveredelements="0"/>
+    </file>
+    <package name="CommonApi\Exception">
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/BadFunctionCallException.php">
+        <class name="BadFunctionCallException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/BadMethodCallException.php">
+        <class name="BadMethodCallException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/DomainException.php">
+        <class name="DomainException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/ErrorThrownAsException.php">
+        <class name="ErrorThrownAsException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="33" type="method" name="__construct" crap="2" count="0"/>
+        <line num="34" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="44" type="method" name="__toString" crap="2" count="0"/>
+        <line num="45" type="stmt" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <metrics loc="48" ncloc="17" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/InvalidArgumentException.php">
+        <class name="InvalidArgumentException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/LengthException.php">
+        <class name="LengthException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/LogicException.php">
+        <class name="LogicException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/OutOfBoundsException.php">
+        <class name="OutOfBoundsException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/OutOfRangeException.php">
+        <class name="OutOfRangeException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/OverflowException.php">
+        <class name="OverflowException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/RangeException.php">
+        <class name="RangeException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/RuntimeException.php">
+        <class name="RuntimeException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="50" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/UnderflowException.php">
+        <class name="UnderflowException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/UnexpectedValueException.php">
+        <class name="UnexpectedValueException" namespace="CommonApi\Exception" fullPackage="Exception" package="Exception">
+          <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        </class>
+        <line num="34" type="method" name="__construct" crap="2" count="0"/>
+        <line num="35" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="37" type="stmt" count="0"/>
+        <line num="45" type="method" name="__toString" crap="2" count="0"/>
+        <line num="46" type="stmt" count="0"/>
+        <line num="47" type="stmt" count="0"/>
+        <line num="48" type="stmt" count="0"/>
+        <metrics loc="49" ncloc="18" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/exception/ExceptionInterface.php">
+      <line num="23" type="stmt" count="0"/>
+      <metrics loc="22" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/filesystem/ConnectionInterface.php">
+      <metrics loc="38" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/filesystem/FilesystemInterface.php">
+      <metrics loc="201" ncloc="50" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/ClientInterface.php">
+      <line num="32" type="stmt" count="0"/>
+      <metrics loc="31" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/RedirectInterface.php">
+      <metrics loc="33" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/RequestInterface.php">
+      <line num="41" type="stmt" count="0"/>
+      <metrics loc="40" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/ResponseInterface.php">
+      <metrics loc="28" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/ServerInterface.php">
+      <line num="33" type="stmt" count="0"/>
+      <metrics loc="32" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/commonapi/http/UploadInterface.php">
+      <line num="29" type="stmt" count="0"/>
+      <metrics loc="28" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="Composer\Autoload">
+      <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/ClassLoader.php">
+        <class name="ClassLoader" namespace="Composer\Autoload">
+          <metrics methods="17" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="136" coveredstatements="0" elements="153" coveredelements="0"/>
+        </class>
+        <line num="0" type="stmt" count="0"/>
+        <line num="57" type="method" name="getPrefixes" crap="2" count="0"/>
+        <line num="59" type="stmt" count="0"/>
+        <line num="62" type="method" name="getPrefixesPsr4" crap="2" count="0"/>
+        <line num="64" type="stmt" count="0"/>
+        <line num="67" type="method" name="getFallbackDirs" crap="2" count="0"/>
+        <line num="69" type="stmt" count="0"/>
+        <line num="72" type="method" name="getFallbackDirsPsr4" crap="2" count="0"/>
+        <line num="74" type="stmt" count="0"/>
+        <line num="77" type="method" name="getClassMap" crap="2" count="0"/>
+        <line num="79" type="stmt" count="0"/>
+        <line num="85" type="method" name="addClassMap" crap="6" count="0"/>
+        <line num="87" type="stmt" count="0"/>
+        <line num="88" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="90" type="stmt" count="0"/>
+        <line num="92" type="stmt" count="0"/>
+        <line num="102" type="method" name="add" crap="30" count="0"/>
+        <line num="104" type="stmt" count="0"/>
+        <line num="105" type="stmt" count="0"/>
+        <line num="106" type="stmt" count="0"/>
+        <line num="107" type="stmt" count="0"/>
+        <line num="108" type="stmt" count="0"/>
+        <line num="109" type="stmt" count="0"/>
+        <line num="110" type="stmt" count="0"/>
+        <line num="111" type="stmt" count="0"/>
+        <line num="112" type="stmt" count="0"/>
+        <line num="114" type="stmt" count="0"/>
+        <line num="117" type="stmt" count="0"/>
+        <line num="120" type="stmt" count="0"/>
+        <line num="121" type="stmt" count="0"/>
+        <line num="122" type="stmt" count="0"/>
+        <line num="124" type="stmt" count="0"/>
+        <line num="126" type="stmt" count="0"/>
+        <line num="127" type="stmt" count="0"/>
+        <line num="128" type="stmt" count="0"/>
+        <line num="129" type="stmt" count="0"/>
+        <line num="130" type="stmt" count="0"/>
+        <line num="131" type="stmt" count="0"/>
+        <line num="132" type="stmt" count="0"/>
+        <line num="133" type="stmt" count="0"/>
+        <line num="135" type="stmt" count="0"/>
+        <line num="137" type="stmt" count="0"/>
+        <line num="147" type="method" name="addPsr4" crap="42" count="0"/>
+        <line num="149" type="stmt" count="0"/>
+        <line num="151" type="stmt" count="0"/>
+        <line num="152" type="stmt" count="0"/>
+        <line num="153" type="stmt" count="0"/>
+        <line num="154" type="stmt" count="0"/>
+        <line num="155" type="stmt" count="0"/>
+        <line num="156" type="stmt" count="0"/>
+        <line num="157" type="stmt" count="0"/>
+        <line num="158" type="stmt" count="0"/>
+        <line num="160" type="stmt" count="0"/>
+        <line num="162" type="stmt" count="0"/>
+        <line num="164" type="stmt" count="0"/>
+        <line num="165" type="stmt" count="0"/>
+        <line num="166" type="stmt" count="0"/>
+        <line num="168" type="stmt" count="0"/>
+        <line num="169" type="stmt" count="0"/>
+        <line num="170" type="stmt" count="0"/>
+        <line num="172" type="stmt" count="0"/>
+        <line num="173" type="stmt" count="0"/>
+        <line num="174" type="stmt" count="0"/>
+        <line num="175" type="stmt" count="0"/>
+        <line num="176" type="stmt" count="0"/>
+        <line num="178" type="stmt" count="0"/>
+        <line num="179" type="stmt" count="0"/>
+        <line num="181" type="stmt" count="0"/>
+        <line num="183" type="stmt" count="0"/>
+        <line num="192" type="method" name="set" crap="6" count="0"/>
+        <line num="194" type="stmt" count="0"/>
+        <line num="195" type="stmt" count="0"/>
+        <line num="196" type="stmt" count="0"/>
+        <line num="197" type="stmt" count="0"/>
+        <line num="199" type="stmt" count="0"/>
+        <line num="208" type="method" name="setPsr4" crap="12" count="0"/>
+        <line num="209" type="stmt" count="0"/>
+        <line num="210" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="0"/>
+        <line num="212" type="stmt" count="0"/>
+        <line num="213" type="stmt" count="0"/>
+        <line num="214" type="stmt" count="0"/>
+        <line num="216" type="stmt" count="0"/>
+        <line num="217" type="stmt" count="0"/>
+        <line num="219" type="stmt" count="0"/>
+        <line num="226" type="method" name="setUseIncludePath" crap="2" count="0"/>
+        <line num="228" type="stmt" count="0"/>
+        <line num="229" type="stmt" count="0"/>
+        <line num="237" type="method" name="getUseIncludePath" crap="2" count="0"/>
+        <line num="239" type="stmt" count="0"/>
+        <line num="247" type="method" name="register" crap="2" count="0"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="250" type="stmt" count="0"/>
+        <line num="255" type="method" name="unregister" crap="2" count="0"/>
+        <line num="257" type="stmt" count="0"/>
+        <line num="258" type="stmt" count="0"/>
+        <line num="266" type="method" name="loadClass" crap="6" count="0"/>
+        <line num="268" type="stmt" count="0"/>
+        <line num="269" type="stmt" count="0"/>
+        <line num="271" type="stmt" count="0"/>
+        <line num="273" type="stmt" count="0"/>
+        <line num="282" type="method" name="findFile" crap="42" count="0"/>
+        <line num="285" type="stmt" count="0"/>
+        <line num="286" type="stmt" count="0"/>
+        <line num="287" type="stmt" count="0"/>
+        <line num="290" type="stmt" count="0"/>
+        <line num="291" type="stmt" count="0"/>
+        <line num="294" type="stmt" count="0"/>
+        <line num="297" type="stmt" count="0"/>
+        <line num="298" type="stmt" count="0"/>
+        <line num="299" type="stmt" count="0"/>
+        <line num="301" type="stmt" count="0"/>
+        <line num="303" type="stmt" count="0"/>
+        <line num="306" type="stmt" count="0"/>
+        <line num="309" type="method" name="findFileWithExtension" crap="342" count="0"/>
+        <line num="312" type="stmt" count="0"/>
+        <line num="314" type="stmt" count="0"/>
+        <line num="315" type="stmt" count="0"/>
+        <line num="316" type="stmt" count="0"/>
+        <line num="317" type="stmt" count="0"/>
+        <line num="318" type="stmt" count="0"/>
+        <line num="319" type="stmt" count="0"/>
+        <line num="320" type="stmt" count="0"/>
+        <line num="322" type="stmt" count="0"/>
+        <line num="323" type="stmt" count="0"/>
+        <line num="324" type="stmt" count="0"/>
+        <line num="325" type="stmt" count="0"/>
+        <line num="328" type="stmt" count="0"/>
+        <line num="329" type="stmt" count="0"/>
+        <line num="330" type="stmt" count="0"/>
+        <line num="332" type="stmt" count="0"/>
+        <line num="335" type="stmt" count="0"/>
+        <line num="337" type="stmt" count="0"/>
+        <line num="338" type="stmt" count="0"/>
+        <line num="339" type="stmt" count="0"/>
+        <line num="341" type="stmt" count="0"/>
+        <line num="344" type="stmt" count="0"/>
+        <line num="345" type="stmt" count="0"/>
+        <line num="346" type="stmt" count="0"/>
+        <line num="347" type="stmt" count="0"/>
+        <line num="348" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="0"/>
+        <line num="351" type="stmt" count="0"/>
+        <line num="352" type="stmt" count="0"/>
+        <line num="353" type="stmt" count="0"/>
+        <line num="354" type="stmt" count="0"/>
+        <line num="357" type="stmt" count="0"/>
+        <line num="358" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="0"/>
+        <line num="361" type="stmt" count="0"/>
+        <line num="364" type="stmt" count="0"/>
+        <line num="365" type="stmt" count="0"/>
+        <line num="367" type="stmt" count="0"/>
+        <line num="377" type="stmt" count="0"/>
+        <line num="378" type="stmt" count="0"/>
+        <metrics loc="378" ncloc="237" classes="1" methods="17" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="138" coveredstatements="0" elements="155" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/autoload_classmap.php">
+      <line num="5" type="stmt" count="0"/>
+      <line num="6" type="stmt" count="0"/>
+      <line num="8" type="stmt" count="0"/>
+      <line num="9" type="stmt" count="0"/>
+      <metrics loc="9" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/autoload_namespaces.php">
+      <line num="5" type="stmt" count="0"/>
+      <line num="6" type="stmt" count="0"/>
+      <line num="8" type="stmt" count="0"/>
+      <line num="9" type="stmt" count="0"/>
+      <metrics loc="9" ncloc="7" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/autoload_psr4.php">
+      <line num="5" type="stmt" count="0"/>
+      <line num="6" type="stmt" count="0"/>
+      <line num="8" type="stmt" count="0"/>
+      <line num="9" type="stmt" count="0"/>
+      <line num="10" type="stmt" count="0"/>
+      <line num="11" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="13" type="stmt" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <metrics loc="14" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="9" coveredelements="0"/>
+    </file>
+    <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/autoload_real.php">
+      <class name="ComposerAutoloaderInit335473ced2aa997ef41264dab1aad457" namespace="global">
+        <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="27" coveredelements="0"/>
+      </class>
+      <line num="9" type="method" name="loadClassLoader" crap="6" count="0"/>
+      <line num="11" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="0"/>
+      <line num="13" type="stmt" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <line num="16" type="method" name="getLoader" crap="30" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
+      <line num="31" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <metrics loc="53" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="29" coveredelements="0"/>
+    </file>
+    <metrics files="39" loc="4474" ncloc="2459" classes="26" methods="116" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="1180" coveredstatements="52" elements="1296" coveredelements="56"/>
+  </project>
+</coverage>
