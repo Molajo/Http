@@ -209,6 +209,29 @@ class Upload implements UploadInterface
         $this->overwrite_existing_file = $overwrite_existing_file;
         $this->file_array              = $files;
 
+        $this->editUploadInput($error_messages, $maximum_file_size, $allowable_mimes_and_extensions);
+
+        if ($filesystem === null) {
+        } else {
+            $this->filesystem = $filesystem;
+        }
+    }
+
+    /**
+     * Edit input
+     *
+     * @param array               $error_messages
+     * @param                     $maximum_file_size
+     * @param array               $allowable_mimes_and_extensions
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function editUploadInput(
+        array $error_messages,
+        $maximum_file_size,
+        array $allowable_mimes_and_extensions
+    ) {
         if (count($this->error_messages) > 0) {
             $this->error_messages = $error_messages;
         }
@@ -222,10 +245,7 @@ class Upload implements UploadInterface
             $this->allowable_mimes_and_extensions = $allowable_mimes_and_extensions;
         }
 
-        if ($filesystem === null) {
-        } else {
-            $this->filesystem = $filesystem;
-        }
+        return $this;
     }
 
     /**
@@ -246,7 +266,7 @@ class Upload implements UploadInterface
                 throw new RuntimeException('Http Upload Error: ' . $item['error']);
             }
 
-            $this->uploadFile($item);
+            $this->uploadSingleFile($item);
         }
 
         return $this;
@@ -264,44 +284,6 @@ class Upload implements UploadInterface
         $this->validateInputFieldName();
         $this->createFileArray();
         $this->validateTargetFolder();
-
-        return $this;
-    }
-
-    /**
-     * Upload Pre-processing
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function uploadFile($item)
-    {
-        $upload_path_and_file = $item['tmp_name'];
-
-        $this->validateUploadFileExists($upload_path_and_file);
-        $this->validateMimeType($upload_path_and_file);
-
-        $upload_file     = basename($upload_path_and_file);
-        $target_filename = $item['target_filename'];
-
-        if ($target_filename === null
-            || $target_filename == ''
-        ) {
-            $target_path_and_file = $this->target_folder . '/' . $upload_file;
-        } else {
-            $target_path_and_file = $this->target_folder . '/' . $target_filename;
-        }
-
-        $this->validateTargetFile($target_path_and_file);
-
-        if (is_object($this->filesystem)) {
-            $data = file_get_contents($upload_path_and_file);
-            $this->filesystem->write($target_path_and_file, $data, $this->overwrite_existing_file);
-        } else {
-            copy($upload_path_and_file, $target_path_and_file);
-        }
-
-        unlink($upload_path_and_file);
 
         return $this;
     }
@@ -354,44 +336,66 @@ class Upload implements UploadInterface
 
         $this->file_array = array();
 
-        /** single file */
         if (isset($raw['name'])) {
-
-            $this->file_array[0]['name']     = $raw['name'];
-            $this->file_array[0]['type']     = $raw['type'];
-            $this->file_array[0]['tmp_name'] = $raw['tmp_name'];
-            $this->file_array[0]['error']    = $raw['error'];
-            $this->file_array[0]['size']     = $raw['size'];
-
-            if (is_array($this->target_filename)) {
-                $this->file_array[0]['target_filename'] = $this->target_filename[0];
-            } else {
-                $this->file_array[0]['target_filename'] = $this->target_filename;
-            }
+            $this->createFileArraySingleFile($raw);
         } else {
-
-            /** multiple files */
-            $count = 0;
-            foreach ($raw as $files_element => $files_raw) {
-                $i = 0;
-
-                foreach ($files_raw as $item => $value) {
-                    $this->file_array[$i++][$files_element] = $value;
-                }
-
-                if (is_array($this->target_filename)
-                    && isset($this->target_filename[$count])
-                ) {
-                    $this->file_array[0]['target_filename'] = $this->target_filename[0];
-                } else {
-                    $this->file_array[0]['target_filename'] = null;
-                }
-
-                $count++;
-            }
+            $this->createFileArrayMultipleFiles($raw);
         }
 
         return $this;
+    }
+
+    /**
+     * Create File Array - Single File
+     *
+     * @param   array $raw
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function createFileArraySingleFile($raw)
+    {
+        $this->file_array[0]['name']     = $raw['name'];
+        $this->file_array[0]['type']     = $raw['type'];
+        $this->file_array[0]['tmp_name'] = $raw['tmp_name'];
+        $this->file_array[0]['error']    = $raw['error'];
+        $this->file_array[0]['size']     = $raw['size'];
+
+        if (is_array($this->target_filename)) {
+            $this->file_array[0]['target_filename'] = $this->target_filename[0];
+        } else {
+            $this->file_array[0]['target_filename'] = $this->target_filename;
+        }
+    }
+
+    /**
+     * Create File Array - Multiple Files
+     *
+     * @param   array $raw
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function createFileArrayMultipleFiles($raw)
+    {
+        $count = 0;
+        foreach ($raw as $files_element => $files_raw) {
+            $i = 0;
+
+            foreach ($files_raw as $item => $value) {
+                $this->file_array[$i++][$files_element] = $value;
+            }
+
+            if (is_array($this->target_filename)
+                && isset($this->target_filename[$count])
+            ) {
+                $this->file_array[0]['target_filename'] = $this->target_filename[0];
+            } else {
+                $this->file_array[0]['target_filename'] = null;
+            }
+
+            $count++;
+        }
     }
 
     /**
@@ -413,6 +417,43 @@ class Upload implements UploadInterface
         } else {
             throw new RuntimeException($this->error_messages[140] . $this->target_folder);
         }
+
+        return $this;
+    }
+
+    /**
+     * Process a single Upload File
+     *
+     * @param   object  $item
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function uploadSingleFile($item)
+    {
+        $upload_path_and_file = $item['tmp_name'];
+
+        $this->validateUploadPathFile($upload_path_and_file);
+
+        $target_path_and_file = $this->validateTargetPathFileName(
+            $item['target_filename'], basename($upload_path_and_file)
+        );
+
+        $this->uploadFile($upload_path_and_file, $target_path_and_file);
+
+        return $this;
+    }
+
+    /**
+     * Validate the Upload Path and Filename
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function validateUploadPathFile($upload_path_and_file)
+    {
+        $this->validateUploadFileExists($upload_path_and_file);
+        $this->validateMimeType($upload_path_and_file);
 
         return $this;
     }
@@ -459,13 +500,36 @@ class Upload implements UploadInterface
     }
 
     /**
+     * Validate the Target Path and Filename
+     *
+     * @param   string  $target_filename
+     * @param   string  $upload_file
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function validateTargetPathFileName($target_filename, $upload_file)
+    {
+        if ($target_filename === null
+            || $target_filename == ''
+        ) {
+            $target_path_and_file = $this->target_folder . '/' . $upload_file;
+        } else {
+            $target_path_and_file = $this->target_folder . '/' . $target_filename;
+        }
+
+        $this->validateTargetFile($target_path_and_file);
+
+        return $target_path_and_file;
+    }
+
+    /**
      * Validate Target Directory
      *
      * @param   string $target_path_and_file
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateTargetFile($target_path_and_file)
     {
@@ -478,6 +542,26 @@ class Upload implements UploadInterface
         if ($true_or_false === true && $this->overwrite_existing_file === 0) {
             throw new RuntimeException($this->error_messages[150] . $target_path_and_file);
         }
+
+        return $this;
+    }
+
+    /**
+     * Upload Pre-processing
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function uploadFile($upload_path_and_file, $target_path_and_file)
+    {
+        if (is_object($this->filesystem)) {
+            $data = file_get_contents($upload_path_and_file);
+            $this->filesystem->write($target_path_and_file, $data, $this->overwrite_existing_file);
+        } else {
+            copy($upload_path_and_file, $target_path_and_file);
+        }
+
+        unlink($upload_path_and_file);
 
         return $this;
     }
