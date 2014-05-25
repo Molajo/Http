@@ -165,7 +165,7 @@ class Server implements ServerInterface
      *  server_name, server_addr, server_port, server_admin
      *
      * @link    http://tools.ietf.org/html/rfc3986
-     * @return  object
+     * @return  stdClass
      * @since   1.0
      */
     public function get()

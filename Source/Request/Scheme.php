@@ -84,7 +84,6 @@ class Scheme
      * Construct
      *
      * @param   object $server_object
-     * @param   string $scheme
      *
      * @since   1.0
      */
@@ -97,7 +96,7 @@ class Scheme
     /**
      * Process Request
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      */
     public function set()

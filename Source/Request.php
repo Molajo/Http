@@ -10,10 +10,10 @@ namespace Molajo\Http;
 
 use stdClass;
 use CommonApi\Http\RequestInterface;
-use CommonApi\Exception\InvalidArgumentException;
 use Molajo\Http\Request\Authority;
 use Molajo\Http\Request\Scheme;
 use Molajo\Http\Request\Query;
+use Molajo\Http\Request\Path;
 
 /**
  * Http Request Class
@@ -239,26 +239,32 @@ class Request implements RequestInterface
      */
     public function setRequest()
     {
-        $scheme = new Scheme($this->server_object);
+        $scheme  = new Scheme($this->server_object);
         $results = $scheme->set();
         foreach ($results as $key => $value) {
             $this->$key = $value;
         }
 
         $authority = new Authority($this->server_object, $this->scheme);
-        $results = $authority->set();
-        foreach ($results as $key => $value) {
-            $this->$key = $value;
-        }
-
-        $query = new Query($this->server_object);
-        $results = $query->set();
+        $results   = $authority->set();
         foreach ($results as $key => $value) {
             $this->$key = $value;
         }
 
         $this->setBaseUrl();
-        $this->setPath();
+
+        $query   = new Query($this->server_object);
+        $results = $query->set();
+        foreach ($results as $key => $value) {
+            $this->$key = $value;
+        }
+
+        $path    = new Path($this->server_object);
+        $results = $path->set();
+        foreach ($results as $key => $value) {
+            $this->$key = $value;
+        }
+
         $this->setUrl();
 
         foreach ($this->property_array as $key) {
@@ -300,64 +306,6 @@ class Request implements RequestInterface
     {
         $this->base_url = $this->scheme;
         $this->base_url .= $this->authority;
-
-        return $this;
-    }
-
-    /**
-     * Returns Path
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setPath()
-    {
-        if (isset($this->server_object['ORIG_PATH_INFO'])) {
-            $uri = $this->setPathOrigPathInfo();
-
-        } else {
-            $uri = $this->server_object['REQUEST_URI'];
-        }
-
-        $this->path = filter_var($uri, FILTER_SANITIZE_URL);
-
-        $this->setPathCleanup();
-
-        return $this;
-    }
-
-    /**
-     * Set Path using server object ORIG_PATH_INFO (IIS 5 and PHP as CGI)
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setPathOrigPathInfo()
-    {
-        $uri = $this->server_object['ORIG_PATH_INFO'];
-
-        if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
-            $uri .= '?' . $this->server_object['QUERY_STRING'];
-        }
-
-        return $uri;
-    }
-
-    /**
-     * Set Path using server object ORIG_PATH_INFO
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setPathCleanup()
-    {
-        if (strpos($this->path, '?')) {
-            $this->path = substr($this->path, 0, strpos($this->path, '?'));
-        }
-
-        $this->path = ltrim($this->path, '/');
-
-        $this->path = rtrim($this->path, '/');
 
         return $this;
     }

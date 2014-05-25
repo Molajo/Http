@@ -68,7 +68,6 @@ class Query
      * Construct
      *
      * @param   object $server_object
-     * @param   string $scheme
      *
      * @since   1.0
      */
@@ -80,7 +79,7 @@ class Query
     /**
      * Process Request
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      */
     public function set()

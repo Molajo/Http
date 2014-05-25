@@ -18,6 +18,7 @@ $classmap['Molajo\\Http\\Request']            = $base . '/Source/Request.php';
 $classmap['Molajo\\Http\\Request\\Scheme']    = $base . '/Source/Request/Scheme.php';
 $classmap['Molajo\\Http\\Request\\Authority'] = $base . '/Source/Request/Authority.php';
 $classmap['Molajo\\Http\\Request\\Query']     = $base . '/Source/Request/Query.php';
+$classmap['Molajo\\Http\\Request\\Path']      = $base . '/Source/Request/Path.php';
 $classmap['Molajo\\Http\\Response']           = $base . '/Source/Response.php';
 $classmap['Molajo\\Http\\Server']             = $base . '/Source/Server.php';
 $classmap['Molajo\\Http\\Upload']             = $base . '/Source/Upload.php';

@@ -136,7 +136,7 @@ class Authority
     /**
      * Process Request
      *
-     * @return  $this
+     * @return  stdClass
      * @since   1.0
      */
     public function set()
@@ -220,7 +220,7 @@ class Authority
     /**
      * Set and Filter Host (potentially set port)
      *
-     * @return  string
+     * @return  Authority
      * @since   1.0
      */
     protected function setHost()

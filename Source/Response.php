@@ -10,7 +10,6 @@ namespace Molajo\Http;
 
 use DateTime;
 use CommonApi\Http\ResponseInterface;
-use CommonApi\Exception\UnexpectedValueException;
 
 /**
  * Http Response Class

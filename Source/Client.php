@@ -179,7 +179,7 @@ class Client implements ClientInterface
     /**
      * Get the current value (or default) of the specified key
      *
-     * @return  object
+     * @return  stdClass
      * @since   1.0
      */
     public function get()
@@ -220,7 +220,7 @@ class Client implements ClientInterface
     /**
      * Remote Host for Client
      *
-     * @return  string
+     * @return  Client
      * @since   1.0
      */
     protected function getRemoteHost()
@@ -239,7 +239,7 @@ class Client implements ClientInterface
     /**
      * Determine if Request is the result of an Ajax call
      *
-     * @return  int
+     * @return  Client
      * @since   1.0
      */
     protected function isAjax()
@@ -261,7 +261,7 @@ class Client implements ClientInterface
     /**
      * Determine if Request is the result of an CLI call
      *
-     * @return  int
+     * @return  Client
      * @since   1.0
      */
     protected function isCli()
@@ -278,7 +278,7 @@ class Client implements ClientInterface
     /**
      * Get client information using HTTP_USER_AGENT (Warning: such data is not reliable)
      *
-     * @return  object
+     * @return  Client
      * @since   1.0
      */
     protected function setClient()
