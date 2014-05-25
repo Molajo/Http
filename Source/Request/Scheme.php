@@ -26,7 +26,7 @@ class Scheme
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -36,7 +36,7 @@ class Scheme
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $method = null;
 
@@ -44,7 +44,7 @@ class Scheme
      * Content Type
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $content_type = null;
 
@@ -62,7 +62,7 @@ class Scheme
      * Secure Protocol
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $secure = false;
 
@@ -70,7 +70,7 @@ class Scheme
      * Property Array
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(
@@ -84,7 +84,7 @@ class Scheme
      * Property Object
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $properties;
 

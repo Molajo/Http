@@ -25,21 +25,21 @@ class Upload implements UploadInterface
     /**
      * $file_array contains a copy of the $_FILE super global
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $file_array = array();
 
     /**
      * $request_parameters contains a copy of the $_SERVER super global
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $request_parameters;
 
     /**
      * $session contains a copy of the $_SESSION super global
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $session;
 
@@ -48,7 +48,7 @@ class Upload implements UploadInterface
      *
      * @link   http://php.net/manual/en/features.file-upload.errors.php
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $error_messages
         = array(
@@ -71,7 +71,7 @@ class Upload implements UploadInterface
      * Allowable File Extensions and Mime Types
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $allowable_mimes_and_extensions
         = array(
@@ -111,7 +111,7 @@ class Upload implements UploadInterface
      * Allowable File Extensions and Mime Types
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $not_used_allowable_mimes_and_extensions
         = array(
@@ -124,7 +124,7 @@ class Upload implements UploadInterface
      * Conversion from Unit of Measure to Bytes Table
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $units_of_measure
         = array(
@@ -137,7 +137,7 @@ class Upload implements UploadInterface
      * Maximum File Size expressed in unit of measure
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $maximum_file_size = '2MB';
 
@@ -145,7 +145,7 @@ class Upload implements UploadInterface
      * Maximum File Size calculated from previous
      *
      * @var    int
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $maximum_file_size_in_bytes = 2097152;
 
@@ -206,7 +206,7 @@ class Upload implements UploadInterface
      * @param array               $allowable_mimes_and_extensions
      * @param FilesystemInterface $filesystem
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     public function __construct(
         $input_field_name,
@@ -241,7 +241,7 @@ class Upload implements UploadInterface
      * Edit input
      *
      * @param array               $error_messages
-     * @param                     $maximum_file_size
+     * @param                     string $maximum_file_size
      * @param array               $allowable_mimes_and_extensions
      *
      * @return  $this
@@ -273,9 +273,8 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
-    public function upload()
+    public function process()
     {
         $this->preProcessingFileUpload();
 
@@ -311,20 +310,26 @@ class Upload implements UploadInterface
     /**
      * Validate Form Token
      *
-     * @return  $this
+     * @return  boolean
      * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateFormToken()
     {
-        return $this;
+        $session_id    = 'xyz'; // $this->session[$session_id];
+        $session_token = $session_id; // $this->session[$session_id]['session_token'];
 
-        $session_id    = $this->session[$session_id];
-        $session_token = $this->session[$session_token];
-
-        if (isset($this->request_parameters[$session_token])) {
-
+        if (isset($this->request_parameters->$session_token)) {
+            $request_token = 'xyz';
+        } else {
+            $request_token = $session_id;
         }
-        return $this;
+
+        if ($session_token === $request_token) {
+            return true;
+        }
+
+        throw new RuntimeException('Token Error');
     }
 
     /**
@@ -382,7 +387,7 @@ class Upload implements UploadInterface
         $this->file_array[0]['size']     = $raw['size'];
 
         if (is_array($this->target_filename)) {
-            $this->file_array[0]['target_filename'] = $this->target_filename[0];
+            $this->getTargetFileName();
         } else {
             $this->file_array[0]['target_filename'] = $this->target_filename;
         }
@@ -409,13 +414,24 @@ class Upload implements UploadInterface
             if (is_array($this->target_filename)
                 && isset($this->target_filename[$count])
             ) {
-                $this->file_array[0]['target_filename'] = $this->target_filename[0];
+                $this->getTargetFileName();
             } else {
                 $this->file_array[0]['target_filename'] = null;
             }
 
             $count++;
         }
+    }
+
+    /**
+     * Get Target File Name
+     *
+     * @return  string
+     * @since   1.0
+     */
+    protected function getTargetFileName()
+    {
+        $this->file_array[0]['target_filename'] = $this->target_filename[0];
     }
 
     /**
@@ -570,6 +586,7 @@ class Upload implements UploadInterface
     /**
      * Upload Pre-processing
      *
+     * @param string $target_path_and_file
      * @return  $this
      * @since   1.0
      */

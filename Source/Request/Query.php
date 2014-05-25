@@ -28,7 +28,7 @@ class Query
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -56,7 +56,7 @@ class Query
      * Property Array
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(

@@ -29,7 +29,7 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      *
      * @param  $options
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     public function __construct(array $options = array())
     {

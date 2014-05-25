@@ -29,7 +29,7 @@ class Authority
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -105,7 +105,7 @@ class Authority
      * Property Array
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(
@@ -121,7 +121,7 @@ class Authority
      * Property Object
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $properties;
 

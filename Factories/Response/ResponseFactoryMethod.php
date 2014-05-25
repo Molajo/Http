@@ -29,7 +29,7 @@ class ResponseFactoryMethod extends FactoryMethodBase implements FactoryInterfac
      *
      * @param  array $option
      *
-     * @since  1.0
+     * @since  1.0.0
      */
     public function __construct(array $options = array())
     {

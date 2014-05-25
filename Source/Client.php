@@ -27,7 +27,7 @@ class Client implements ClientInterface
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -35,7 +35,7 @@ class Client implements ClientInterface
      * Ajax
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $ajax = null;
 
@@ -43,7 +43,7 @@ class Client implements ClientInterface
      * Remote Address
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $remote_address;
 
@@ -51,7 +51,7 @@ class Client implements ClientInterface
      * Remote Host
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $remote_host;
 
@@ -59,7 +59,7 @@ class Client implements ClientInterface
      * Device
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $device = null;
 
@@ -67,7 +67,7 @@ class Client implements ClientInterface
      * Browser
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $browser = null;
 
@@ -75,7 +75,7 @@ class Client implements ClientInterface
      * Browser Version
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $browser_version = null;
 
@@ -83,7 +83,7 @@ class Client implements ClientInterface
      * Is Bot? True or False
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $is_bot = null;
 
@@ -91,7 +91,7 @@ class Client implements ClientInterface
      * Bot
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $bot = null;
 
@@ -99,7 +99,7 @@ class Client implements ClientInterface
      * Is CLI? True or False
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $is_cli = null;
 
@@ -107,7 +107,7 @@ class Client implements ClientInterface
      * Is Mobile? True or False
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $is_mobile = null;
 
@@ -115,7 +115,7 @@ class Client implements ClientInterface
      * Mobile Device
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $mobile_device = null;
 
@@ -123,7 +123,7 @@ class Client implements ClientInterface
      * User Agent
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $user_agent = null;
 
@@ -131,7 +131,7 @@ class Client implements ClientInterface
      * Desktop
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $desktop = null;
 
@@ -139,7 +139,7 @@ class Client implements ClientInterface
      * Platform
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $platform = null;
 
@@ -147,7 +147,7 @@ class Client implements ClientInterface
      * Client
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $client = null;
 
@@ -155,7 +155,7 @@ class Client implements ClientInterface
      * Devices
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $devices
         = array(
@@ -213,7 +213,7 @@ class Client implements ClientInterface
      * Browsers
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $browsers
         = array(
@@ -243,7 +243,7 @@ class Client implements ClientInterface
      * Bots
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $bots
         = array(
@@ -259,7 +259,7 @@ class Client implements ClientInterface
      * List of Properties
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(

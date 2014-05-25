@@ -20,25 +20,25 @@ class UploadTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var    object $connect
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $connect;
 
     /**
      * @var    array $error_messages
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $error_messages = array();
 
     /**
      * @var    int $maximum_file_size
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $maximum_file_size = '2MB';
 
     /**
      * @var    array $allowable_mimes_and_extensions
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $allowable_mimes_and_extensions = array();
 
@@ -104,7 +104,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     /**
      * Upload Single File
      *
-     * @covers \Molajo\Http\Upload::upload
+     * @covers \Molajo\Http\Upload::process
      */
     public function testSingleFileUpload()
     {
@@ -151,7 +151,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         );
 
         // Upload File
-        $this->connect->upload();
+        $this->connect->process();
 
         // Verify Upload
         $this->assertfileExists(__DIR__ . '/Target/newname.txt');
@@ -163,7 +163,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
     /**
      * Upload Single File
      *
-     * @covers  Molajo\Http\Upload::upload
+     * @covers  Molajo\Http\Upload::process
      * @expectedException \CommonApi\Exception\RuntimeException
      * @return void
      * @since   1.0
@@ -215,7 +215,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
         );
 
         // Upload File
-        $this->connect->upload();
+        $this->connect->process();
     }
 
     /**

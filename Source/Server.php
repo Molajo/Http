@@ -27,7 +27,7 @@ class Server implements ServerInterface
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -35,7 +35,7 @@ class Server implements ServerInterface
      * $_SERVER['PHP_AUTH_USER']
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $user = null;
 
@@ -43,7 +43,7 @@ class Server implements ServerInterface
      * $_SERVER['PHP_AUTH_PW']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $password = null;
 
@@ -51,7 +51,7 @@ class Server implements ServerInterface
      * $_SERVER['DOCUMENT_ROOT']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $document_root = null;
 
@@ -59,7 +59,7 @@ class Server implements ServerInterface
      * $_SERVER['SCRIPT_FILENAME']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $entry_point = null;
 
@@ -67,7 +67,7 @@ class Server implements ServerInterface
      * $_SERVER['REMOTE_ADDR']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $remote_addr = null;
 
@@ -75,7 +75,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_SIGNATURE']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_signature = null;
 
@@ -83,7 +83,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_SOFTWARE']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_software = null;
 
@@ -91,7 +91,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_NAME']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_name = null;
 
@@ -99,7 +99,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_ADDR']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_addr = null;
 
@@ -107,7 +107,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_PORT']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_port = null;
 
@@ -115,7 +115,7 @@ class Server implements ServerInterface
      * $_SERVER['SERVER_ADMIN']
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_admin = null;
 
@@ -123,7 +123,7 @@ class Server implements ServerInterface
      * List of Properties
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(
@@ -144,7 +144,7 @@ class Server implements ServerInterface
      * Server
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server;
 

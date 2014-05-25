@@ -29,7 +29,7 @@ class Request implements RequestInterface
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -39,7 +39,7 @@ class Request implements RequestInterface
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $method = null;
 
@@ -47,7 +47,7 @@ class Request implements RequestInterface
      * Content Type
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $content_type = null;
 
@@ -75,7 +75,7 @@ class Request implements RequestInterface
      * Secure Protocol
      *
      * @var    bool
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $secure = false;
 
@@ -191,7 +191,7 @@ class Request implements RequestInterface
      * Property Array
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(

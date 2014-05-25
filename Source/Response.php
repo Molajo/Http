@@ -28,7 +28,7 @@ class Response implements ResponseInterface
      * @link   http://tools.ietf.org/html/rfc2616
      * @link   http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $header_status
         = array(
@@ -103,7 +103,7 @@ class Response implements ResponseInterface
      * Status
      *
      * @var    int
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $status = 200;
 
@@ -111,7 +111,7 @@ class Response implements ResponseInterface
      * Version
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $version = '1.0';
 
@@ -119,7 +119,7 @@ class Response implements ResponseInterface
      * Url
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $url = null;
 
@@ -127,7 +127,7 @@ class Response implements ResponseInterface
      * Timezone
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $timezone = null;
 
@@ -135,7 +135,7 @@ class Response implements ResponseInterface
      * Headers
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $headers = array();
 
@@ -143,7 +143,7 @@ class Response implements ResponseInterface
      * Formatted Headers
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $formatted_headers = array();
 
@@ -151,7 +151,7 @@ class Response implements ResponseInterface
      * Body
      *
      * @var    string
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $body = null;
 

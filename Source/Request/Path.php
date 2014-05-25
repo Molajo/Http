@@ -26,7 +26,7 @@ class Path
      * Injected copy of $_SERVER
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $server_object = null;
 
@@ -44,7 +44,7 @@ class Path
      * Property Array
      *
      * @var    array
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $property_array
         = array(
@@ -55,7 +55,7 @@ class Path
      * Property Object
      *
      * @var    object
-     * @since  1.0
+     * @since  1.0.0
      */
     protected $properties;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1401007684">
-  <project timestamp="1401007684">
+<coverage generated="1401008509">
+  <project timestamp="1401008509">
     <package name="Molajo\Factories\Client">
       <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Client/ClientFactoryMethod.php">
         <class name="ClientFactoryMethod" namespace="Molajo\Factories\Client">
@@ -698,7 +698,7 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Http/Source/Upload.php">
         <class name="Upload" namespace="Molajo\Http" fullPackage="Molajo" package="Molajo">
-          <metrics methods="17" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="7" elements="139" coveredelements="8"/>
+          <metrics methods="18" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="132" coveredstatements="7" elements="150" coveredelements="8"/>
         </class>
         <line num="211" type="method" name="__construct" crap="6" count="0"/>
         <line num="224" type="stmt" count="0"/>
@@ -724,123 +724,134 @@
         <line num="265" type="stmt" count="0"/>
         <line num="266" type="stmt" count="0"/>
         <line num="268" type="stmt" count="0"/>
-        <line num="278" type="method" name="upload" crap="3.02" count="2"/>
-        <line num="280" type="stmt" count="2"/>
-        <line num="282" type="stmt" count="2"/>
+        <line num="277" type="method" name="process" crap="3.02" count="2"/>
+        <line num="279" type="stmt" count="2"/>
+        <line num="281" type="stmt" count="2"/>
+        <line num="283" type="stmt" count="2"/>
         <line num="284" type="stmt" count="2"/>
-        <line num="285" type="stmt" count="2"/>
-        <line num="286" type="stmt" count="0"/>
-        <line num="289" type="stmt" count="2"/>
-        <line num="290" type="stmt" count="1"/>
-        <line num="292" type="stmt" count="1"/>
-        <line num="301" type="method" name="preProcessingFileUpload" crap="2" count="0"/>
+        <line num="285" type="stmt" count="0"/>
+        <line num="288" type="stmt" count="2"/>
+        <line num="289" type="stmt" count="1"/>
+        <line num="291" type="stmt" count="1"/>
+        <line num="300" type="method" name="preProcessingFileUpload" crap="2" count="0"/>
+        <line num="302" type="stmt" count="0"/>
         <line num="303" type="stmt" count="0"/>
         <line num="304" type="stmt" count="0"/>
         <line num="305" type="stmt" count="0"/>
-        <line num="306" type="stmt" count="0"/>
-        <line num="308" type="stmt" count="0"/>
-        <line num="317" type="method" name="validateFormToken" crap="6" count="0"/>
+        <line num="307" type="stmt" count="0"/>
+        <line num="317" type="method" name="validateFormToken" crap="12" count="0"/>
         <line num="319" type="stmt" count="0"/>
-        <line num="337" type="method" name="validateInputFieldName" crap="6" count="0"/>
-        <line num="339" type="stmt" count="0"/>
-        <line num="340" type="stmt" count="0"/>
-        <line num="341" type="stmt" count="0"/>
+        <line num="320" type="stmt" count="0"/>
+        <line num="322" type="stmt" count="0"/>
+        <line num="323" type="stmt" count="0"/>
+        <line num="324" type="stmt" count="0"/>
+        <line num="325" type="stmt" count="0"/>
+        <line num="328" type="stmt" count="0"/>
+        <line num="329" type="stmt" count="0"/>
+        <line num="332" type="stmt" count="0"/>
+        <line num="342" type="method" name="validateInputFieldName" crap="6" count="0"/>
         <line num="344" type="stmt" count="0"/>
-        <line num="353" type="method" name="createFileArray" crap="6" count="0"/>
-        <line num="355" type="stmt" count="0"/>
-        <line num="357" type="stmt" count="0"/>
-        <line num="359" type="stmt" count="0"/>
+        <line num="345" type="stmt" count="0"/>
+        <line num="346" type="stmt" count="0"/>
+        <line num="349" type="stmt" count="0"/>
+        <line num="358" type="method" name="createFileArray" crap="6" count="0"/>
         <line num="360" type="stmt" count="0"/>
-        <line num="361" type="stmt" count="0"/>
         <line num="362" type="stmt" count="0"/>
+        <line num="364" type="stmt" count="0"/>
         <line num="365" type="stmt" count="0"/>
-        <line num="376" type="method" name="createFileArraySingleFile" crap="6" count="0"/>
-        <line num="378" type="stmt" count="0"/>
-        <line num="379" type="stmt" count="0"/>
-        <line num="380" type="stmt" count="0"/>
-        <line num="381" type="stmt" count="0"/>
-        <line num="382" type="stmt" count="0"/>
+        <line num="366" type="stmt" count="0"/>
+        <line num="367" type="stmt" count="0"/>
+        <line num="370" type="stmt" count="0"/>
+        <line num="381" type="method" name="createFileArraySingleFile" crap="6" count="0"/>
+        <line num="383" type="stmt" count="0"/>
         <line num="384" type="stmt" count="0"/>
         <line num="385" type="stmt" count="0"/>
         <line num="386" type="stmt" count="0"/>
         <line num="387" type="stmt" count="0"/>
         <line num="389" type="stmt" count="0"/>
-        <line num="399" type="method" name="createFileArrayMultipleFiles" crap="30" count="0"/>
-        <line num="401" type="stmt" count="0"/>
-        <line num="402" type="stmt" count="0"/>
-        <line num="403" type="stmt" count="0"/>
-        <line num="405" type="stmt" count="0"/>
+        <line num="390" type="stmt" count="0"/>
+        <line num="391" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="0"/>
+        <line num="394" type="stmt" count="0"/>
+        <line num="404" type="method" name="createFileArrayMultipleFiles" crap="30" count="0"/>
         <line num="406" type="stmt" count="0"/>
         <line num="407" type="stmt" count="0"/>
-        <line num="409" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
         <line num="410" type="stmt" count="0"/>
         <line num="411" type="stmt" count="0"/>
         <line num="412" type="stmt" count="0"/>
-        <line num="413" type="stmt" count="0"/>
         <line num="414" type="stmt" count="0"/>
+        <line num="415" type="stmt" count="0"/>
+        <line num="416" type="stmt" count="0"/>
         <line num="417" type="stmt" count="0"/>
         <line num="418" type="stmt" count="0"/>
         <line num="419" type="stmt" count="0"/>
-        <line num="428" type="method" name="validateTargetFolder" crap="12" count="0"/>
-        <line num="430" type="stmt" count="0"/>
-        <line num="431" type="stmt" count="0"/>
-        <line num="432" type="stmt" count="0"/>
-        <line num="433" type="stmt" count="0"/>
-        <line num="436" type="stmt" count="0"/>
-        <line num="437" type="stmt" count="0"/>
-        <line num="438" type="stmt" count="0"/>
-        <line num="441" type="stmt" count="0"/>
-        <line num="452" type="method" name="uploadSingleFile" crap="2" count="0"/>
+        <line num="422" type="stmt" count="0"/>
+        <line num="423" type="stmt" count="0"/>
+        <line num="424" type="stmt" count="0"/>
+        <line num="432" type="method" name="getTargetFileName" crap="2" count="0"/>
+        <line num="434" type="stmt" count="0"/>
+        <line num="435" type="stmt" count="0"/>
+        <line num="444" type="method" name="validateTargetFolder" crap="12" count="0"/>
+        <line num="446" type="stmt" count="0"/>
+        <line num="447" type="stmt" count="0"/>
+        <line num="448" type="stmt" count="0"/>
+        <line num="449" type="stmt" count="0"/>
+        <line num="452" type="stmt" count="0"/>
+        <line num="453" type="stmt" count="0"/>
         <line num="454" type="stmt" count="0"/>
-        <line num="456" type="stmt" count="0"/>
-        <line num="458" type="stmt" count="0"/>
-        <line num="459" type="stmt" count="0"/>
-        <line num="460" type="stmt" count="0"/>
-        <line num="461" type="stmt" count="0"/>
-        <line num="463" type="stmt" count="0"/>
-        <line num="465" type="stmt" count="0"/>
-        <line num="474" type="method" name="validateUploadPathFile" crap="2" count="0"/>
+        <line num="457" type="stmt" count="0"/>
+        <line num="468" type="method" name="uploadSingleFile" crap="2" count="0"/>
+        <line num="470" type="stmt" count="0"/>
+        <line num="472" type="stmt" count="0"/>
+        <line num="474" type="stmt" count="0"/>
+        <line num="475" type="stmt" count="0"/>
         <line num="476" type="stmt" count="0"/>
         <line num="477" type="stmt" count="0"/>
         <line num="479" type="stmt" count="0"/>
-        <line num="491" type="method" name="validateUploadFileExists" crap="6" count="0"/>
+        <line num="481" type="stmt" count="0"/>
+        <line num="490" type="method" name="validateUploadPathFile" crap="2" count="0"/>
+        <line num="492" type="stmt" count="0"/>
         <line num="493" type="stmt" count="0"/>
-        <line num="494" type="stmt" count="0"/>
         <line num="495" type="stmt" count="0"/>
-        <line num="498" type="stmt" count="0"/>
-        <line num="510" type="method" name="validateMimeType" crap="6" count="0"/>
-        <line num="512" type="stmt" count="0"/>
-        <line num="513" type="stmt" count="0"/>
-        <line num="515" type="stmt" count="0"/>
-        <line num="516" type="stmt" count="0"/>
-        <line num="517" type="stmt" count="0"/>
-        <line num="520" type="stmt" count="0"/>
-        <line num="532" type="method" name="validateTargetPathFileName" crap="12" count="0"/>
-        <line num="535" type="stmt" count="0"/>
+        <line num="507" type="method" name="validateUploadFileExists" crap="6" count="0"/>
+        <line num="509" type="stmt" count="0"/>
+        <line num="510" type="stmt" count="0"/>
+        <line num="511" type="stmt" count="0"/>
+        <line num="514" type="stmt" count="0"/>
+        <line num="526" type="method" name="validateMimeType" crap="6" count="0"/>
+        <line num="528" type="stmt" count="0"/>
+        <line num="529" type="stmt" count="0"/>
+        <line num="531" type="stmt" count="0"/>
+        <line num="532" type="stmt" count="0"/>
+        <line num="533" type="stmt" count="0"/>
         <line num="536" type="stmt" count="0"/>
-        <line num="537" type="stmt" count="0"/>
-        <line num="538" type="stmt" count="0"/>
-        <line num="539" type="stmt" count="0"/>
-        <line num="542" type="stmt" count="0"/>
-        <line num="544" type="stmt" count="0"/>
-        <line num="555" type="method" name="validateTargetFile" crap="20" count="0"/>
-        <line num="557" type="stmt" count="0"/>
+        <line num="548" type="method" name="validateTargetPathFileName" crap="12" count="0"/>
+        <line num="551" type="stmt" count="0"/>
+        <line num="552" type="stmt" count="0"/>
+        <line num="553" type="stmt" count="0"/>
+        <line num="554" type="stmt" count="0"/>
+        <line num="555" type="stmt" count="0"/>
         <line num="558" type="stmt" count="0"/>
-        <line num="559" type="stmt" count="0"/>
         <line num="560" type="stmt" count="0"/>
-        <line num="563" type="stmt" count="0"/>
-        <line num="564" type="stmt" count="0"/>
-        <line num="567" type="stmt" count="0"/>
-        <line num="576" type="method" name="uploadFile" crap="6" count="0"/>
-        <line num="578" type="stmt" count="0"/>
+        <line num="571" type="method" name="validateTargetFile" crap="20" count="0"/>
+        <line num="573" type="stmt" count="0"/>
+        <line num="574" type="stmt" count="0"/>
+        <line num="575" type="stmt" count="0"/>
+        <line num="576" type="stmt" count="0"/>
         <line num="579" type="stmt" count="0"/>
         <line num="580" type="stmt" count="0"/>
-        <line num="581" type="stmt" count="0"/>
-        <line num="582" type="stmt" count="0"/>
-        <line num="585" type="stmt" count="0"/>
-        <line num="587" type="stmt" count="0"/>
-        <line num="590" type="stmt" count="0"/>
-        <metrics loc="589" ncloc="353" classes="1" methods="17" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="122" coveredstatements="7" elements="139" coveredelements="7"/>
+        <line num="583" type="stmt" count="0"/>
+        <line num="593" type="method" name="uploadFile" crap="6" count="0"/>
+        <line num="595" type="stmt" count="0"/>
+        <line num="596" type="stmt" count="0"/>
+        <line num="597" type="stmt" count="0"/>
+        <line num="598" type="stmt" count="0"/>
+        <line num="599" type="stmt" count="0"/>
+        <line num="602" type="stmt" count="0"/>
+        <line num="604" type="stmt" count="0"/>
+        <line num="607" type="stmt" count="0"/>
+        <metrics loc="606" ncloc="359" classes="1" methods="18" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="132" coveredstatements="7" elements="150" coveredelements="7"/>
       </file>
     </package>
     <package name="Molajo\Http\Request">
@@ -1578,6 +1589,6 @@
       <line num="57" type="stmt" count="0"/>
       <metrics loc="57" ncloc="55" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="0" elements="32" coveredelements="0"/>
     </file>
-    <metrics files="43" loc="5602" ncloc="2908" classes="30" methods="169" coveredmethods="36" conditionals="0" coveredconditionals="0" statements="1202" coveredstatements="340" elements="1371" coveredelements="376"/>
+    <metrics files="43" loc="5619" ncloc="2914" classes="30" methods="170" coveredmethods="36" conditionals="0" coveredconditionals="0" statements="1212" coveredstatements="340" elements="1382" coveredelements="376"/>
   </project>
 </coverage>
