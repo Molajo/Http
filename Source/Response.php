@@ -9,6 +9,7 @@
 namespace Molajo\Http;
 
 use DateTime;
+use DateTimeZone;
 use CommonApi\Http\ResponseInterface;
 
 /**
@@ -241,7 +242,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Send Headers
+     * Send Body
      *
      * @return  void
      * @since   1.0
@@ -264,9 +265,9 @@ class Response implements ResponseInterface
      */
     protected function processInjectedHeaders(array $headers, $body)
     {
+        $headers = $this->getRedirectURLFromInjectedHeaders($headers);
         $headers = $this->getInjectedHeaderStatus($headers);
         $headers = $this->getInjectedHeaderVersion($headers);
-        $headers = $this->getRedirectURLFromInjectedHeaders($headers);
         $this->setStatus();
         $this->initialiseBodyBasedOnStatus($body);
 
@@ -290,46 +291,6 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Get Status from injected Headers
-     *
-     * @param   array $headers
-     *
-     * @return  array
-     * @since   1.0
-     */
-    protected function getInjectedHeaderStatus(array $headers)
-    {
-        if (isset($headers['Status'])) {
-            $this->status = $headers['Status'];
-            $headers      = $this->unsetHeaderArray($headers, 'Status');
-        } else {
-            $this->status = 200;
-        }
-
-        return $headers;
-    }
-
-    /**
-     * Get Version from injected Headers
-     *
-     * @param   array $headers
-     *
-     * @return  array
-     * @since   1.0
-     */
-    protected function getInjectedHeaderVersion(array $headers)
-    {
-        if (isset($headers['Version'])) {
-            $this->version = $headers['Version'];
-            $headers       = $this->unsetHeaderArray($headers, 'Version');
-        } else {
-            $this->version = '1.0';
-        }
-
-        return $headers;
-    }
-
-    /**
      * Get Redirect URL from injected Headers
      *
      * @param   array $headers
@@ -349,9 +310,39 @@ class Response implements ResponseInterface
     }
 
     /**
+     * Get Status from injected Headers
+     *
+     * @param   array $headers
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function getInjectedHeaderStatus(array $headers)
+    {
+        return $this->getInjectedHeaderItem($headers, 'Status', 200);
+    }
+
+    /**
+     * Get Version from injected Headers
+     *
+     * @param   array $headers
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function getInjectedHeaderVersion(array $headers)
+    {
+        if (isset($this->headers['Location'])) {
+            return $headers;
+        }
+
+        return $this->getInjectedHeaderItem($headers, 'Version', '1.0');
+    }
+
+    /**
      * Set Redirect
      *
-     * @return  string
+     * @return  $this
      * @since   1.0
      */
     protected function setRedirect()
@@ -365,7 +356,7 @@ class Response implements ResponseInterface
 
         $this->headers['Location'] = htmlspecialchars($this->url, ENT_QUOTES, 'UTF-8');
 
-        return $this->headers['Location'];
+        return $this;
     }
 
     /**
@@ -450,9 +441,13 @@ class Response implements ResponseInterface
      */
     protected function setHeadersLastModified(array $headers)
     {
-        if (isset($headers['Last-Modified'])) {
-            $this->headers['Last-Modified'] = $headers['Last-Modified'];
-        } else {
+        if (isset($this->headers['Location'])) {
+            return $headers;
+        }
+
+        $headers = $this->getInjectedHeaderItem($headers, 'Last-Modified', null);
+
+        if ($this->headers['Last-Modified'] === null) {
             $this->headers['Last-Modified'] = $this->getDate();
         }
 
@@ -471,11 +466,26 @@ class Response implements ResponseInterface
      */
     protected function setHeadersLanguage(array $headers)
     {
-        if (isset($headers['Language'])) {
-            $this->headers['Language'] = $headers['Language'];
+        return $this->getInjectedHeaderItem($headers, 'Language', 'en-GB');
+    }
+
+    /**
+     * Set Headers Language
+     *
+     * @param   array $headers
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function getInjectedHeaderItem(array $headers, $property, $default)
+    {
+        if (isset($headers[$property])) {
+            $this->headers[$property] = $headers[$property];
         } else {
-            $this->headers['Language'] = 'en-GB';
+            $this->headers[$property] = $default;
         }
+
+        $headers = $this->unsetHeaderArray($headers, $property);
 
         return $headers;
     }
@@ -496,7 +506,11 @@ class Response implements ResponseInterface
         } else {
             $this->headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate';
             $this->headers['Pragma']        = 'no-cache';
-            $this->headers['Expires']       = $this->getDate();
+
+            if (isset($this->headers['Location'])) {
+            } else {
+                $this->headers['Expires'] = $this->getDate();
+            }
         }
 
         return $headers;
@@ -512,7 +526,7 @@ class Response implements ResponseInterface
     {
         $date = new DateTime();
 
-        $date->setTimezone(new \DateTimeZone($this->timezone));
+        $date->setTimezone(new DateTimeZone($this->timezone));
 
         return $date->format('D, d M Y H:i:s') . ' GMT';
     }

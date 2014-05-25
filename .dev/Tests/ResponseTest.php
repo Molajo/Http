@@ -1,6 +1,6 @@
 <?php
 /**
- * Http Redirect Unit Tests
+ * Http Response Unit Tests
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
@@ -17,7 +17,7 @@ use Molajo\Http\Response;
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  * @copyright  2014 Amy Stephen. All rights reserved.
  */
-class RedirectTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Redirect Object
@@ -26,6 +26,28 @@ class RedirectTest extends \PHPUnit_Framework_TestCase
 
     protected $body = null;
 
+    /**
+     * Verify the Status Header
+     *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
+     * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
+     */
     public function setUp()
     {
         $timezone   = 'UTC';
@@ -60,7 +82,24 @@ Redirecting to <a href="example.com">Example.com</a>.
     /**
      * Verify the Status Header
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
+     * @covers Molajo\Http\Response::setRedirect
      * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testStatus()
     {
@@ -70,7 +109,24 @@ Redirecting to <a href="example.com">Example.com</a>.
     /**
      * Verify the Status Header
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
      * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testRedirect()
     {
@@ -86,7 +142,24 @@ Redirecting to <a href="example.com">Example.com</a>.
     /**
      * Verify Date Formatting
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
      * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testDate()
     {
@@ -98,7 +171,24 @@ Redirecting to <a href="example.com">Example.com</a>.
     /**
      * Verify Date Formatting
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
+     * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
      * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testHeaders()
     {
@@ -109,16 +199,33 @@ Redirecting to <a href="example.com">Example.com</a>.
         $this->assertEquals('Location: http://google.com', $headers[0]);
         $this->assertEquals('Status: HTTP/1.0 301 Moved Permanently', $headers[1]);
         $this->assertEquals('Content-Type: text/html; charset=UTF-8', $headers[2]);
-        $this->assertEquals('Language: en-GB', $headers[5]);
-        $this->assertEquals('Cache-Control: no-cache, no-store, max-age=0, must-revalidate', $headers[6]);
-        $this->assertEquals('Pragma: no-cache', $headers[7]);
-        $this->assertEquals('Content-Length: 293', $headers[9]);
+        $this->assertEquals('Language: en-GB', $headers[3]);
+        $this->assertEquals('Cache-Control: no-cache, no-store, max-age=0, must-revalidate', $headers[4]);
+        $this->assertEquals('Pragma: no-cache', $headers[5]);
+        $this->assertEquals('Content-Length: 293', $headers[6]);
     }
 
     /**
      * Verify Date Formatting
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
      * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testBody()
     {
@@ -130,7 +237,24 @@ Redirecting to <a href="example.com">Example.com</a>.
     /**
      * Verify Date Formatting
      *
+     * @covers Molajo\Http\Response::__construct
+     * @covers Molajo\Http\Response::send
+     * @covers Molajo\Http\Response::setHeaders
+     * @covers Molajo\Http\Response::sendHeaders
+     * @covers Molajo\Http\Response::sendBody
+     * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::getInjectedHeaderStatus
+     * @covers Molajo\Http\Response::getInjectedHeaderVersion
+     * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
      * @covers Molajo\Http\Response::setRedirect
+     * @covers Molajo\Http\Response::setStatus
+     * @covers Molajo\Http\Response::initialiseBodyBasedOnStatus
+     * @covers Molajo\Http\Response::setHeadersContentType
+     * @covers Molajo\Http\Response::setHeadersLastModified
+     * @covers Molajo\Http\Response::setHeadersLanguage
+     * @covers Molajo\Http\Response::setHeadersCache
+     * @covers Molajo\Http\Response::getDate
+     * @covers Molajo\Http\Response::unsetHeaderArray
      */
     public function testSend()
     {
