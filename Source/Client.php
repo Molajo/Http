@@ -56,6 +56,14 @@ class Client implements ClientInterface
     protected $remote_host;
 
     /**
+     * Device
+     *
+     * @var    string
+     * @since  1.0
+     */
+    protected $device = null;
+
+    /**
      * Browser
      *
      * @var    string
@@ -349,21 +357,19 @@ class Client implements ClientInterface
     }
 
     /**
-     * Set Properties
+     * Set Remote Host
      *
-     * @param string $client_property
-     * @param string $property
-     *
-     * @return  Server
+     * @return  $this
      * @since   1.0
      */
-    protected function setStandardProperty($client_property, $property)
+    protected function setRemoteHost()
     {
-        if (empty($this->server_object[$client_property])) {
-            $this->$property = '';
-        } else {
-            $this->$property = $this->server_object[$client_property];
+        if (empty($this->server_object['REMOTE_HOST'])) {
+            $this->remote_host = '';
+            return $this;
         }
+
+        $this->remote_host = $this->server_object['REMOTE_HOST'];
 
         return $this;
     }
@@ -371,7 +377,7 @@ class Client implements ClientInterface
     /**
      * Determine if Request is the result of an Ajax call
      *
-     * @return  Client
+     * @return  $this
      * @since   1.0
      */
     protected function isAjax()
@@ -393,7 +399,7 @@ class Client implements ClientInterface
     /**
      * Determine if Request is the result of an CLI call
      *
-     * @return  Client
+     * @return  $this
      * @since   1.0
      */
     protected function isCli()
