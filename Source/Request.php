@@ -11,8 +11,9 @@ namespace Molajo\Http;
 use stdClass;
 use CommonApi\Http\RequestInterface;
 use CommonApi\Exception\InvalidArgumentException;
-use Molajo\Http\Request\Authority
-    ;
+use Molajo\Http\Request\Authority;
+use Molajo\Http\Request\Scheme;
+
 /**
  * Http Request Class
  *
@@ -237,10 +238,11 @@ class Request implements RequestInterface
      */
     public function setRequest()
     {
-        $this->setMethod();
-        $this->setContentType();
-        $this->setScheme();
-        $this->setIsSecure();
+        $scheme = new Scheme($this->server_object);
+        $results = $scheme->set();
+        foreach ($results as $key => $value) {
+            $this->$key = $value;
+        }
 
         $authority = new Authority($this->server_object, $this->scheme);
         $results = $authority->set();
@@ -258,6 +260,7 @@ class Request implements RequestInterface
             $this->request->$key = $this->$key;
         }
     }
+
 
     /**
      * Get the request object, as defined by URI Syntax RFC 3986

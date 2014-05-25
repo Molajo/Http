@@ -131,8 +131,6 @@ class Authority
     ) {
         $this->server_object = $server_object;
         $this->scheme        = $scheme;
-
-        $this->request = new stdClass();
     }
 
     /**
@@ -150,11 +148,12 @@ class Authority
         $this->setPort();
         $this->setAuthority();
 
+        $authority = new stdClass();
         foreach ($this->property_array as $key) {
-            $this->request->$key = $this->$key;
+            $authority->$key = $this->$key;
         }
 
-        return $this->request;
+        return $authority;
     }
 
     /**
