@@ -9,9 +9,6 @@
 namespace Molajo\Http\Request;
 
 use stdClass;
-use CommonApi\Http\RequestInterface;
-use CommonApi\Exception\InvalidArgumentException;
-use Molajo\Http\Request\Authority;
 
 /**
  * Http Request Scheme Class
