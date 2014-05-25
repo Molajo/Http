@@ -321,7 +321,7 @@ class Client implements ClientInterface
     protected function setClientData()
     {
         $this->getRemoteAddress();
-        $this->setRemoteHost('REMOTE_HOST', 'remote_host');
+        $this->setRemoteHost();
         $this->isAjax();
         $this->isCli();
         $this->setClient();

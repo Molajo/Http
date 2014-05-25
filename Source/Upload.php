@@ -237,48 +237,73 @@ class Upload implements UploadInterface
      */
     public function upload()
     {
-        // Pre file processing
-        $this->validateFormToken();
-        $this->validateInputFieldName();
-        $this->createFileArray();
-        $this->validateTargetFolder();
+        $this->updatePreProcessing();
 
-        // For each uploaded file...
         foreach ($this->file_array as $item) {
-
-            $upload_path_and_file = $item['tmp_name'];
 
             if ($item['error'] === 0) {
             } else {
                 throw new RuntimeException ('Http Upload Error: ' . $item['error']);
             }
 
-            $this->validateUploadFileExists($upload_path_and_file);
-
-            $this->validateMimeType($upload_path_and_file);
-
-            $upload_file     = basename($upload_path_and_file);
-            $target_filename = $item['target_filename'];
-
-            if ($target_filename === null
-                || $target_filename == ''
-            ) {
-                $target_path_and_file = $this->target_folder . '/' . $upload_file;
-            } else {
-                $target_path_and_file = $this->target_folder . '/' . $target_filename;
-            }
-
-            $this->validateTargetFile($target_path_and_file);
-
-            if (is_object($this->filesystem)) {
-                $data = file_get_contents($upload_path_and_file);
-                $this->filesystem->write($target_path_and_file, $data, $this->overwrite_existing_file);
-            } else {
-                copy($upload_path_and_file, $target_path_and_file);
-            }
-
-            unlink($upload_path_and_file);
+            $this->uploadFile($item);
         }
+
+        return $this;
+    }
+
+    /**
+     * Upload Pre-processing
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function preProcessingFileUpload()
+    {
+        $this->validateFormToken();
+        $this->validateInputFieldName();
+        $this->createFileArray();
+        $this->validateTargetFolder();
+
+        return $this;
+    }
+
+    /**
+     * Upload Pre-processing
+     *
+     * @return  $this
+     * @since   1.0
+     * @throws  \CommonApi\Exception\RuntimeException
+     */
+    protected function uploadFile($item)
+    {
+        $upload_path_and_file = $item['tmp_name'];
+
+        $this->validateUploadFileExists($upload_path_and_file);
+        $this->validateMimeType($upload_path_and_file);
+
+        $upload_file     = basename($upload_path_and_file);
+        $target_filename = $item['target_filename'];
+
+        if ($target_filename === null
+            || $target_filename == ''
+        ) {
+            $target_path_and_file = $this->target_folder . '/' . $upload_file;
+        } else {
+            $target_path_and_file = $this->target_folder . '/' . $target_filename;
+        }
+
+        $this->validateTargetFile($target_path_and_file);
+
+        if (is_object($this->filesystem)) {
+            $data = file_get_contents($upload_path_and_file);
+            $this->filesystem->write($target_path_and_file, $data, $this->overwrite_existing_file);
+        } else {
+            copy($upload_path_and_file, $target_path_and_file);
+        }
+
+        unlink($upload_path_and_file);
 
         return $this;
     }
