@@ -15,6 +15,7 @@ include_once $base . '/vendor/autoload.php';
 
 $classmap['Molajo\\Http\\Client']   = $base . '/Source/Client.php';
 $classmap['Molajo\\Http\\Request']  = $base . '/Source/Request.php';
+$classmap['Molajo\\Http\\Request\\Authority']  = $base . '/Source/Request/Authority.php';
 $classmap['Molajo\\Http\\Response'] = $base . '/Source/Response.php';
 $classmap['Molajo\\Http\\Server']   = $base . '/Source/Server.php';
 $classmap['Molajo\\Http\\Upload']   = $base . '/Source/Upload.php';
