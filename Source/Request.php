@@ -368,10 +368,7 @@ class Request implements RequestInterface
     protected function setSchemeServerObjectHttpForwarded()
     {
         if (isset($this->server_object['HTTP_X_FORWARDED_PROTO'])) {
-
-            $temp = strtolower($this->server_object['HTTP_X_FORWARDED_PROTO']);
-
-            if ($temp == 'https') {
+            if (strtolower($this->server_object['HTTP_X_FORWARDED_PROTO']) === 'https') {
                 $this->scheme = 'https';
             }
         }
@@ -494,21 +491,34 @@ class Request implements RequestInterface
     /**
      * Set Host using server object SERVER_NAME and SERVER_ADDRESS
      *
-     * @return  $this
+     * @return  string
      * @since   1.0.0
      */
     protected function setHostServerNameAddress()
     {
-        if (empty($this->server_object['SERVER_NAME'])) {
+        $host = $this->setHostVariable('SERVER_NAME');
 
-            if (empty($this->server_object['SERVER_ADDRESS'])) {
-                $host = '';
-            } else {
-                $host = $this->server_object['SERVER_ADDRESS'];
-            }
+        if ($host === '') {
+            $host = $this->setHostVariable('SERVER_ADDRESS') ;
+        }
 
+        return $host;
+    }
+
+    /**
+     * Set Host using server object SERVER_NAME and SERVER_ADDRESS
+     *
+     * @param   string  $server_object
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setHostVariable($server_object)
+    {
+        if (empty($this->server_object[$server_object])) {
+            $host = '';
         } else {
-            $host = $this->server_object['SERVER_NAME'];
+            $host = $this->server_object[$server_object];
         }
 
         return $host;
@@ -626,9 +636,16 @@ class Request implements RequestInterface
     protected function setAuthority()
     {
         $this->authority = '';
-        $this->setAuthorityUser();
+
+        if ($this->user === '') {
+        } else {
+            $this->authority = $this->setAuthorityUser();
+        }
+
         $this->authority .= $this->host;
-        $this->setAuthorityPort();
+
+        $this->authority .= $this->setAuthorityPort();
+
         $this->authority .= '/';
 
         return $this;
@@ -637,36 +654,33 @@ class Request implements RequestInterface
     /**
      * Set Authority User
      *
-     * @return  $this
+     * @return  string
      * @since   1.0
      */
     protected function setAuthorityUser()
     {
-        if ($this->user === '') {
-        } else {
-            $this->authority = $this->user;
-            $this->authority .= ':';
-            $this->authority .= $this->password . '@';
-        }
+        $authority = $this->user;
+        $authority .= ':';
+        $authority .= $this->password . '@';
 
-        return $this;
+        return $authority;
     }
 
     /**
      * Set Authority Port
      *
-     * @return  $this
+     * @return  string
      * @since   1.0
      */
     protected function setAuthorityPort()
     {
-
         if ($this->port == '' || $this->port == 80 || $this->port == 443) {
+            $authority = '';
         } else {
-            $this->authority .= ':' . $this->port;
+            $authority = ':' . $this->port;
         }
 
-        return $this;
+        return $authority;
     }
 
     /**
