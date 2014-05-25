@@ -64,15 +64,15 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers Molajo\Http\Request\Query::__construct
      * @covers Molajo\Http\Request\Query::set
-     * @covers Molajo\Http\Request\Query::setPath
-     * @covers Molajo\Http\Request\Query::setPathOrigPathInfo
-     * @covers Molajo\Http\Request\Query::setPathCleanup
+     * @covers Molajo\Http\Request\Query::setQueryParameters
+     * @covers Molajo\Http\Request\Query::extractQueryParameterPairs
+     * @covers Molajo\Http\Request\Query::setQueryString
      *
      * @covers Molajo\Http\Request\Path::__construct
      * @covers Molajo\Http\Request\Path::set
-     * @covers Molajo\Http\Request\Path::setQueryParameters
-     * @covers Molajo\Http\Request\Path::extractQueryParameterPairs
-     * @covers Molajo\Http\Request\Path::setQueryString
+     * @covers Molajo\Http\Request\Path::setPath
+     * @covers Molajo\Http\Request\Path::setPathOrigPathInfo
+     * @covers Molajo\Http\Request\Path::setPathCleanup
      */
     public function testGet()
     {
