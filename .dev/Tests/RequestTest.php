@@ -27,7 +27,52 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * Gets the Request Object
      *
+     * @covers Molajo\Http\Request::__construct
+     * @covers Molajo\Http\Request::setRequest
+     * @covers Molajo\Http\Request::setRequestSubclass
      * @covers Molajo\Http\Request::get
+     * @covers Molajo\Http\Request::setBaseUrl
+     * @covers Molajo\Http\Request::setUrl
+     *
+     * @covers Molajo\Http\Request\Scheme::__construct
+     * @covers Molajo\Http\Request\Scheme::set
+     * @covers Molajo\Http\Request\Scheme::setMethod
+     * @covers Molajo\Http\Request\Scheme::setContentType
+     * @covers Molajo\Http\Request\Scheme::setScheme
+     * @covers Molajo\Http\Request\Scheme::setSchemeServerObjectHttps
+     * @covers Molajo\Http\Request\Scheme::setSchemeServerObjectHttpForwarded
+     * @covers Molajo\Http\Request\Scheme::setSchemeServerObjectServerPort
+     * @covers Molajo\Http\Request\Scheme::setIsSecure
+     *
+     * @covers Molajo\Http\Request\Authority::__construct
+     * @covers Molajo\Http\Request\Authority::set
+     * @covers Molajo\Http\Request\Authority::setUser
+     * @covers Molajo\Http\Request\Authority::setPassword
+     * @covers Molajo\Http\Request\Authority::setUserPassword
+     * @covers Molajo\Http\Request\Authority::setUserinfo
+     * @covers Molajo\Http\Request\Authority::setHost
+     * @covers Molajo\Http\Request\Authority::setHostServerNameAddress
+     * @covers Molajo\Http\Request\Authority::setHostVariable
+     * @covers Molajo\Http\Request\Authority::setHostAndPort
+     * @covers Molajo\Http\Request\Authority::validateHost
+     * @covers Molajo\Http\Request\Authority::setPort
+     * @covers Molajo\Http\Request\Authority::setPortAllowDefault
+     * @covers Molajo\Http\Request\Authority::setPortAllowDefaultProtocol
+     * @covers Molajo\Http\Request\Authority::setAuthority
+     * @covers Molajo\Http\Request\Authority::setAuthorityUser
+     * @covers Molajo\Http\Request\Authority::setAuthorityPort
+     *
+     * @covers Molajo\Http\Request\Query::__construct
+     * @covers Molajo\Http\Request\Query::set
+     * @covers Molajo\Http\Request\Query::setPath
+     * @covers Molajo\Http\Request\Query::setPathOrigPathInfo
+     * @covers Molajo\Http\Request\Query::setPathCleanup
+     *
+     * @covers Molajo\Http\Request\Path::__construct
+     * @covers Molajo\Http\Request\Path::set
+     * @covers Molajo\Http\Request\Path::setQueryParameters
+     * @covers Molajo\Http\Request\Path::extractQueryParameterPairs
+     * @covers Molajo\Http\Request\Path::setQueryString
      */
     public function testGet()
     {
