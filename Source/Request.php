@@ -10,10 +10,6 @@ namespace Molajo\Http;
 
 use stdClass;
 use CommonApi\Http\RequestInterface;
-use Molajo\Http\Request\Authority;
-use Molajo\Http\Request\Scheme;
-use Molajo\Http\Request\Query;
-use Molajo\Http\Request\Path;
 
 /**
  * Http Request Class
@@ -239,32 +235,11 @@ class Request implements RequestInterface
      */
     public function setRequest()
     {
-        $scheme  = new Scheme($this->server_object);
-        $results = $scheme->set();
-        foreach ($results as $key => $value) {
-            $this->$key = $value;
-        }
-
-        $authority = new Authority($this->server_object, $this->scheme);
-        $results   = $authority->set();
-        foreach ($results as $key => $value) {
-            $this->$key = $value;
-        }
-
+        $this->setRequestSubclass('Scheme');
+        $this->setRequestSubclass('Authority');
         $this->setBaseUrl();
-
-        $query   = new Query($this->server_object);
-        $results = $query->set();
-        foreach ($results as $key => $value) {
-            $this->$key = $value;
-        }
-
-        $path    = new Path($this->server_object);
-        $results = $path->set();
-        foreach ($results as $key => $value) {
-            $this->$key = $value;
-        }
-
+        $this->setRequestSubclass('Query');
+        $this->setRequestSubclass('Path');
         $this->setUrl();
 
         foreach ($this->property_array as $key) {
@@ -272,6 +247,26 @@ class Request implements RequestInterface
         }
     }
 
+    /**
+     * Process Request Subclass
+     *
+     * @param   string  $class
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function setRequestSubclass($class)
+    {
+        $fqn = 'Molajo\\Http\\Request\\' . $class;
+        $instance = new $fqn($this->server_object, $this->scheme);
+        $results = $instance->set();
+
+        foreach ($results as $key => $value) {
+            $this->$key = $value;
+        }
+
+        return $this;
+    }
 
     /**
      * Get the request object, as defined by URI Syntax RFC 3986

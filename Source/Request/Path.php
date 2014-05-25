@@ -52,6 +52,14 @@ class Path
         );
 
     /**
+     * Property Object
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $properties;
+
+    /**
      * Construct
      *
      * @param   object $server_object
@@ -61,6 +69,7 @@ class Path
     public function __construct($server_object)
     {
         $this->server_object = $server_object;
+        $this->properties    = new stdClass();
     }
 
     /**
@@ -73,12 +82,11 @@ class Path
     {
         $this->setPath();
 
-        $path = new stdClass();
         foreach ($this->property_array as $key) {
-            $path->$key = $this->$key;
+            $this->properties->$key = $this->$key;
         }
 
-        return $path;
+        return $this->properties;
     }
 
     /**

@@ -81,6 +81,14 @@ class Scheme
         );
 
     /**
+     * Property Object
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $properties;
+
+    /**
      * Construct
      *
      * @param   object $server_object
@@ -91,6 +99,7 @@ class Scheme
         $server_object
     ) {
         $this->server_object = $server_object;
+        $this->properties = new stdClass();
     }
 
     /**
@@ -106,12 +115,11 @@ class Scheme
         $this->setScheme();
         $this->setIsSecure();
 
-        $scheme = new stdClass();
         foreach ($this->property_array as $key) {
-            $scheme->$key = $this->$key;
+            $this->properties->$key = $this->$key;
         }
 
-        return $scheme;
+        return $this->properties;
     }
 
     /**

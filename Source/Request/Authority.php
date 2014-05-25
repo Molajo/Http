@@ -118,6 +118,14 @@ class Authority
         );
 
     /**
+     * Property Object
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $properties;
+
+    /**
      * Construct
      *
      * @param   object $server_object
@@ -131,6 +139,7 @@ class Authority
     ) {
         $this->server_object = $server_object;
         $this->scheme        = $scheme;
+        $this->properties    = new stdClass();
     }
 
     /**
@@ -148,12 +157,11 @@ class Authority
         $this->setPort();
         $this->setAuthority();
 
-        $authority = new stdClass();
         foreach ($this->property_array as $key) {
-            $authority->$key = $this->$key;
+            $this->properties->$key = $this->$key;
         }
 
-        return $authority;
+        return $this->properties;
     }
 
     /**
