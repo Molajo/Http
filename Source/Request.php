@@ -11,7 +11,8 @@ namespace Molajo\Http;
 use stdClass;
 use CommonApi\Http\RequestInterface;
 use CommonApi\Exception\InvalidArgumentException;
-use Molajo\Http\Request\Authority;
+use Molajo\Http\Request\Authority
+    ;
 /**
  * Http Request Class
  *
@@ -220,9 +221,8 @@ class Request implements RequestInterface
      *
      * @since   1.0
      */
-    public function __construct(
-        $server_object = null
-    ) {
+    public function __construct($server_object)
+    {
         $this->server_object = $server_object;
 
         $this->request = new stdClass();

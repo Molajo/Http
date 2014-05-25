@@ -34,6 +34,14 @@ class Authority
     protected $server_object = null;
 
     /**
+     * Scheme
+     *
+     * @var      string
+     * @since    1.0
+     */
+    protected $scheme = null;
+
+    /**
      * User
      *
      * @link     http://tools.ietf.org/html/rfc3986#section-3.2.1
@@ -113,6 +121,7 @@ class Authority
      * Construct
      *
      * @param   object $server_object
+     * @param   string $scheme
      *
      * @since   1.0
      */
@@ -121,7 +130,7 @@ class Authority
         $scheme
     ) {
         $this->server_object = $server_object;
-        $this->scheme = $scheme;
+        $this->scheme        = $scheme;
 
         $this->request = new stdClass();
     }
@@ -172,6 +181,9 @@ class Authority
 
     /**
      * Set the Password
+     *
+     * @param   string $property
+     * @param   string $server_object
      *
      * @return  $this
      * @since   1.0
@@ -239,7 +251,7 @@ class Authority
         $host = $this->setHostVariable('SERVER_NAME');
 
         if ($host === '') {
-            $host = $this->setHostVariable('SERVER_ADDRESS') ;
+            $host = $this->setHostVariable('SERVER_ADDRESS');
         }
 
         return $host;
@@ -248,16 +260,16 @@ class Authority
     /**
      * Set Host using server object SERVER_NAME and SERVER_ADDRESS
      *
-     * @param   string  $server_object
+     * @param   string $server_object
      *
      * @return  string
      * @since   1.0.0
      */
     protected function setHostVariable($server_object)
     {
-        if (empty($this->server_object[$server_object])) {
-            $host = '';
-        } else {
+        $host = '';
+
+        if (! empty($this->server_object[$server_object])) {
             $host = $this->server_object[$server_object];
         }
 
@@ -354,6 +366,9 @@ class Authority
 
     /**
      * Set Port Allow Default based on Scheme
+     *
+     * @param   string $scheme
+     * @param   string $port
      *
      * @return  boolean
      * @since   1.0.0
