@@ -27,7 +27,21 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * Get the Client Object
      *
+     * @covers Molajo\Http\Client::__construct
+     * @covers Molajo\Http\Client::setClientData
      * @covers Molajo\Http\Client::get
+     * @covers Molajo\Http\Client::getRemoteAddress
+     * @covers Molajo\Http\Client::getRemoteAddressNoHttpClientIP
+     * @covers Molajo\Http\Client::setRemoteHost
+     * @covers Molajo\Http\Client::isAjax
+     * @covers Molajo\Http\Client::isCli
+     * @covers Molajo\Http\Client::setClient
+     * @covers Molajo\Http\Client::setClientMobileDevice
+     * @covers Molajo\Http\Client::setClientBrowser
+     * @covers Molajo\Http\Client::setClientPlatform
+     * @covers Molajo\Http\Client::setClientDesktop
+     * @covers Molajo\Http\Client::setClientBot
+     * @covers Molajo\Http\Client::setClientUnknownAgent
      */
     public function testGet()
     {

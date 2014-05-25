@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400995472">
-  <project timestamp="1400995472">
+<coverage generated="1400995635">
+  <project timestamp="1400995635">
     <package name="Molajo\Factories\Client">
       <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Client/ClientFactoryMethod.php">
         <class name="ClientFactoryMethod" namespace="Molajo\Factories\Client">
@@ -324,134 +324,134 @@
     <package name="Molajo\Http">
       <file name="/Users/amystephen/Sites/Molajo/Http/Source/Client.php">
         <class name="Client" namespace="Molajo\Http">
-          <metrics methods="15" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="1" elements="124" coveredelements="2"/>
+          <metrics methods="15" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="72" elements="124" coveredelements="85"/>
         </class>
-        <line num="291" type="method" name="__construct" crap="20" count="0"/>
-        <line num="297" type="stmt" count="0"/>
-        <line num="299" type="stmt" count="0"/>
+        <line num="291" type="method" name="__construct" crap="5.57" count="1"/>
+        <line num="297" type="stmt" count="1"/>
+        <line num="299" type="stmt" count="1"/>
         <line num="300" type="stmt" count="0"/>
         <line num="301" type="stmt" count="0"/>
-        <line num="303" type="stmt" count="0"/>
+        <line num="303" type="stmt" count="1"/>
         <line num="304" type="stmt" count="0"/>
         <line num="305" type="stmt" count="0"/>
-        <line num="307" type="stmt" count="0"/>
+        <line num="307" type="stmt" count="1"/>
         <line num="308" type="stmt" count="0"/>
         <line num="309" type="stmt" count="0"/>
-        <line num="311" type="stmt" count="0"/>
-        <line num="312" type="stmt" count="0"/>
-        <line num="313" type="stmt" count="0"/>
-        <line num="321" type="method" name="setClientData" crap="6" count="0"/>
-        <line num="323" type="stmt" count="0"/>
-        <line num="324" type="stmt" count="0"/>
-        <line num="325" type="stmt" count="0"/>
-        <line num="326" type="stmt" count="0"/>
-        <line num="327" type="stmt" count="0"/>
-        <line num="329" type="stmt" count="0"/>
-        <line num="330" type="stmt" count="0"/>
-        <line num="331" type="stmt" count="0"/>
-        <line num="332" type="stmt" count="0"/>
+        <line num="311" type="stmt" count="1"/>
+        <line num="312" type="stmt" count="1"/>
+        <line num="313" type="stmt" count="1"/>
+        <line num="321" type="method" name="setClientData" crap="2" count="1"/>
+        <line num="323" type="stmt" count="1"/>
+        <line num="324" type="stmt" count="1"/>
+        <line num="325" type="stmt" count="1"/>
+        <line num="326" type="stmt" count="1"/>
+        <line num="327" type="stmt" count="1"/>
+        <line num="329" type="stmt" count="1"/>
+        <line num="330" type="stmt" count="1"/>
+        <line num="331" type="stmt" count="1"/>
+        <line num="332" type="stmt" count="1"/>
         <line num="340" type="method" name="get" crap="1" count="1"/>
         <line num="342" type="stmt" count="1"/>
-        <line num="351" type="method" name="getRemoteAddress" crap="6" count="0"/>
-        <line num="353" type="stmt" count="0"/>
+        <line num="351" type="method" name="getRemoteAddress" crap="2.26" count="1"/>
+        <line num="353" type="stmt" count="1"/>
         <line num="354" type="stmt" count="0"/>
         <line num="355" type="stmt" count="0"/>
-        <line num="356" type="stmt" count="0"/>
-        <line num="359" type="stmt" count="0"/>
+        <line num="356" type="stmt" count="1"/>
+        <line num="359" type="stmt" count="1"/>
         <line num="368" type="method" name="getRemoteAddressNoHttpClientIP" crap="6" count="0"/>
         <line num="370" type="stmt" count="0"/>
         <line num="371" type="stmt" count="0"/>
         <line num="374" type="stmt" count="0"/>
-        <line num="383" type="method" name="setRemoteHost" crap="6" count="0"/>
-        <line num="385" type="stmt" count="0"/>
+        <line num="383" type="method" name="setRemoteHost" crap="2.26" count="1"/>
+        <line num="385" type="stmt" count="1"/>
         <line num="386" type="stmt" count="0"/>
         <line num="387" type="stmt" count="0"/>
-        <line num="390" type="stmt" count="0"/>
-        <line num="392" type="stmt" count="0"/>
-        <line num="401" type="method" name="isAjax" crap="12" count="0"/>
-        <line num="403" type="stmt" count="0"/>
-        <line num="405" type="stmt" count="0"/>
+        <line num="390" type="stmt" count="1"/>
+        <line num="392" type="stmt" count="1"/>
+        <line num="401" type="method" name="isAjax" crap="3.02" count="1"/>
+        <line num="403" type="stmt" count="1"/>
+        <line num="405" type="stmt" count="1"/>
         <line num="406" type="stmt" count="0"/>
-        <line num="407" type="stmt" count="0"/>
-        <line num="408" type="stmt" count="0"/>
-        <line num="409" type="stmt" count="0"/>
-        <line num="412" type="stmt" count="0"/>
-        <line num="414" type="stmt" count="0"/>
-        <line num="423" type="method" name="isCli" crap="6" count="0"/>
-        <line num="425" type="stmt" count="0"/>
-        <line num="426" type="stmt" count="0"/>
-        <line num="427" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="1"/>
+        <line num="408" type="stmt" count="1"/>
+        <line num="409" type="stmt" count="1"/>
+        <line num="412" type="stmt" count="1"/>
+        <line num="414" type="stmt" count="1"/>
+        <line num="423" type="method" name="isCli" crap="2.03" count="1"/>
+        <line num="425" type="stmt" count="1"/>
+        <line num="426" type="stmt" count="1"/>
+        <line num="427" type="stmt" count="1"/>
         <line num="428" type="stmt" count="0"/>
-        <line num="431" type="stmt" count="0"/>
-        <line num="440" type="method" name="setClient" crap="6" count="0"/>
-        <line num="442" type="stmt" count="0"/>
+        <line num="431" type="stmt" count="1"/>
+        <line num="440" type="method" name="setClient" crap="2.01" count="1"/>
+        <line num="442" type="stmt" count="1"/>
         <line num="443" type="stmt" count="0"/>
-        <line num="446" type="stmt" count="0"/>
-        <line num="448" type="stmt" count="0"/>
-        <line num="450" type="stmt" count="0"/>
-        <line num="452" type="stmt" count="0"/>
-        <line num="454" type="stmt" count="0"/>
-        <line num="456" type="stmt" count="0"/>
-        <line num="458" type="stmt" count="0"/>
-        <line num="469" type="method" name="setClientMobileDevice" crap="12" count="0"/>
-        <line num="471" type="stmt" count="0"/>
+        <line num="446" type="stmt" count="1"/>
+        <line num="448" type="stmt" count="1"/>
+        <line num="449" type="stmt" count="1"/>
+        <line num="450" type="stmt" count="1"/>
+        <line num="451" type="stmt" count="1"/>
+        <line num="452" type="stmt" count="1"/>
+        <line num="454" type="stmt" count="1"/>
+        <line num="465" type="method" name="setClientMobileDevice" crap="3.33" count="1"/>
+        <line num="467" type="stmt" count="1"/>
+        <line num="468" type="stmt" count="1"/>
+        <line num="470" type="stmt" count="1"/>
+        <line num="471" type="stmt" count="1"/>
         <line num="472" type="stmt" count="0"/>
+        <line num="473" type="stmt" count="0"/>
         <line num="474" type="stmt" count="0"/>
-        <line num="475" type="stmt" count="0"/>
-        <line num="476" type="stmt" count="0"/>
-        <line num="477" type="stmt" count="0"/>
-        <line num="478" type="stmt" count="0"/>
-        <line num="479" type="stmt" count="0"/>
-        <line num="481" type="stmt" count="0"/>
-        <line num="492" type="method" name="setClientBrowser" crap="12" count="0"/>
-        <line num="494" type="stmt" count="0"/>
-        <line num="495" type="stmt" count="0"/>
-        <line num="497" type="stmt" count="0"/>
-        <line num="499" type="stmt" count="0"/>
-        <line num="500" type="stmt" count="0"/>
-        <line num="501" type="stmt" count="0"/>
-        <line num="502" type="stmt" count="0"/>
-        <line num="504" type="stmt" count="0"/>
-        <line num="506" type="stmt" count="0"/>
-        <line num="517" type="method" name="setClientPlatform" crap="20" count="0"/>
-        <line num="519" type="stmt" count="0"/>
+        <line num="475" type="stmt" count="1"/>
+        <line num="477" type="stmt" count="1"/>
+        <line num="488" type="method" name="setClientBrowser" crap="3" count="1"/>
+        <line num="490" type="stmt" count="1"/>
+        <line num="491" type="stmt" count="1"/>
+        <line num="493" type="stmt" count="1"/>
+        <line num="495" type="stmt" count="1"/>
+        <line num="496" type="stmt" count="1"/>
+        <line num="497" type="stmt" count="1"/>
+        <line num="498" type="stmt" count="1"/>
+        <line num="500" type="stmt" count="1"/>
+        <line num="502" type="stmt" count="1"/>
+        <line num="513" type="method" name="setClientPlatform" crap="5.02" count="1"/>
+        <line num="515" type="stmt" count="1"/>
+        <line num="516" type="stmt" count="0"/>
+        <line num="517" type="stmt" count="1"/>
+        <line num="518" type="stmt" count="1"/>
+        <line num="519" type="stmt" count="1"/>
         <line num="520" type="stmt" count="0"/>
         <line num="521" type="stmt" count="0"/>
         <line num="522" type="stmt" count="0"/>
-        <line num="523" type="stmt" count="0"/>
-        <line num="524" type="stmt" count="0"/>
-        <line num="525" type="stmt" count="0"/>
-        <line num="526" type="stmt" count="0"/>
-        <line num="529" type="stmt" count="0"/>
-        <line num="531" type="stmt" count="0"/>
-        <line num="540" type="method" name="setClientDesktop" crap="6" count="0"/>
-        <line num="542" type="stmt" count="0"/>
-        <line num="543" type="stmt" count="0"/>
-        <line num="544" type="stmt" count="0"/>
-        <line num="545" type="stmt" count="0"/>
-        <line num="548" type="stmt" count="0"/>
-        <line num="559" type="method" name="setClientBot" crap="12" count="0"/>
-        <line num="561" type="stmt" count="0"/>
+        <line num="525" type="stmt" count="1"/>
+        <line num="527" type="stmt" count="1"/>
+        <line num="536" type="method" name="setClientDesktop" crap="2.26" count="1"/>
+        <line num="538" type="stmt" count="1"/>
+        <line num="539" type="stmt" count="0"/>
+        <line num="540" type="stmt" count="0"/>
+        <line num="541" type="stmt" count="1"/>
+        <line num="544" type="stmt" count="1"/>
+        <line num="555" type="method" name="setClientBot" crap="3.33" count="1"/>
+        <line num="557" type="stmt" count="1"/>
+        <line num="558" type="stmt" count="1"/>
+        <line num="560" type="stmt" count="1"/>
+        <line num="561" type="stmt" count="1"/>
         <line num="562" type="stmt" count="0"/>
+        <line num="563" type="stmt" count="0"/>
         <line num="564" type="stmt" count="0"/>
-        <line num="565" type="stmt" count="0"/>
-        <line num="566" type="stmt" count="0"/>
-        <line num="567" type="stmt" count="0"/>
-        <line num="568" type="stmt" count="0"/>
-        <line num="569" type="stmt" count="0"/>
-        <line num="571" type="stmt" count="0"/>
-        <line num="580" type="method" name="setClientUnknownAgent" crap="2" count="0"/>
+        <line num="565" type="stmt" count="1"/>
+        <line num="567" type="stmt" count="1"/>
+        <line num="576" type="method" name="setClientUnknownAgent" crap="2" count="0"/>
+        <line num="578" type="stmt" count="0"/>
+        <line num="579" type="stmt" count="0"/>
+        <line num="580" type="stmt" count="0"/>
+        <line num="581" type="stmt" count="0"/>
         <line num="582" type="stmt" count="0"/>
         <line num="583" type="stmt" count="0"/>
         <line num="584" type="stmt" count="0"/>
         <line num="585" type="stmt" count="0"/>
-        <line num="586" type="stmt" count="0"/>
         <line num="587" type="stmt" count="0"/>
-        <line num="588" type="stmt" count="0"/>
-        <line num="589" type="stmt" count="0"/>
-        <line num="591" type="stmt" count="0"/>
-        <line num="594" type="stmt" count="0"/>
-        <metrics loc="593" ncloc="354" classes="1" methods="15" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="1" elements="124" coveredelements="2"/>
+        <line num="590" type="stmt" count="0"/>
+        <metrics loc="589" ncloc="350" classes="1" methods="15" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="72" elements="124" coveredelements="75"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Http/Source/Request.php">
         <class name="Request" namespace="Molajo\Http">
@@ -1537,6 +1537,6 @@
       <line num="53" type="stmt" count="0"/>
       <metrics loc="53" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="29" coveredelements="0"/>
     </file>
-    <metrics files="43" loc="5448" ncloc="2827" classes="30" methods="160" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="1170" coveredstatements="283" elements="1330" coveredelements="316"/>
+    <metrics files="43" loc="5444" ncloc="2823" classes="30" methods="160" coveredmethods="35" conditionals="0" coveredconditionals="0" statements="1170" coveredstatements="354" elements="1330" coveredelements="389"/>
   </project>
 </coverage>

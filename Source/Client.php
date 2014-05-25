@@ -318,7 +318,7 @@ class Client implements ClientInterface
      * @return  $this
      * @since   1.0
      */
-    public function setClientData()
+    protected function setClientData()
     {
         $this->getRemoteAddress();
         $this->setRemoteHost('REMOTE_HOST', 'remote_host');
@@ -446,13 +446,9 @@ class Client implements ClientInterface
         $user_agent = strtolower($this->server_object['HTTP_USER_AGENT']);
 
         $this->setClientMobileDevice($user_agent);
-
         $this->setClientPlatform($user_agent);
-
         $this->setClientDesktop();
-
         $this->setClientBrowser($user_agent);
-
         $this->setClientBot($user_agent);
 
         return $this;
