@@ -422,7 +422,7 @@ class Upload implements UploadInterface
      * @return  $this
      * @since   1.0
      */
-    protected function getTargetFileName($count = 0, $single=true)
+    protected function getTargetFileName($count = 0, $single = true)
     {
         if (is_array($this->target_filename)
             && isset($this->target_filename[$count])
