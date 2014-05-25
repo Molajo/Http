@@ -237,7 +237,7 @@ class Upload implements UploadInterface
      */
     public function upload()
     {
-        $this->updatePreProcessing();
+        $this->preProcessingFileUpload();
 
         foreach ($this->file_array as $item) {
 
