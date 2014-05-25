@@ -35,6 +35,9 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -88,6 +91,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -115,6 +121,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -148,6 +157,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -177,6 +189,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -214,6 +229,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders
@@ -243,6 +261,9 @@ Redirecting to <a href="example.com">Example.com</a>.
      * @covers Molajo\Http\Response::sendHeaders
      * @covers Molajo\Http\Response::sendBody
      * @covers Molajo\Http\Response::processInjectedHeaders
+     * @covers Molajo\Http\Response::processHeaderType
+     * @covers Molajo\Http\Response::unsetSpecificHeaders
+     * @covers Molajo\Http\Response::setRemainingHeaders
      * @covers Molajo\Http\Response::getInjectedHeaderStatus
      * @covers Molajo\Http\Response::getInjectedHeaderVersion
      * @covers Molajo\Http\Response::getRedirectURLFromInjectedHeaders

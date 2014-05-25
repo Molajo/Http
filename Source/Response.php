@@ -183,6 +183,10 @@ class Response implements ResponseInterface
      */
     public function send()
     {
+        if (strlen($this->body) > 0) {
+            $this->headers['Content-Length'] = strlen($this->body);
+        }
+
         $this->setHeaders();
 
         $this->sendHeaders();
@@ -203,14 +207,6 @@ class Response implements ResponseInterface
     protected function setHeaders()
     {
         $this->formatted_headers = array();
-
-        if (isset($this->headers['Content-Length'])) {
-            unset($this->headers['Content-Length']);
-        }
-
-        if (strlen($this->body) > 0) {
-            $this->headers['Content-Length'] = strlen($this->body);
-        }
 
         foreach ($this->headers as $name => $values) {
             $header_values = explode("\n", $values);
@@ -265,26 +261,68 @@ class Response implements ResponseInterface
      */
     protected function processInjectedHeaders(array $headers, $body)
     {
-        $headers = $this->getRedirectURLFromInjectedHeaders($headers);
-        $headers = $this->getInjectedHeaderStatus($headers);
-        $headers = $this->getInjectedHeaderVersion($headers);
+        $headers = $this->processHeaderType('getRedirectURLFromInjectedHeaders', $headers);
+        $headers = $this->processHeaderType('getInjectedHeaderStatus', $headers);
+        $headers = $this->processHeaderType('getInjectedHeaderVersion', $headers);
+
         $this->setStatus();
         $this->initialiseBodyBasedOnStatus($body);
 
-        $headers = $this->setHeadersContentType($headers);
-        $headers = $this->setHeadersLastModified($headers);
-        $headers = $this->setHeadersLanguage($headers);
-        $headers = $this->setHeadersCache($headers);
-
-        $headers = $this->unsetHeaderArray($headers, 'Last-Modified');
-        $headers = $this->unsetHeaderArray($headers, 'Language');
-        $headers = $this->unsetHeaderArray($headers, 'Cachable');
+        $headers = $this->processHeaderType('setHeadersContentType', $headers);
+        $headers = $this->processHeaderType('setHeadersLastModified', $headers);
+        $headers = $this->processHeaderType('setHeadersLanguage', $headers);
+        $headers = $this->processHeaderType('setHeadersCache', $headers);
+        $headers = $this->unsetSpecificHeaders($headers);
 
         if (count($headers) > 0) {
-            foreach ($headers as $key => $value) {
-                $key                 = (string)$key;
-                $this->headers[$key] = (string)$value;
-            }
+            $this->setRemainingHeaders($headers);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Process Header Type
+     *
+     * @param   array  $headers
+     * @param   string $method
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function processHeaderType($method, $headers)
+    {
+        return $this->$method($headers);
+    }
+
+    /**
+     * Process Unset Specific Header Types
+     *
+     * @param   array $headers
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function unsetSpecificHeaders($headers)
+    {
+        $headers = $this->unsetHeaderArray($headers, 'Last-Modified');
+        $headers = $this->unsetHeaderArray($headers, 'Language');
+        return $this->unsetHeaderArray($headers, 'Cachable');
+    }
+
+    /**
+     * Process Unset Specific Header Types
+     *
+     * @param   array $headers
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setRemainingHeaders($headers)
+    {
+        foreach ($headers as $key => $value) {
+            $key                 = (string)$key;
+            $this->headers[$key] = (string)$value;
         }
 
         return $this;
