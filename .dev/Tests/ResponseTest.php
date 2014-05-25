@@ -217,7 +217,6 @@ Redirecting to <a href="example.com">Example.com</a>.
         $this->assertEquals('Language: en-GB', $headers[3]);
         $this->assertEquals('Cache-Control: no-cache, no-store, max-age=0, must-revalidate', $headers[4]);
         $this->assertEquals('Pragma: no-cache', $headers[5]);
-        $this->assertEquals('Content-Length: 293', $headers[6]);
     }
 
     /**

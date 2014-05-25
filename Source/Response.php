@@ -256,7 +256,7 @@ class Response implements ResponseInterface
      * @param   array  $headers
      * @param   string $body
      *
-     * @return  array
+     * @return  Response
      * @since   1.0
      */
     protected function processInjectedHeaders(array $headers, $body)
@@ -422,9 +422,10 @@ class Response implements ResponseInterface
     /**
      * Initialise body based on status
      *
-     * @return  string $body
+     * @param string $body
+     * @return  Response $body
      *
-     * @return  $this
+     * @return  Response
      * @since   1.0
      */
     protected function initialiseBodyBasedOnStatus($body)
@@ -511,6 +512,7 @@ class Response implements ResponseInterface
      * Set Headers Language
      *
      * @param   array $headers
+     * @param string $property
      *
      * @return  array
      * @since   1.0
@@ -573,7 +575,6 @@ class Response implements ResponseInterface
      * Unset Header Array Entry
      *
      * @param  array  $headers
-     * @param  string $string
      *
      * @return array
      */

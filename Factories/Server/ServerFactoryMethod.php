@@ -67,9 +67,23 @@ class ServerFactoryMethod extends FactoryMethodBase implements FactoryInterface,
     {
         $class = $this->product_namespace;
 
+        if (empty($_SERVER['PHP_AUTH_USER'])) {
+            $user = '';
+        } else {
+            $user = $_SERVER['PHP_AUTH_USER'];
+        }
+
+        if (empty($_SERVER['PHP_AUTH_PW'])) {
+            $password = '';
+        } else {
+            $password = $_SERVER['PHP_AUTH_PW'];
+        }
+
         try {
             $this->product_result = new $class(
-                $_SERVER
+                $_SERVER,
+                $user,
+                $password
             );
         } catch (Exception $e) {
             throw new RuntimeException

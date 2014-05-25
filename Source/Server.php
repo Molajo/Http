@@ -125,19 +125,28 @@ class Server implements ServerInterface
      * @var    array
      * @since  1.0
      */
-    protected $property_array = array(
-        'user',
-        'password',
-        'document_root',
-        'entry_point',
-        'remote_addr',
-        'server_signature',
-        'server_software',
-        'server_name',
-        'server_addr',
-        'server_port',
-        'server_admin'
-    );
+    protected $property_array
+        = array(
+            'user',
+            'password',
+            'document_root',
+            'entry_point',
+            'remote_addr',
+            'server_signature',
+            'server_software',
+            'server_name',
+            'server_addr',
+            'server_port',
+            'server_admin'
+        );
+
+    /**
+     * Server
+     *
+     * @var    object
+     * @since  1.0
+     */
+    protected $server;
 
     /**
      * Construct
@@ -147,15 +156,20 @@ class Server implements ServerInterface
      * @since   1.0
      */
     public function __construct(
-        $server_object = null
+        $server_object,
+        $user = null,
+        $password = null
     ) {
         $this->server_object = $server_object;
 
-        $this->setUser();
-        $this->setPassword();
-        $this->setDocumentRoot();
-        $this->setEntryPoint();
+        $this->user     = $user;
+        $this->password = $password;
         $this->setServer();
+
+        $this->server = new stdClass();
+        foreach ($this->property_array as $key) {
+            $this->server->$key = $this->$key;
+        }
     }
 
     /**
@@ -170,89 +184,7 @@ class Server implements ServerInterface
      */
     public function get()
     {
-        $server = new stdClass();
-
-        foreach ($this->property_array as $key) {
-            $server->$key = $this->$key;
-        }
-
-        return $server;
-    }
-
-    /**
-     * Set User running script on the Server for this Class
-     *
-     * @return  string
-     * @since   1.0
-     */
-    protected function setUser()
-    {
-        if (empty($this->server_object['PHP_AUTH_USER'])) {
-            $user = '';
-        } else {
-            $user = $this->server_object['PHP_AUTH_USER'];
-        }
-
-        $this->user = $user;
-
-        return $user;
-    }
-
-    /**
-     * Set Password for User for the class property
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setPassword()
-    {
-        if (empty($this->server_object['PHP_AUTH_PW'])) {
-            $password = '';
-        } else {
-            $password = $this->server_object['PHP_AUTH_PW'];
-        }
-
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Set the Document Root for the Server for the class property
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setDocumentRoot()
-    {
-        if (empty($this->server_object['DOCUMENT_ROOT'])) {
-            $document_root = '';
-        } else {
-            $document_root = $this->server_object['DOCUMENT_ROOT'];
-        }
-
-        $this->document_root = $document_root;
-
-        return $this;
-    }
-
-    /**
-     * Set Class Entry Point for the script
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setEntryPoint()
-    {
-        if (empty($this->server_object['SCRIPT_FILENAME'])) {
-            $entry_point = '';
-        } else {
-            $entry_point = $this->server_object['SCRIPT_FILENAME'];
-        }
-
-        $this->entry_point = $entry_point;
-
-        return $this;
+        return $this->server;
     }
 
     /**
@@ -263,13 +195,36 @@ class Server implements ServerInterface
      */
     protected function setServer()
     {
-        $this->remote_addr      = $this->server_object['REMOTE_ADDR'];
-        $this->server_signature = $this->server_object['SERVER_SIGNATURE'];
-        $this->server_software  = $this->server_object['SERVER_SOFTWARE'];
-        $this->server_name      = $this->server_object['SERVER_NAME'];
-        $this->server_addr      = $this->server_object['SERVER_ADDR'];
-        $this->server_port      = $this->server_object['SERVER_PORT'];
-        $this->server_admin     = $this->server_object['SERVER_ADMIN'];
+        $this->setStandardProperty('DOCUMENT_ROOT', 'document_root', '');
+        $this->setStandardProperty('SCRIPT_FILENAME', 'entry_point', '');
+        $this->setStandardProperty('REMOTE_ADDR', 'remote_addr', '');
+        $this->setStandardProperty('SERVER_SIGNATURE', 'server_signature', '');
+        $this->setStandardProperty('SERVER_SOFTWARE', 'server_software', '');
+        $this->setStandardProperty('SERVER_NAME', 'server_name', '');
+        $this->setStandardProperty('SERVER_ADDR', 'server_addr', '');
+        $this->setStandardProperty('SERVER_PORT', 'server_port', '');
+        $this->setStandardProperty('SERVER_ADMIN', 'server_admin', '');
+
+        return $this;
+    }
+
+    /**
+     * Set Headers Language
+     *
+     * @param string $server_object_property
+     * @param string $property
+     * @param string $default
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function setStandardProperty($server_object_property, $property, $default = '')
+    {
+        if (empty($this->server_object[$server_object_property])) {
+            $this->$property = $default;
+        } else {
+            $this->$property = $this->server_object[$server_object_property];
+        }
 
         return $this;
     }

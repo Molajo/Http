@@ -44,7 +44,7 @@ class ServerTest extends \PHPUnit_Framework_TestCase
         $this->server_object['SERVER_ADMIN']     = 'Admin Istrator';
         $this->server_object['SERVER_SOFTWARE']  = 'Apache v 1.3';
 
-        $this->server_object = new Server($this->server_object);
+        $this->server_object = new Server($this->server_object, 'username', 'password');
         $server              = $this->server_object->get();
 
         $this->assertEquals('username', $server->user);
