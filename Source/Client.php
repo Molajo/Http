@@ -295,21 +295,27 @@ class Client implements ClientInterface
         array $bots = array()
     ) {
         $this->server_object = $server_object;
-
-        if (count($devices) > 0) {
-            $this->devices = $devices;
-        }
-
-        if (count($browsers) > 0) {
-            $this->browsers = $browsers;
-        }
-
-        if (count($bots) > 0) {
-            $this->browsers = $browsers;
-        }
+        $this->testInput($devices, 'devices');
+        $this->testInput($browsers, 'browsers');
+        $this->testInput($bots, 'bots');
 
         $this->client = new stdClass();
         $this->setClientData();
+    }
+
+    /**
+     * Test Input
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function testInput(array $input, $name)
+    {
+        if (count($input) > 0) {
+            $this->$name = $input;
+        }
+
+        return $this;
     }
 
     /**

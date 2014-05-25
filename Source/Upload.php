@@ -243,7 +243,7 @@ class Upload implements UploadInterface
 
             if ($item['error'] === 0) {
             } else {
-                throw new RuntimeException ('Http Upload Error: ' . $item['error']);
+                throw new RuntimeException('Http Upload Error: ' . $item['error']);
             }
 
             $this->uploadFile($item);
@@ -257,7 +257,6 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function preProcessingFileUpload()
     {
@@ -274,7 +273,6 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function uploadFile($item)
     {
@@ -313,7 +311,6 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateFormToken()
     {
@@ -350,7 +347,6 @@ class Upload implements UploadInterface
      *
      * @return  $this
      * @since   1.0
-     * @throws  \CommonApi\Exception\RuntimeException
      */
     function createFileArray()
     {
