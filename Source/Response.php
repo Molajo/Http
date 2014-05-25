@@ -575,6 +575,7 @@ class Response implements ResponseInterface
      * Unset Header Array Entry
      *
      * @param  array  $headers
+     * @param string $entry
      *
      * @return array
      */

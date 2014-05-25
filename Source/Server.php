@@ -215,7 +215,7 @@ class Server implements ServerInterface
      * @param string $property
      * @param string $default
      *
-     * @return  array
+     * @return  Server
      * @since   1.0
      */
     protected function setStandardProperty($server_object_property, $property, $default = '')

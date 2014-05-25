@@ -136,41 +136,164 @@ class Client implements ClientInterface
     protected $platform = null;
 
     /**
+     * Devices
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $devices
+        = array(
+            'alcatel',
+            'android',
+            'au-mic',
+            'audiovox',
+            'avantgo',
+            'blackberry',
+            'blazer',
+            'cldc-',
+            'danger',
+            'epoc',
+            'ericsson',
+            'ericy',
+            'iemobile',
+            'ipaq',
+            'iphone',
+            'j2me',
+            'kindle',
+            'midp-',
+            'minimo',
+            'mobile',
+            'mot',
+            'netfront',
+            'nitro',
+            'nokia',
+            'opera mini',
+            'opera mobi',
+            'palm',
+            'palmsource',
+            'panasonic',
+            'philips',
+            'pocketpc',
+            'portable',
+            'portalmmm',
+            'rover',
+            'samsung',
+            'sanyo',
+            'series60',
+            'sharp',
+            'sie-',
+            'smartphone',
+            'sony',
+            'symbian',
+            'up.browser',
+            'up.link',
+            'vodafone',
+            'wap1.',
+            'wap2.',
+            'windows ce'
+        );
+
+    /**
+     * Browsers
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $browsers
+        = array(
+            'firefox',
+            'msie',
+            'opera',
+            'chrome',
+            'safari',
+            'mozilla',
+            'seamonkey',
+            'konqueror',
+            'netscape',
+            'gecko',
+            'navigator',
+            'mosaic',
+            'lynx',
+            'amaya',
+            'omniweb',
+            'avant',
+            'camino',
+            'flock',
+            'aol'
+        );
+
+
+    /**
+     * Bots
+     *
+     * @var    array
+     * @since  1.0
+     */
+    protected $bots
+        = array(
+            'googlebot',
+            'msnbot',
+            'yahoo!',
+            'slurp',
+            'bot',
+            'spider'
+        );
+
+    /**
      * List of Properties
      *
      * @var    array
      * @since  1.0
      */
-    protected $property_array = array(
-        'ajax',
-        'remote_address',
-        'remote_host',
-        'browser',
-        'browser_version',
-        'is_bot',
-        'is_cli',
-        'bot',
-        'is_mobile',
-        'mobile_device',
-        'user_agent',
-        'desktop',
-        'platform'
-    );
+    protected $property_array
+        = array(
+            'ajax',
+            'remote_address',
+            'remote_host',
+            'browser',
+            'browser_version',
+            'is_bot',
+            'is_cli',
+            'bot',
+            'is_mobile',
+            'mobile_device',
+            'user_agent',
+            'desktop',
+            'platform'
+        );
 
     /**
      * Construct
      *
      * @param   object $server_object
+     * @param   array  $devices
+     * @param   array  $browsers
+     * @param   array  $bots
      *
      * @since   1.0
      */
     public function __construct(
-        $server_object = null
+        $server_object = null,
+        array $devices = array(),
+        array $browsers = array(),
+        array $bots = array()
     ) {
         $this->server_object = $server_object;
 
+        if (count($devices) > 0) {
+            $this->devices = $devices;
+        }
+
+        if (count($browsers) > 0) {
+            $this->browsers = $browsers;
+        }
+
+        if (count($bots) > 0) {
+            $this->browsers = $browsers;
+        }
+
         $this->getRemoteAddress();
-        $this->getRemoteHost();
+        $this->setStandardProperty('REMOTE_HOST', 'remote_host');
         $this->isAjax();
         $this->isCli();
         $this->setClient();
@@ -202,36 +325,45 @@ class Client implements ClientInterface
     protected function getRemoteAddress()
     {
         if (empty($this->server_object['HTTP_CLIENT_IP'])) {
-            if (empty($this->server_object['HTTP_X_FORWARDED_FOR'])) {
-                $remote_address = $this->server_object['REMOTE_ADDR'];
-            } else {
-                $remote_address = $this->server_object['HTTP_X_FORWARDED_FOR'];
-            }
-
+            $this->remote_address = $this->getRemoteAddressNoHttpClientIP();
         } else {
-            $remote_address = $this->server_object['HTTP_CLIENT_IP'];
+            $this->remote_address = $this->server_object['HTTP_CLIENT_IP'];
         }
-
-        $this->remote_address = $remote_address;
 
         return $this;
     }
 
     /**
-     * Remote Host for Client
+     * Remote Address for Client - no HTTP_CLIENT_IP
      *
-     * @return  Client
+     * @return  $this
      * @since   1.0
      */
-    protected function getRemoteHost()
+    protected function getRemoteAddressNoHttpClientIP()
     {
-        if (empty($this->server_object['REMOTE_HOST'])) {
-            $remote_host = '';
-        } else {
-            $remote_host = $this->server_object['REMOTE_HOST'];
+        if (empty($this->server_object['HTTP_X_FORWARDED_FOR'])) {
+            return $this->server_object['REMOTE_ADDR'];
         }
 
-        $this->remote_host = $remote_host;
+        return $this->server_object['HTTP_X_FORWARDED_FOR'];
+    }
+
+    /**
+     * Set Properties
+     *
+     * @param string $client_property
+     * @param string $property
+     *
+     * @return  Server
+     * @since   1.0
+     */
+    protected function setStandardProperty($client_property, $property)
+    {
+        if (empty($this->server_object[$client_property])) {
+            $this->$property = '';
+        } else {
+            $this->$property = $this->server_object[$client_property];
+        }
 
         return $this;
     }
@@ -278,171 +410,159 @@ class Client implements ClientInterface
     /**
      * Get client information using HTTP_USER_AGENT (Warning: such data is not reliable)
      *
-     * @return  Client
+     * @return  client
      * @since   1.0
      */
     protected function setClient()
     {
-        $user_agent = '';
-
         if (empty($this->server_object['HTTP_USER_AGENT'])) {
-            $platform        = 'unknown';
-            $desktop         = 0;
-            $browser         = 'unknown';
-            $browser_version = 'unknown';
-            $is_bot          = 0;
-            $bot             = 'unknown';
-            $is_mobile       = 0;
-            $device          = 'unknown';
-        } else {
-            $user_agent = strtolower($this->server_object['HTTP_USER_AGENT']);
+            return $this->setClientUnknownAgent();
+        }
 
-            /** Platform approximations */
-            if (preg_match('/linux/i', $user_agent)) {
-                $platform = 'linux';
-            } elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
-                $platform = 'mac';
-            } elseif (preg_match('/windows|win32/i', $user_agent)) {
-                $platform = 'windows';
-            } else {
-                $platform = 'unknown';
-            }
+        $user_agent = strtolower($this->server_object['HTTP_USER_AGENT']);
 
-            $this->platform = $platform;
+        $this->setClientMobileDevice($user_agent);
 
-            /** Desktop approximation */
-            if ($platform == 'unknown') {
-                $desktop = 0;
-            } else {
-                $desktop = 1;
-            }
+        $this->setClientPlatform($user_agent);
 
-            $this->desktop = $desktop;
+        $this->setClientDesktop();
 
-            /** Browser and Version Approximation */
-            $browsers = array(
-                'firefox',
-                'msie',
-                'opera',
-                'chrome',
-                'safari',
-                'mozilla',
-                'seamonkey',
-                'konqueror',
-                'netscape',
-                'gecko',
-                'navigator',
-                'mosaic',
-                'lynx',
-                'amaya',
-                'omniweb',
-                'avant',
-                'camino',
-                'flock',
-                'aol'
-            );
+        $this->setClientBrowser($user_agent);
 
-            $browser         = '';
-            $browser_version = '';
-            foreach ($browsers as $browser) {
+        $this->setClientBot($user_agent);
 
-                if (preg_match("#($browser)[/ ]?([0-9.]*)#", $user_agent, $match)) {
-                    $browser         = $match[1];
-                    $browser_version = $match[2];
-                    break;
-                }
-            }
+        return $this;
+    }
 
-            /** Bot */
-            $bots = array(
-                'googlebot',
-                'msnbot',
-                'yahoo!',
-                'slurp',
-                'bot',
-                'spider'
-            );
+    /**
+     * Client Mobile Device
+     *
+     * @param   string $user_agent
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientMobileDevice($user_agent)
+    {
+        $this->is_mobile = 0;
+        $this->device    = '';
 
-            $is_bot = 0;
-            $bot    = '';
-            foreach ($bots as $item) {
-                if (strpos($user_agent, $item)) {
-                    $is_bot = 1;
-                    $bot    = $item;
-                }
-            }
-
-            /** Mobile Devices */
-            $devices = array(
-                'alcatel',
-                'android',
-                'au-mic',
-                'audiovox',
-                'avantgo',
-                'blackberry',
-                'blazer',
-                'cldc-',
-                'danger',
-                'epoc',
-                'ericsson',
-                'ericy',
-                'iemobile',
-                'ipaq',
-                'iphone',
-                'j2me',
-                'kindle',
-                'midp-',
-                'minimo',
-                'mobile',
-                'mot',
-                'netfront',
-                'nitro',
-                'nokia',
-                'opera mini',
-                'opera mobi',
-                'palm',
-                'palmsource',
-                'panasonic',
-                'philips',
-                'pocketpc',
-                'portable',
-                'portalmmm',
-                'rover',
-                'samsung',
-                'sanyo',
-                'series60',
-                'sharp',
-                'sie-',
-                'smartphone',
-                'sony',
-                'symbian',
-                'up.browser',
-                'up.link',
-                'vodafone',
-                'wap1.',
-                'wap2.',
-                'windows ce'
-            );
-
-            $is_mobile = 0;
-            $device    = '';
-            foreach ($devices as $item) {
-                if (strpos($user_agent, $item)) {
-                    $is_mobile = 1;
-                    $device    = $item;
-                }
+        foreach ($this->devices as $item) {
+            if (strpos($user_agent, $item)) {
+                $this->is_mobile = 1;
+                $this->device    = $item;
             }
         }
 
-        $this->browser         = $browser;
-        $this->browser_version = $browser_version;
-        $this->user_agent      = $user_agent;
-        $this->platform        = $platform;
-        $this->desktop         = $desktop;
-        $this->is_bot          = $is_bot;
-        $this->bot             = $bot;
-        $this->is_mobile       = $is_mobile;
-        $this->mobile_device   = $device;
+        return $this;
+    }
+
+    /**
+     * Client Browser
+     *
+     * @param   string $user_agent
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientBrowser($user_agent)
+    {
+        $this->browser         = '';
+        $this->browser_version = '';
+
+        foreach ($this->browsers as $browser) {
+
+            if (preg_match("#($browser)[/ ]?([0-9.]*)#", $user_agent, $match)) {
+                $this->browser         = $match[1];
+                $this->browser_version = $match[2];
+                break;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set Client Platform
+     *
+     * @param   string $user_agent
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientPlatform($user_agent)
+    {
+        if (preg_match('/linux/i', $user_agent)) {
+            $platform = 'linux';
+        } elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
+            $platform = 'mac';
+        } elseif (preg_match('/windows|win32/i', $user_agent)) {
+            $platform = 'windows';
+        } else {
+            $platform = 'unknown';
+        }
+
+        $this->platform = $platform;
+
+        return $this;
+    }
+
+    /**
+     * Set Client Desktop
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientDesktop()
+    {
+        if ($this->platform == 'unknown') {
+            $this->desktop = 0;
+        } else {
+            $this->desktop = 1;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set Client Bot
+     *
+     * @param   string $user_agent
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientBot($user_agent)
+    {
+        $this->is_bot = 0;
+        $this->bot    = '';
+
+        foreach ($this->bots as $item) {
+            if (strpos($user_agent, $item)) {
+                $this->is_bot = 1;
+                $this->bot    = $item;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * User Agent Unknown
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setClientUnknownAgent()
+    {
+        $this->platform        = 'unknown';
+        $this->desktop         = 0;
+        $this->browser         = 'unknown';
+        $this->browser_version = 'unknown';
+        $this->is_bot          = 0;
+        $this->bot             = 'unknown';
+        $this->is_mobile       = 0;
+        $this->device          = 'unknown';
 
         return $this;
     }
