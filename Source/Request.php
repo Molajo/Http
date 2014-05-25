@@ -128,7 +128,7 @@ class Request implements RequestInterface
      * @var      string
      * @since    1.0
      */
-    protected $port = null;
+    protected $port = '';
 
     /**
      * Authority
@@ -181,28 +181,37 @@ class Request implements RequestInterface
     protected $parameters = array();
 
     /**
+     * Request Object
+     *
+     * @var      object
+     * @since    1.0
+     */
+    protected $request;
+
+    /**
      * Property Array
      *
      * @var    array
      * @since  1.0
      */
-    protected $property_array = array(
-        'method',
-        'content_type',
-        'base_url',
-        'url',
-        'scheme',
-        'secure',
-        'user',
-        'password',
-        'userinfo',
-        'host',
-        'port',
-        'authority',
-        'path',
-        'query',
-        'parameters'
-    );
+    protected $property_array
+        = array(
+            'method',
+            'content_type',
+            'base_url',
+            'url',
+            'scheme',
+            'secure',
+            'user',
+            'password',
+            'userinfo',
+            'host',
+            'port',
+            'authority',
+            'path',
+            'query',
+            'parameters'
+        );
 
     /**
      * Construct
@@ -216,6 +225,18 @@ class Request implements RequestInterface
     ) {
         $this->server_object = $server_object;
 
+        $this->request = new stdClass();
+        $this->setRequest();
+    }
+
+    /**
+     * Process Request
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function setRequest()
+    {
         $this->setMethod();
         $this->setContentType();
         $this->setScheme();
@@ -231,6 +252,10 @@ class Request implements RequestInterface
         $this->setBaseUrl();
         $this->setPath();
         $this->setUrl();
+
+        foreach ($this->property_array as $key) {
+            $this->request->$key = $this->$key;
+        }
     }
 
     /**
@@ -253,13 +278,7 @@ class Request implements RequestInterface
      */
     public function get()
     {
-        $request = new stdClass();
-
-        foreach ($this->property_array as $key) {
-            $request->$key = $this->$key;
-        }
-
-        return $request;
+        return $this->request;
     }
 
     /**
@@ -316,12 +335,38 @@ class Request implements RequestInterface
             return $this;
         }
 
+        $this->setSchemeServerObjectHttps();
+        $this->setSchemeServerObjectHttpForwarded();
+        $this->setSchemeServerObjectServerPort();
+
+        return $this;
+    }
+
+    /**
+     * Check Server Object HTTPS
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setSchemeServerObjectHttps()
+    {
         $https = strtolower($this->server_object['HTTPS']);
 
         if ($https == 'on' || $https == '1') {
             $this->scheme = 'https';
         }
 
+        return $this;
+    }
+
+    /**
+     * Check Server Object HTTP_X_FORWARDED_PROTO
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setSchemeServerObjectHttpForwarded()
+    {
         if (isset($this->server_object['HTTP_X_FORWARDED_PROTO'])) {
 
             $temp = strtolower($this->server_object['HTTP_X_FORWARDED_PROTO']);
@@ -331,11 +376,17 @@ class Request implements RequestInterface
             }
         }
 
-        if ($this->scheme == 'http://' || $this->scheme == 'https://') {
-        } else {
-            $this->scheme = 'http://';
-        }
+        return $this;
+    }
 
+    /**
+     * Check Server Object SERVER_PORT
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setSchemeServerObjectServerPort()
+    {
         if (isset($this->server_object['SERVER_PORT']) && $this->server_object['SERVER_PORT'] == '443') {
             $this->scheme = 'https://';
         }
@@ -368,16 +419,7 @@ class Request implements RequestInterface
      */
     protected function setUser()
     {
-        $this->user = '';
-
-        if (isset($this->server_object['PHP_AUTH_USER'])) {
-        } else {
-            return $this;
-        }
-
-        $this->user = $this->server_object['PHP_AUTH_USER'];
-
-        return $this;
+        return $this->setUserPassword('user', 'PHP_AUTH_USER');
     }
 
     /**
@@ -388,18 +430,22 @@ class Request implements RequestInterface
      */
     protected function setPassword()
     {
-        $this->password = '';
+        return $this->setUserPassword('password', 'PHP_AUTH_PW');
+    }
 
-        if ($this->user === '') {
-            return $this;
+    /**
+     * Set the Password
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setUserPassword($property, $server_object)
+    {
+        $this->$property = '';
+
+        if (isset($this->server_object[$server_object])) {
+            $this->$property = $this->server_object[$server_object];
         }
-
-        if (isset($this->server_object['PHP_AUTH_PW'])) {
-        } else {
-            return $this;
-        }
-
-        $this->password = $this->server_object['PHP_AUTH_PW'];
 
         return $this;
     }
@@ -428,43 +474,88 @@ class Request implements RequestInterface
      *
      * @return  string
      * @since   1.0
-     * @throws  \CommonApi\Exception\InvalidArgumentException
      */
     protected function setHost()
     {
         if (empty($this->server_object['HTTP_HOST'])) {
-
-            if (empty($this->server_object['SERVER_NAME'])) {
-
-                if (empty($this->server_object['SERVER_ADDRESS'])) {
-                    $host = '';
-                } else {
-                    $host = $this->server_object['SERVER_ADDRESS'];
-                }
-            } else {
-                $host = $this->server_object['SERVER_NAME'];
-            }
+            $host = $this->setHostServerNameAddress();
 
         } else {
-            $temp = explode(':', $this->server_object['HTTP_HOST']);
-            $host = $temp[0];
-            if (isset($temp[1])) {
-                $port = (int)$temp[1];
-            } else {
-                $port = '';
-            }
-            $this->port = $port;
+            $host = $this->setHostAndPort();
         }
 
-        if (preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $host)) {
-        } else {
-            throw new InvalidArgumentException
-            ('Request: Host value is invalid: ' . $host);
-        }
+        $this->validateHost($host);
 
         $this->host = $host;
 
         return $this;
+    }
+
+    /**
+     * Set Host using server object SERVER_NAME and SERVER_ADDRESS
+     *
+     * @return  $this
+     * @since   1.0.0
+     */
+    protected function setHostServerNameAddress()
+    {
+        if (empty($this->server_object['SERVER_NAME'])) {
+
+            if (empty($this->server_object['SERVER_ADDRESS'])) {
+                $host = '';
+            } else {
+                $host = $this->server_object['SERVER_ADDRESS'];
+            }
+
+        } else {
+            $host = $this->server_object['SERVER_NAME'];
+        }
+
+        return $host;
+    }
+
+    /**
+     * Set Host using server object SERVER_NAME and SERVER_ADDRESS
+     *
+     * @return  string
+     * @since   1.0.0
+     */
+    protected function setHostAndPort()
+    {
+        $temp = explode(':', $this->server_object['HTTP_HOST']);
+
+        $host = $temp[0];
+
+        if (isset($temp[1])) {
+            $port = (int)$temp[1];
+        } else {
+            $port = '';
+        }
+
+        $this->port = $port;
+
+        return $host;
+    }
+
+    /**
+     * Set Host using server object SERVER_NAME and SERVER_ADDRESS
+     *
+     * @param   string $host
+     *
+     * @return  string
+     * @since   1.0.0
+     * @throws  \CommonApi\Exception\InvalidArgumentException
+     */
+    protected function validateHost($host)
+    {
+        if (preg_match('/^\[?(?:[a-zA-Z0-9-:\]_]+\.?)+$/', $host)) {
+        } else {
+            throw new InvalidArgumentException(
+                'Request: Host value is invalid: ' . $host
+            );
+        }
+
+        return $host;
     }
 
     /**
@@ -475,30 +566,55 @@ class Request implements RequestInterface
      */
     protected function setPort()
     {
-        if ($this->port === null) {
+        if ($this->port === '') {
         } else {
             // set in setHost
             return $this;
         }
 
-        $this->port = '';
-
-        if (empty($this->server_object['SERVER_PORT'])) {
-            return $this;
+        if ($this->setPortAllowDefault() === true) {
+            $this->port = $this->server_object['SERVER_PORT'];
         }
-
-        $port = $this->server_object['SERVER_PORT'];
-
-        if ($this->scheme == 'https' && $port == '443') {
-            return $this;
-        }
-        if ($this->scheme == 'http' && $port == '80') {
-            return $this;
-        }
-
-        $this->port = $port;
 
         return $this;
+    }
+
+    /**
+     * Set Port Allow Default based on Scheme
+     *
+     * @return  boolean
+     * @since   1.0.0
+     */
+    protected function setPortAllowDefault()
+    {
+        if (empty($this->server_object['SERVER_PORT'])) {
+            return false;
+        }
+
+        if ($this->setPortAllowDefaultProtocol('https', '443') === false) {
+            return false;
+        }
+
+        if ($this->setPortAllowDefaultProtocol('http', '80') === false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Set Port Allow Default based on Scheme
+     *
+     * @return  boolean
+     * @since   1.0.0
+     */
+    protected function setPortAllowDefaultProtocol($scheme, $port)
+    {
+        if ($this->scheme === $scheme && $this->server_object['SERVER_PORT'] === $port) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -510,7 +626,22 @@ class Request implements RequestInterface
     protected function setAuthority()
     {
         $this->authority = '';
+        $this->setAuthorityUser();
+        $this->authority .= $this->host;
+        $this->setAuthorityPort();
+        $this->authority .= '/';
 
+        return $this;
+    }
+
+    /**
+     * Set Authority User
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setAuthorityUser()
+    {
         if ($this->user === '') {
         } else {
             $this->authority = $this->user;
@@ -518,14 +649,22 @@ class Request implements RequestInterface
             $this->authority .= $this->password . '@';
         }
 
-        $this->authority .= $this->host;
+        return $this;
+    }
+
+    /**
+     * Set Authority Port
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setAuthorityPort()
+    {
 
         if ($this->port == '' || $this->port == 80 || $this->port == 443) {
         } else {
             $this->authority .= ':' . $this->port;
         }
-
-        $this->authority .= '/';
 
         return $this;
     }
@@ -538,26 +677,12 @@ class Request implements RequestInterface
      */
     protected function setQueryParameters()
     {
-        $this->parameters = array();
-
         $query = $this->server_object['QUERY_STRING'];
-
         if ($query == '') {
             return $this;
         }
 
-        $parameter_pairs = array();
-        $parts           = explode("&", $query);
-
-        if (is_array($parts) && count($parts) > 0) {
-            foreach ($parts as $keyAndValue) {
-                $pair                  = explode('=', $keyAndValue);
-                $key                   = rawurlencode(urldecode($pair[0]));
-                $value                 = rawurlencode(urldecode($pair[1]));
-                $parameter_pairs[$key] = $value;
-            }
-        }
-
+        $parameter_pairs = $this->extractQueryParameterPairs($query);
         if (count($parameter_pairs) > 0) {
         } else {
             return $this;
@@ -568,6 +693,32 @@ class Request implements RequestInterface
         $this->parameters = $parameter_pairs;
 
         return $this;
+    }
+
+    /**
+     * Extract the Parameter Pairs
+     *
+     * @param   string $query
+     *
+     * @return  array
+     * @since   1.0
+     */
+    protected function extractQueryParameterPairs($query)
+    {
+        $parameter_pairs = array();
+
+        $parts = explode("&", $query);
+
+        if (is_array($parts) && count($parts) > 0) {
+            foreach ($parts as $keyAndValue) {
+                $pair                  = explode('=', $keyAndValue);
+                $key                   = rawurlencode(urldecode($pair[0]));
+                $value                 = rawurlencode(urldecode($pair[1]));
+                $parameter_pairs[$key] = $value;
+            }
+        }
+
+        return $parameter_pairs;
     }
 
     /**
@@ -617,13 +768,8 @@ class Request implements RequestInterface
      */
     protected function setPath()
     {
-        // IIS 5 and PHP as CGI
         if (isset($this->server_object['ORIG_PATH_INFO'])) {
-            $uri = $this->server_object['ORIG_PATH_INFO'];
-
-            if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
-                $uri .= '?' . $this->server_object['QUERY_STRING'];
-            }
+            $uri = $this->setPathOrigPathInfo();
 
         } else {
             $uri = $this->server_object['REQUEST_URI'];
@@ -631,6 +777,36 @@ class Request implements RequestInterface
 
         $this->path = filter_var($uri, FILTER_SANITIZE_URL);
 
+        $this->setPathCleanup();
+
+        return $this;
+    }
+
+    /**
+     * Set Path using server object ORIG_PATH_INFO (IIS 5 and PHP as CGI)
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setPathOrigPathInfo()
+    {
+        $uri = $this->server_object['ORIG_PATH_INFO'];
+
+        if (isset($this->server_object['QUERY_STRING']) && $this->server_object['QUERY_STRING'] != '') {
+            $uri .= '?' . $this->server_object['QUERY_STRING'];
+        }
+
+        return $uri;
+    }
+
+    /**
+     * Set Path using server object ORIG_PATH_INFO
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    protected function setPathCleanup()
+    {
         if (strpos($this->path, '?')) {
             $this->path = substr($this->path, 0, strpos($this->path, '?'));
         }

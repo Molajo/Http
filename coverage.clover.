@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1400978681">
-  <project timestamp="1400978681">
+<coverage generated="1400981789">
+  <project timestamp="1400981789">
     <package name="Molajo\Factories\Client">
       <file name="/Users/amystephen/Sites/Molajo/Http/Factories/Client/ClientFactoryMethod.php">
         <class name="ClientFactoryMethod" namespace="Molajo\Factories\Client">
@@ -499,204 +499,237 @@
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Http/Source/Request.php">
         <class name="Request" namespace="Molajo\Http">
-          <metrics methods="17" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="177" coveredstatements="5" elements="194" coveredelements="6"/>
+          <metrics methods="32" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="195" coveredstatements="1" elements="227" coveredelements="2"/>
         </class>
-        <line num="214" type="method" name="__construct" crap="2" count="0"/>
-        <line num="217" type="stmt" count="0"/>
-        <line num="219" type="stmt" count="0"/>
-        <line num="220" type="stmt" count="0"/>
-        <line num="221" type="stmt" count="0"/>
-        <line num="222" type="stmt" count="0"/>
-        <line num="223" type="stmt" count="0"/>
-        <line num="224" type="stmt" count="0"/>
-        <line num="225" type="stmt" count="0"/>
+        <line num="223" type="method" name="__construct" crap="2" count="0"/>
         <line num="226" type="stmt" count="0"/>
-        <line num="227" type="stmt" count="0"/>
         <line num="228" type="stmt" count="0"/>
         <line num="229" type="stmt" count="0"/>
         <line num="230" type="stmt" count="0"/>
-        <line num="231" type="stmt" count="0"/>
-        <line num="232" type="stmt" count="0"/>
-        <line num="233" type="stmt" count="0"/>
-        <line num="234" type="stmt" count="0"/>
-        <line num="254" type="method" name="get" crap="2" count="1"/>
-        <line num="256" type="stmt" count="1"/>
-        <line num="258" type="stmt" count="1"/>
-        <line num="259" type="stmt" count="1"/>
-        <line num="260" type="stmt" count="1"/>
-        <line num="262" type="stmt" count="1"/>
-        <line num="271" type="method" name="setMethod" crap="6" count="0"/>
-        <line num="273" type="stmt" count="0"/>
-        <line num="275" type="stmt" count="0"/>
-        <line num="277" type="stmt" count="0"/>
-        <line num="278" type="stmt" count="0"/>
-        <line num="279" type="stmt" count="0"/>
-        <line num="282" type="stmt" count="0"/>
-        <line num="291" type="method" name="setContentType" crap="6" count="0"/>
-        <line num="293" type="stmt" count="0"/>
-        <line num="295" type="stmt" count="0"/>
+        <line num="238" type="method" name="setRequest" crap="6" count="0"/>
+        <line num="240" type="stmt" count="0"/>
+        <line num="241" type="stmt" count="0"/>
+        <line num="242" type="stmt" count="0"/>
+        <line num="243" type="stmt" count="0"/>
+        <line num="244" type="stmt" count="0"/>
+        <line num="245" type="stmt" count="0"/>
+        <line num="246" type="stmt" count="0"/>
+        <line num="247" type="stmt" count="0"/>
+        <line num="248" type="stmt" count="0"/>
+        <line num="249" type="stmt" count="0"/>
+        <line num="250" type="stmt" count="0"/>
+        <line num="251" type="stmt" count="0"/>
+        <line num="252" type="stmt" count="0"/>
+        <line num="253" type="stmt" count="0"/>
+        <line num="254" type="stmt" count="0"/>
+        <line num="256" type="stmt" count="0"/>
+        <line num="257" type="stmt" count="0"/>
+        <line num="258" type="stmt" count="0"/>
+        <line num="259" type="stmt" count="0"/>
+        <line num="279" type="method" name="get" crap="1" count="1"/>
+        <line num="281" type="stmt" count="1"/>
+        <line num="290" type="method" name="setMethod" crap="6" count="0"/>
+        <line num="292" type="stmt" count="0"/>
+        <line num="294" type="stmt" count="0"/>
         <line num="296" type="stmt" count="0"/>
         <line num="297" type="stmt" count="0"/>
-        <line num="300" type="stmt" count="0"/>
-        <line num="302" type="stmt" count="0"/>
-        <line num="311" type="method" name="setScheme" crap="110" count="0"/>
-        <line num="313" type="stmt" count="0"/>
+        <line num="298" type="stmt" count="0"/>
+        <line num="301" type="stmt" count="0"/>
+        <line num="310" type="method" name="setContentType" crap="6" count="0"/>
+        <line num="312" type="stmt" count="0"/>
+        <line num="314" type="stmt" count="0"/>
         <line num="315" type="stmt" count="0"/>
         <line num="316" type="stmt" count="0"/>
         <line num="319" type="stmt" count="0"/>
         <line num="321" type="stmt" count="0"/>
-        <line num="322" type="stmt" count="0"/>
-        <line num="323" type="stmt" count="0"/>
-        <line num="325" type="stmt" count="0"/>
-        <line num="327" type="stmt" count="0"/>
-        <line num="329" type="stmt" count="0"/>
-        <line num="330" type="stmt" count="0"/>
-        <line num="331" type="stmt" count="0"/>
+        <line num="330" type="method" name="setScheme" crap="6" count="0"/>
         <line num="332" type="stmt" count="0"/>
         <line num="334" type="stmt" count="0"/>
         <line num="335" type="stmt" count="0"/>
-        <line num="336" type="stmt" count="0"/>
+        <line num="338" type="stmt" count="0"/>
         <line num="339" type="stmt" count="0"/>
         <line num="340" type="stmt" count="0"/>
-        <line num="341" type="stmt" count="0"/>
-        <line num="343" type="stmt" count="0"/>
-        <line num="352" type="method" name="setIsSecure" crap="6" count="0"/>
-        <line num="354" type="stmt" count="0"/>
+        <line num="342" type="stmt" count="0"/>
+        <line num="351" type="method" name="setSchemeServerObjectHttps" crap="12" count="0"/>
+        <line num="353" type="stmt" count="0"/>
+        <line num="355" type="stmt" count="0"/>
         <line num="356" type="stmt" count="0"/>
         <line num="357" type="stmt" count="0"/>
-        <line num="358" type="stmt" count="0"/>
-        <line num="360" type="stmt" count="0"/>
-        <line num="369" type="method" name="setUser" crap="6" count="0"/>
-        <line num="371" type="stmt" count="0"/>
-        <line num="373" type="stmt" count="0"/>
+        <line num="359" type="stmt" count="0"/>
+        <line num="368" type="method" name="setSchemeServerObjectHttpForwarded" crap="12" count="0"/>
+        <line num="370" type="stmt" count="0"/>
+        <line num="372" type="stmt" count="0"/>
         <line num="374" type="stmt" count="0"/>
         <line num="375" type="stmt" count="0"/>
-        <line num="378" type="stmt" count="0"/>
-        <line num="380" type="stmt" count="0"/>
-        <line num="389" type="method" name="setPassword" crap="12" count="0"/>
+        <line num="376" type="stmt" count="0"/>
+        <line num="377" type="stmt" count="0"/>
+        <line num="379" type="stmt" count="0"/>
+        <line num="388" type="method" name="setSchemeServerObjectServerPort" crap="12" count="0"/>
+        <line num="390" type="stmt" count="0"/>
         <line num="391" type="stmt" count="0"/>
-        <line num="393" type="stmt" count="0"/>
+        <line num="392" type="stmt" count="0"/>
         <line num="394" type="stmt" count="0"/>
-        <line num="397" type="stmt" count="0"/>
-        <line num="398" type="stmt" count="0"/>
-        <line num="399" type="stmt" count="0"/>
-        <line num="402" type="stmt" count="0"/>
-        <line num="404" type="stmt" count="0"/>
-        <line num="413" type="method" name="setUserinfo" crap="6" count="0"/>
-        <line num="415" type="stmt" count="0"/>
-        <line num="417" type="stmt" count="0"/>
-        <line num="418" type="stmt" count="0"/>
-        <line num="421" type="stmt" count="0"/>
-        <line num="423" type="stmt" count="0"/>
-        <line num="433" type="method" name="setHost" crap="42" count="0"/>
-        <line num="435" type="stmt" count="0"/>
-        <line num="437" type="stmt" count="0"/>
-        <line num="439" type="stmt" count="0"/>
-        <line num="440" type="stmt" count="0"/>
-        <line num="441" type="stmt" count="0"/>
-        <line num="442" type="stmt" count="0"/>
+        <line num="403" type="method" name="setIsSecure" crap="6" count="0"/>
+        <line num="405" type="stmt" count="0"/>
+        <line num="407" type="stmt" count="0"/>
+        <line num="408" type="stmt" count="0"/>
+        <line num="409" type="stmt" count="0"/>
+        <line num="411" type="stmt" count="0"/>
+        <line num="420" type="method" name="setUser" crap="2" count="0"/>
+        <line num="422" type="stmt" count="0"/>
+        <line num="431" type="method" name="setPassword" crap="2" count="0"/>
+        <line num="433" type="stmt" count="0"/>
+        <line num="442" type="method" name="setUserPassword" crap="6" count="0"/>
         <line num="444" type="stmt" count="0"/>
-        <line num="445" type="stmt" count="0"/>
+        <line num="446" type="stmt" count="0"/>
+        <line num="447" type="stmt" count="0"/>
         <line num="448" type="stmt" count="0"/>
-        <line num="449" type="stmt" count="0"/>
         <line num="450" type="stmt" count="0"/>
-        <line num="451" type="stmt" count="0"/>
-        <line num="452" type="stmt" count="0"/>
-        <line num="453" type="stmt" count="0"/>
-        <line num="454" type="stmt" count="0"/>
-        <line num="456" type="stmt" count="0"/>
-        <line num="459" type="stmt" count="0"/>
-        <line num="460" type="stmt" count="0"/>
-        <line num="462" type="stmt" count="0"/>
-        <line num="465" type="stmt" count="0"/>
+        <line num="459" type="method" name="setUserinfo" crap="6" count="0"/>
+        <line num="461" type="stmt" count="0"/>
+        <line num="463" type="stmt" count="0"/>
+        <line num="464" type="stmt" count="0"/>
         <line num="467" type="stmt" count="0"/>
-        <line num="476" type="method" name="setPort" crap="56" count="0"/>
-        <line num="478" type="stmt" count="0"/>
-        <line num="479" type="stmt" count="0"/>
+        <line num="469" type="stmt" count="0"/>
+        <line num="478" type="method" name="setHost" crap="6" count="0"/>
+        <line num="480" type="stmt" count="0"/>
         <line num="481" type="stmt" count="0"/>
+        <line num="483" type="stmt" count="0"/>
         <line num="484" type="stmt" count="0"/>
-        <line num="486" type="stmt" count="0"/>
         <line num="487" type="stmt" count="0"/>
-        <line num="490" type="stmt" count="0"/>
-        <line num="492" type="stmt" count="0"/>
-        <line num="493" type="stmt" count="0"/>
-        <line num="495" type="stmt" count="0"/>
-        <line num="496" type="stmt" count="0"/>
-        <line num="499" type="stmt" count="0"/>
-        <line num="501" type="stmt" count="0"/>
-        <line num="510" type="method" name="setAuthority" crap="30" count="0"/>
-        <line num="512" type="stmt" count="0"/>
+        <line num="489" type="stmt" count="0"/>
+        <line num="491" type="stmt" count="0"/>
+        <line num="500" type="method" name="setHostServerNameAddress" crap="12" count="0"/>
+        <line num="502" type="stmt" count="0"/>
+        <line num="504" type="stmt" count="0"/>
+        <line num="505" type="stmt" count="0"/>
+        <line num="506" type="stmt" count="0"/>
+        <line num="507" type="stmt" count="0"/>
+        <line num="510" type="stmt" count="0"/>
+        <line num="511" type="stmt" count="0"/>
         <line num="514" type="stmt" count="0"/>
-        <line num="515" type="stmt" count="0"/>
-        <line num="516" type="stmt" count="0"/>
-        <line num="517" type="stmt" count="0"/>
-        <line num="518" type="stmt" count="0"/>
-        <line num="521" type="stmt" count="0"/>
-        <line num="523" type="stmt" count="0"/>
-        <line num="524" type="stmt" count="0"/>
+        <line num="523" type="method" name="setHostAndPort" crap="6" count="0"/>
         <line num="525" type="stmt" count="0"/>
-        <line num="528" type="stmt" count="0"/>
+        <line num="527" type="stmt" count="0"/>
+        <line num="529" type="stmt" count="0"/>
         <line num="530" type="stmt" count="0"/>
-        <line num="539" type="method" name="setQueryParameters" crap="42" count="0"/>
-        <line num="541" type="stmt" count="0"/>
-        <line num="543" type="stmt" count="0"/>
-        <line num="545" type="stmt" count="0"/>
-        <line num="546" type="stmt" count="0"/>
-        <line num="549" type="stmt" count="0"/>
-        <line num="550" type="stmt" count="0"/>
+        <line num="531" type="stmt" count="0"/>
+        <line num="532" type="stmt" count="0"/>
+        <line num="535" type="stmt" count="0"/>
+        <line num="537" type="stmt" count="0"/>
+        <line num="549" type="method" name="validateHost" crap="6" count="0"/>
+        <line num="551" type="stmt" count="0"/>
         <line num="552" type="stmt" count="0"/>
         <line num="553" type="stmt" count="0"/>
-        <line num="554" type="stmt" count="0"/>
         <line num="555" type="stmt" count="0"/>
-        <line num="556" type="stmt" count="0"/>
-        <line num="557" type="stmt" count="0"/>
         <line num="558" type="stmt" count="0"/>
-        <line num="559" type="stmt" count="0"/>
-        <line num="561" type="stmt" count="0"/>
-        <line num="562" type="stmt" count="0"/>
-        <line num="563" type="stmt" count="0"/>
-        <line num="566" type="stmt" count="0"/>
-        <line num="568" type="stmt" count="0"/>
+        <line num="567" type="method" name="setPort" crap="12" count="0"/>
+        <line num="569" type="stmt" count="0"/>
         <line num="570" type="stmt" count="0"/>
-        <line num="579" type="method" name="setQueryString" crap="20" count="0"/>
-        <line num="581" type="stmt" count="0"/>
-        <line num="583" type="stmt" count="0"/>
-        <line num="584" type="stmt" count="0"/>
-        <line num="587" type="stmt" count="0"/>
-        <line num="588" type="stmt" count="0"/>
-        <line num="589" type="stmt" count="0"/>
+        <line num="572" type="stmt" count="0"/>
+        <line num="575" type="stmt" count="0"/>
+        <line num="576" type="stmt" count="0"/>
+        <line num="577" type="stmt" count="0"/>
+        <line num="579" type="stmt" count="0"/>
+        <line num="588" type="method" name="setPortAllowDefault" crap="20" count="0"/>
         <line num="590" type="stmt" count="0"/>
-        <line num="592" type="stmt" count="0"/>
-        <line num="593" type="stmt" count="0"/>
+        <line num="591" type="stmt" count="0"/>
+        <line num="594" type="stmt" count="0"/>
         <line num="595" type="stmt" count="0"/>
-        <line num="604" type="method" name="setBaseUrl" crap="2" count="0"/>
-        <line num="606" type="stmt" count="0"/>
-        <line num="607" type="stmt" count="0"/>
-        <line num="609" type="stmt" count="0"/>
-        <line num="618" type="method" name="setPath" crap="30" count="0"/>
-        <line num="621" type="stmt" count="0"/>
-        <line num="622" type="stmt" count="0"/>
-        <line num="624" type="stmt" count="0"/>
-        <line num="625" type="stmt" count="0"/>
-        <line num="626" type="stmt" count="0"/>
+        <line num="598" type="stmt" count="0"/>
+        <line num="599" type="stmt" count="0"/>
+        <line num="602" type="stmt" count="0"/>
+        <line num="611" type="method" name="setPortAllowDefaultProtocol" crap="12" count="0"/>
+        <line num="613" type="stmt" count="0"/>
+        <line num="614" type="stmt" count="0"/>
+        <line num="617" type="stmt" count="0"/>
+        <line num="626" type="method" name="setAuthority" crap="2" count="0"/>
         <line num="628" type="stmt" count="0"/>
         <line num="629" type="stmt" count="0"/>
+        <line num="630" type="stmt" count="0"/>
+        <line num="631" type="stmt" count="0"/>
         <line num="632" type="stmt" count="0"/>
         <line num="634" type="stmt" count="0"/>
-        <line num="635" type="stmt" count="0"/>
-        <line num="636" type="stmt" count="0"/>
-        <line num="638" type="stmt" count="0"/>
-        <line num="640" type="stmt" count="0"/>
-        <line num="642" type="stmt" count="0"/>
-        <line num="651" type="method" name="setUrl" crap="6" count="0"/>
-        <line num="653" type="stmt" count="0"/>
-        <line num="654" type="stmt" count="0"/>
-        <line num="656" type="stmt" count="0"/>
-        <line num="657" type="stmt" count="0"/>
-        <line num="658" type="stmt" count="0"/>
-        <line num="661" type="stmt" count="0"/>
+        <line num="643" type="method" name="setAuthorityUser" crap="6" count="0"/>
+        <line num="645" type="stmt" count="0"/>
+        <line num="646" type="stmt" count="0"/>
+        <line num="647" type="stmt" count="0"/>
+        <line num="648" type="stmt" count="0"/>
+        <line num="649" type="stmt" count="0"/>
+        <line num="652" type="stmt" count="0"/>
+        <line num="661" type="method" name="setAuthorityPort" crap="20" count="0"/>
         <line num="664" type="stmt" count="0"/>
-        <metrics loc="663" ncloc="396" classes="1" methods="17" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="177" coveredstatements="5" elements="194" coveredelements="6"/>
+        <line num="665" type="stmt" count="0"/>
+        <line num="666" type="stmt" count="0"/>
+        <line num="669" type="stmt" count="0"/>
+        <line num="678" type="method" name="setQueryParameters" crap="12" count="0"/>
+        <line num="680" type="stmt" count="0"/>
+        <line num="681" type="stmt" count="0"/>
+        <line num="682" type="stmt" count="0"/>
+        <line num="685" type="stmt" count="0"/>
+        <line num="686" type="stmt" count="0"/>
+        <line num="687" type="stmt" count="0"/>
+        <line num="688" type="stmt" count="0"/>
+        <line num="691" type="stmt" count="0"/>
+        <line num="693" type="stmt" count="0"/>
+        <line num="695" type="stmt" count="0"/>
+        <line num="706" type="method" name="extractQueryParameterPairs" crap="20" count="0"/>
+        <line num="708" type="stmt" count="0"/>
+        <line num="710" type="stmt" count="0"/>
+        <line num="712" type="stmt" count="0"/>
+        <line num="713" type="stmt" count="0"/>
+        <line num="714" type="stmt" count="0"/>
+        <line num="715" type="stmt" count="0"/>
+        <line num="716" type="stmt" count="0"/>
+        <line num="717" type="stmt" count="0"/>
+        <line num="718" type="stmt" count="0"/>
+        <line num="719" type="stmt" count="0"/>
+        <line num="721" type="stmt" count="0"/>
+        <line num="730" type="method" name="setQueryString" crap="20" count="0"/>
+        <line num="732" type="stmt" count="0"/>
+        <line num="734" type="stmt" count="0"/>
+        <line num="735" type="stmt" count="0"/>
+        <line num="738" type="stmt" count="0"/>
+        <line num="739" type="stmt" count="0"/>
+        <line num="740" type="stmt" count="0"/>
+        <line num="741" type="stmt" count="0"/>
+        <line num="743" type="stmt" count="0"/>
+        <line num="744" type="stmt" count="0"/>
+        <line num="746" type="stmt" count="0"/>
+        <line num="755" type="method" name="setBaseUrl" crap="2" count="0"/>
+        <line num="757" type="stmt" count="0"/>
+        <line num="758" type="stmt" count="0"/>
+        <line num="760" type="stmt" count="0"/>
+        <line num="769" type="method" name="setPath" crap="6" count="0"/>
+        <line num="771" type="stmt" count="0"/>
+        <line num="772" type="stmt" count="0"/>
+        <line num="774" type="stmt" count="0"/>
+        <line num="775" type="stmt" count="0"/>
+        <line num="778" type="stmt" count="0"/>
+        <line num="780" type="stmt" count="0"/>
+        <line num="782" type="stmt" count="0"/>
+        <line num="791" type="method" name="setPathOrigPathInfo" crap="12" count="0"/>
+        <line num="793" type="stmt" count="0"/>
+        <line num="795" type="stmt" count="0"/>
+        <line num="796" type="stmt" count="0"/>
+        <line num="797" type="stmt" count="0"/>
+        <line num="799" type="stmt" count="0"/>
+        <line num="808" type="method" name="setPathCleanup" crap="6" count="0"/>
+        <line num="810" type="stmt" count="0"/>
+        <line num="811" type="stmt" count="0"/>
+        <line num="812" type="stmt" count="0"/>
+        <line num="814" type="stmt" count="0"/>
+        <line num="816" type="stmt" count="0"/>
+        <line num="818" type="stmt" count="0"/>
+        <line num="827" type="method" name="setUrl" crap="6" count="0"/>
+        <line num="829" type="stmt" count="0"/>
+        <line num="830" type="stmt" count="0"/>
+        <line num="832" type="stmt" count="0"/>
+        <line num="833" type="stmt" count="0"/>
+        <line num="834" type="stmt" count="0"/>
+        <line num="837" type="stmt" count="0"/>
+        <line num="840" type="stmt" count="0"/>
+        <metrics loc="839" ncloc="474" classes="1" methods="32" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="195" coveredstatements="1" elements="227" coveredelements="2"/>
       </file>
       <file name="/Users/amystephen/Sites/Molajo/Http/Source/Response.php">
         <class name="Response" namespace="Molajo\Http">
@@ -1438,7 +1471,7 @@
       <metrics loc="14" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="9" coveredstatements="0" elements="9" coveredelements="0"/>
     </file>
     <file name="/Users/amystephen/Sites/Molajo/Http/vendor/composer/autoload_real.php">
-      <class name="ComposerAutoloaderInit335473ced2aa997ef41264dab1aad457" namespace="global">
+      <class name="ComposerAutoloaderInitc257fccb3c296bff9d5c2777d5bde9e9" namespace="global">
         <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="27" coveredelements="0"/>
       </class>
       <line num="9" type="method" name="loadClassLoader" crap="6" count="0"/>
@@ -1472,6 +1505,6 @@
       <line num="53" type="stmt" count="0"/>
       <metrics loc="53" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="29" coveredelements="0"/>
     </file>
-    <metrics files="39" loc="4474" ncloc="2459" classes="26" methods="116" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="1180" coveredstatements="52" elements="1296" coveredelements="56"/>
+    <metrics files="39" loc="4650" ncloc="2537" classes="26" methods="131" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="1198" coveredstatements="48" elements="1329" coveredelements="52"/>
   </project>
 </coverage>
