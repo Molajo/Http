@@ -13,6 +13,7 @@ use CommonApi\Http\RequestInterface;
 use CommonApi\Exception\InvalidArgumentException;
 use Molajo\Http\Request\Authority;
 use Molajo\Http\Request\Scheme;
+use Molajo\Http\Request\Query;
 
 /**
  * Http Request Class
@@ -250,8 +251,12 @@ class Request implements RequestInterface
             $this->$key = $value;
         }
 
-        $this->setQueryParameters();
-        $this->setQueryString();
+        $query = new Query($this->server_object);
+        $results = $query->set();
+        foreach ($results as $key => $value) {
+            $this->$key = $value;
+        }
+
         $this->setBaseUrl();
         $this->setPath();
         $this->setUrl();
@@ -283,83 +288,6 @@ class Request implements RequestInterface
     public function get()
     {
         return $this->request;
-    }
-
-    /**
-     * Builds query parameters array with sorted key/value pairs
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setQueryParameters()
-    {
-        $query = $this->server_object['QUERY_STRING'];
-        if ($query == '') {
-            return $this;
-        }
-
-        $parameter_pairs = $this->extractQueryParameterPairs($query);
-        if (count($parameter_pairs) > 0) {
-        } else {
-            return $this;
-        }
-
-        ksort($parameter_pairs);
-
-        $this->parameters = $parameter_pairs;
-
-        return $this;
-    }
-
-    /**
-     * Extract the Parameter Pairs
-     *
-     * @param   string $query
-     *
-     * @return  array
-     * @since   1.0
-     */
-    protected function extractQueryParameterPairs($query)
-    {
-        $parameter_pairs = array();
-
-        $parts = explode("&", $query);
-
-        if (is_array($parts) && count($parts) > 0) {
-            foreach ($parts as $keyAndValue) {
-                $pair                  = explode('=', $keyAndValue);
-                $key                   = rawurlencode(urldecode($pair[0]));
-                $value                 = rawurlencode(urldecode($pair[1]));
-                $parameter_pairs[$key] = $value;
-            }
-        }
-
-        return $parameter_pairs;
-    }
-
-    /**
-     * Set normalized query string with sorted key/value pairs
-     *
-     * @return  $this
-     * @since   1.0
-     */
-    protected function setQueryString()
-    {
-        $this->query = '';
-
-        if (count($this->parameters) === 0) {
-            return $this;
-        }
-
-        foreach ($this->parameters as $key => $value) {
-            if ($this->query === '') {
-            } else {
-                $this->query .= '&';
-            }
-            $this->query .= $key . '=' . $value;
-        }
-
-        return $this;
     }
 
     /**
