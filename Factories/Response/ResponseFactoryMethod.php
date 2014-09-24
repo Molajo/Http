@@ -97,4 +97,18 @@ class ResponseFactoryMethod extends FactoryMethodBase implements FactoryInterfac
 
         return $this;
     }
+
+    /**
+     * Logic contained within this method is invoked after the class construction
+     *  and can be used for setter logic or other post-construction processing
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function onAfterInstantiation()
+    {
+        $this->product_result->send();
+
+        return $this;
+    }
 }

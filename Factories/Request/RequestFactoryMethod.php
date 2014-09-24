@@ -110,4 +110,22 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
 
         return $this->set_container_entries;
     }
+
+    /**
+     * Request for array of Factory Methods to be Scheduled
+     *
+     * @return  $this
+     * @since   1.0
+     */
+    public function scheduleFactories()
+    {
+        $options              = array();
+        $options['base_path'] = $this->base_path;
+
+        $this->schedule_factory_methods['Client'] = $options;
+        $this->schedule_factory_methods['Server'] = $options;
+        $this->schedule_factory_methods['Site']   = $options;
+
+        return $this->schedule_factory_methods;
+    }
 }

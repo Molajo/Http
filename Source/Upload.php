@@ -240,9 +240,9 @@ class Upload implements UploadInterface
     /**
      * Edit input
      *
-     * @param array               $error_messages
+     * @param array                      $error_messages
      * @param                     string $maximum_file_size
-     * @param array               $allowable_mimes_and_extensions
+     * @param array                      $allowable_mimes_and_extensions
      *
      * @return  $this
      * @since   1.0
@@ -590,6 +590,7 @@ class Upload implements UploadInterface
      * Upload Pre-processing
      *
      * @param string $target_path_and_file
+     *
      * @return  $this
      * @since   1.0
      */

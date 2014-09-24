@@ -307,6 +307,7 @@ class Client implements ClientInterface
      * Test Input
      *
      * @param string $name
+     *
      * @return  $this
      * @since   1.0
      */
