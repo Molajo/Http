@@ -2,7 +2,11 @@
     "name": "molajo/http",
     "type": "molajo-package",
     "description": "Molajo Http: Client, File Upload, Redirect, Request, Response, Server for PHP Applications",
-    "keywords": ["Http", "CommonApi", "Molajo"],
+    "keywords": [
+        "Http",
+        "CommonApi",
+        "Molajo"
+    ],
     "homepage": "http://github.com/Molajo/Http",
     "license": "MIT",
     "authors": [

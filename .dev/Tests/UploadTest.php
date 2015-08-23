@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http\Test;
 
@@ -13,7 +13,7 @@ namespace Molajo\Http\Test;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class UploadTest extends \PHPUnit_Framework_TestCase
@@ -183,7 +183,7 @@ class UploadTest extends \PHPUnit_Framework_TestCase
      * @covers  Molajo\Http\Upload::process
      * @expectedException \CommonApi\Exception\RuntimeException
      * @return void
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testSingleFileUploadNoOverwrite()
     {

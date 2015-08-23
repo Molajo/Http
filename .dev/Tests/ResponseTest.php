@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Tests\Http;
 
@@ -15,7 +15,7 @@ use Molajo\Http\Response;
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
@@ -294,7 +294,7 @@ class RedirectStub extends Response
      * Test Status
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testStatusHeader()
     {
@@ -307,7 +307,7 @@ class RedirectStub extends Response
      * Test Redirect Location
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testRedirectHeader()
     {
@@ -320,7 +320,7 @@ class RedirectStub extends Response
      * Test Date Formatting
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testDate()
     {
@@ -331,7 +331,7 @@ class RedirectStub extends Response
      * Test Date Formatting
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testHeaders()
     {
@@ -342,7 +342,7 @@ class RedirectStub extends Response
      * Test Date Formatting
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function testBody()
     {

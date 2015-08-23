@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http;
 
@@ -17,7 +17,7 @@ use CommonApi\Http\ResponseInterface;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Response implements ResponseInterface
@@ -161,7 +161,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      * @param   null  $body
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(
         $timezone = 'UTC',
@@ -179,7 +179,7 @@ class Response implements ResponseInterface
      * Send Headers and Body
      *
      * @return  void
-     * @since   1.0
+     * @since   1.0.0
      */
     public function send()
     {
@@ -202,7 +202,7 @@ class Response implements ResponseInterface
      * Send Headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setHeaders()
     {
@@ -222,7 +222,7 @@ class Response implements ResponseInterface
      * Send Headers
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function sendHeaders()
     {
@@ -241,7 +241,7 @@ class Response implements ResponseInterface
      * Send Body
      *
      * @return  void
-     * @since   1.0
+     * @since   1.0.0
      */
     public function sendBody()
     {
@@ -257,7 +257,7 @@ class Response implements ResponseInterface
      * @param   string $body
      *
      * @return  Response
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function processInjectedHeaders(array $headers, $body)
     {
@@ -288,7 +288,7 @@ class Response implements ResponseInterface
      * @param   string $method
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function processHeaderType($method, $headers)
     {
@@ -301,12 +301,13 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function unsetSpecificHeaders($headers)
     {
         $headers = $this->unsetHeaderArray($headers, 'Last-Modified');
         $headers = $this->unsetHeaderArray($headers, 'Language');
+
         return $this->unsetHeaderArray($headers, 'Cachable');
     }
 
@@ -316,7 +317,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setRemainingHeaders($headers)
     {
@@ -334,7 +335,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getRedirectURLFromInjectedHeaders(array $headers)
     {
@@ -353,7 +354,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getInjectedHeaderStatus(array $headers)
     {
@@ -366,7 +367,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getInjectedHeaderVersion(array $headers)
     {
@@ -381,7 +382,7 @@ class Response implements ResponseInterface
      * Set Redirect
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setRedirect()
     {
@@ -401,7 +402,7 @@ class Response implements ResponseInterface
      * Set Status
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setStatus()
     {
@@ -427,7 +428,7 @@ class Response implements ResponseInterface
      * @return  Response $body
      *
      * @return  Response
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function initialiseBodyBasedOnStatus($body)
     {
@@ -477,7 +478,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setHeadersLastModified(array $headers)
     {
@@ -502,7 +503,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setHeadersLanguage(array $headers)
     {
@@ -516,7 +517,7 @@ class Response implements ResponseInterface
      * @param string  $property
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getInjectedHeaderItem(array $headers, $property, $default)
     {
@@ -537,7 +538,7 @@ class Response implements ResponseInterface
      * @param   array $headers
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setHeadersCache(array $headers)
     {
@@ -561,7 +562,7 @@ class Response implements ResponseInterface
      * Get Date
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getDate()
     {

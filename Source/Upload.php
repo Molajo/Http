@@ -3,7 +3,7 @@
  * File Upload
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 namespace Molajo\Http;
@@ -17,7 +17,7 @@ use CommonApi\Filesystem\FilesystemInterface;
  *
  * @package    Molajo
  * @license    MIT
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Upload implements UploadInterface
@@ -155,7 +155,7 @@ class Upload implements UploadInterface
      * <input type="file" name="this_value" ... />
      *
      * @var     string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected $input_field_name = null;
 
@@ -163,7 +163,7 @@ class Upload implements UploadInterface
      * Overwrite Existing File
      *
      * @var     boolean
-     * @since   1.0
+     * @since   1.0.0
      */
     protected $overwrite_existing_file = false;
 
@@ -171,7 +171,7 @@ class Upload implements UploadInterface
      * Target Folder
      *
      * @var     string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected $target_folder;
 
@@ -179,7 +179,7 @@ class Upload implements UploadInterface
      * Target File
      *
      * @var     array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected $target_filename = array();
 
@@ -187,7 +187,7 @@ class Upload implements UploadInterface
      * Filesystem, optional
      *
      * @var     object  CommonApi\Filesystem\FilesystemInterface
-     * @since   1.0
+     * @since   1.0.0
      */
     protected $filesystem = null;
 
@@ -245,7 +245,7 @@ class Upload implements UploadInterface
      * @param array                      $allowable_mimes_and_extensions
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function editUploadInput(
         array $error_messages,
@@ -272,7 +272,7 @@ class Upload implements UploadInterface
      * Upload File(s)
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function process()
     {
@@ -295,7 +295,7 @@ class Upload implements UploadInterface
      * Upload Pre-processing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function preProcessingFileUpload()
     {
@@ -311,7 +311,7 @@ class Upload implements UploadInterface
      * Validate Form Token
      *
      * @return  boolean
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateFormToken()
@@ -336,7 +336,7 @@ class Upload implements UploadInterface
      * Validate Upload File is available in the $_FILE super global
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateInputFieldName()
@@ -353,7 +353,7 @@ class Upload implements UploadInterface
      * Create File Array takes the $_POST madness and turns it into something normal
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function createFileArray()
     {
@@ -376,7 +376,7 @@ class Upload implements UploadInterface
      * @param   array $raw
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function createFileArraySingleFile($raw)
     {
@@ -395,7 +395,7 @@ class Upload implements UploadInterface
      * @param   array $raw
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function createFileArrayMultipleFiles($raw)
     {
@@ -420,7 +420,7 @@ class Upload implements UploadInterface
      * @param   bool $single
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getTargetFileName($count = 0, $single = true)
     {
@@ -441,7 +441,7 @@ class Upload implements UploadInterface
      * Validate Target Directory
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateTargetFolder()
@@ -466,7 +466,7 @@ class Upload implements UploadInterface
      * @param   object $item
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function uploadSingleFile($item)
     {
@@ -488,7 +488,7 @@ class Upload implements UploadInterface
      * Validate the Upload Path and Filename
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function validateUploadPathFile($upload_path_and_file)
     {
@@ -504,7 +504,7 @@ class Upload implements UploadInterface
      * @param   string $upload_path_and_file
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateUploadFileExists($upload_path_and_file)
@@ -523,7 +523,7 @@ class Upload implements UploadInterface
      * @param   string $upload_path_and_file
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     protected function validateMimeType($upload_path_and_file)
@@ -546,7 +546,7 @@ class Upload implements UploadInterface
      * @param   string $upload_file
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function validateTargetPathFileName($target_filename, $upload_file)
     {
@@ -569,7 +569,7 @@ class Upload implements UploadInterface
      * @param   string $target_path_and_file
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function validateTargetFile($target_path_and_file)
     {
@@ -592,7 +592,7 @@ class Upload implements UploadInterface
      * @param string $target_path_and_file
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function uploadFile($upload_path_and_file, $target_path_and_file)
     {

@@ -4,19 +4,19 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http;
 
-use stdClass;
 use CommonApi\Http\RequestInterface;
+use stdClass;
 
 /**
  * Http Request Class
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  *
  * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
@@ -217,13 +217,14 @@ class Request implements RequestInterface
      *
      * @param   object $server_object
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct($server_object)
     {
         $this->server_object = $server_object;
 
         $this->request = new stdClass();
+
         $this->setRequest();
     }
 
@@ -231,9 +232,9 @@ class Request implements RequestInterface
      * Process Request
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
-    public function setRequest()
+    protected function setRequest()
     {
         $this->setRequestSubclass('Scheme');
         $this->setRequestSubclass('Authority');
@@ -253,9 +254,9 @@ class Request implements RequestInterface
      * @param   string $class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
-    public function setRequestSubclass($class)
+    protected function setRequestSubclass($class)
     {
         $fqn      = 'Molajo\\Http\\Request\\' . $class;
         $instance = new $fqn($this->server_object, $this->scheme);
@@ -284,7 +285,7 @@ class Request implements RequestInterface
      *
      * @link    http://tools.ietf.org/html/rfc3986
      * @return  object
-     * @since   1.0
+     * @since   1.0.0
      */
     public function get()
     {
@@ -295,7 +296,7 @@ class Request implements RequestInterface
      * Sets Base Url Value
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setBaseUrl()
     {
@@ -309,7 +310,7 @@ class Request implements RequestInterface
      * Sets Url Value
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUrl()
     {

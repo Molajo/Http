@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http\Request;
 
@@ -16,7 +16,7 @@ use CommonApi\Exception\InvalidArgumentException;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  *
  * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
@@ -131,7 +131,7 @@ class Authority
      * @param   object $server_object
      * @param   string $scheme
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(
         $server_object,
@@ -146,7 +146,7 @@ class Authority
      * Process Request
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function set()
     {
@@ -168,7 +168,7 @@ class Authority
      * Set the User
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUser()
     {
@@ -179,7 +179,7 @@ class Authority
      * Set the Password
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setPassword()
     {
@@ -193,7 +193,7 @@ class Authority
      * @param   string $server_object
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUserPassword($property, $server_object)
     {
@@ -210,7 +210,7 @@ class Authority
      * Set the Userinfo Value
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setUserinfo()
     {
@@ -229,7 +229,7 @@ class Authority
      * Set and Filter Host (potentially set port)
      *
      * @return  Authority
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setHost()
     {
@@ -331,7 +331,7 @@ class Authority
      * Set Port
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setPort()
     {
@@ -393,7 +393,7 @@ class Authority
      * Set Authority
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setAuthority()
     {
@@ -415,7 +415,7 @@ class Authority
      * Set Authority User
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setAuthorityUser()
     {
@@ -430,7 +430,7 @@ class Authority
      * Set Authority Port
      *
      * @return  string
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setAuthorityPort()
     {

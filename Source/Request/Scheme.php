@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http\Request;
 
@@ -15,7 +15,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Scheme
@@ -93,7 +93,7 @@ class Scheme
      *
      * @param   object $server_object
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(
         $server_object
@@ -106,7 +106,7 @@ class Scheme
      * Process Request
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function set()
     {
@@ -126,7 +126,7 @@ class Scheme
      * Get Request Method - 'GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH'
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setMethod()
     {
@@ -146,7 +146,7 @@ class Scheme
      * Set Content Type
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setContentType()
     {
@@ -166,7 +166,7 @@ class Scheme
      * Set the scheme and secure values
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setScheme()
     {
@@ -187,7 +187,7 @@ class Scheme
      * Check Server Object HTTPS
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setSchemeServerObjectHttps()
     {
@@ -204,7 +204,7 @@ class Scheme
      * Check Server Object HTTP_X_FORWARDED_PROTO
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setSchemeServerObjectHttpForwarded()
     {
@@ -221,7 +221,7 @@ class Scheme
      * Check Server Object SERVER_PORT
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setSchemeServerObjectServerPort()
     {
@@ -236,7 +236,7 @@ class Scheme
      * Set value indicating if request is a secure protocol
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setIsSecure()
     {

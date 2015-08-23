@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http;
 
@@ -16,7 +16,7 @@ use CommonApi\Http\ServerInterface;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Server implements ServerInterface
@@ -153,7 +153,7 @@ class Server implements ServerInterface
      *
      * @param   object $server_object
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(
         $server_object,
@@ -180,7 +180,7 @@ class Server implements ServerInterface
      *
      * @link    http://tools.ietf.org/html/rfc3986
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function get()
     {
@@ -191,7 +191,7 @@ class Server implements ServerInterface
      * Set Class Server Variables for the class property
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setServer()
     {
@@ -216,7 +216,7 @@ class Server implements ServerInterface
      * @param string $default
      *
      * @return  Server
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setStandardProperty($server_object_property, $property, $default = '')
     {

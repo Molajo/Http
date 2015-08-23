@@ -10,7 +10,7 @@
  *  at /usr/local/php5-5.4.15-20130520-154451/lib/php/PHPUnit/Util/Printer.php:172)
  *
  * @package    Molajo
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
  */
 include_once __DIR__ . '/Bootstrap.php';

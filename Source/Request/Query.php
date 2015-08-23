@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http\Request;
 
@@ -15,7 +15,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  *
  * URI Syntax (RFC 3986) http://tools.ietf.org/html/rfc3986
@@ -69,7 +69,7 @@ class Query
      *
      * @param   object $server_object
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct($server_object)
     {
@@ -80,7 +80,7 @@ class Query
      * Process Request
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function set()
     {
@@ -99,7 +99,7 @@ class Query
      * Builds query parameters array with sorted key/value pairs
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setQueryParameters()
     {
@@ -127,7 +127,7 @@ class Query
      * @param   string $query
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function extractQueryParameterPairs($query)
     {
@@ -151,7 +151,7 @@ class Query
      * Set normalized query string with sorted key/value pairs
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setQueryString()
     {

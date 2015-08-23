@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Factories\Request;
 
@@ -19,7 +19,7 @@ use Molajo\IoC\FactoryMethod\Base as FactoryMethodBase;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface, FactoryBatchInterface
@@ -44,7 +44,7 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Identify Class Dependencies for Constructor Injection
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function setDependencies(array $reflection = array())
@@ -61,7 +61,7 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Instantiate Class
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      * @throws  \CommonApi\Exception\RuntimeException
      */
     public function instantiateClass()
@@ -87,7 +87,7 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      *  and can be used for setter logic or other post-construction processing
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function onAfterInstantiation()
     {
@@ -100,7 +100,7 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Factory Method Controller requests any Products (other than the current product) to be saved
      *
      * @return  array
-     * @since   1.0
+     * @since   1.0.0
      */
     public function setContainerEntries()
     {
@@ -115,16 +115,12 @@ class RequestFactoryMethod extends FactoryMethodBase implements FactoryInterface
      * Request for array of Factory Methods to be Scheduled
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function scheduleFactories()
     {
-        $options              = array();
-        $options['base_path'] = $this->base_path;
-
-        $this->schedule_factory_methods['Client'] = $options;
-        $this->schedule_factory_methods['Server'] = $options;
-        $this->schedule_factory_methods['Site']   = $options;
+        $this->schedule_factory_methods['Client'] = array();
+        $this->schedule_factory_methods['Server'] = array();
 
         return $this->schedule_factory_methods;
     }

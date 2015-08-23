@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http\Request;
 
@@ -15,7 +15,7 @@ use stdClass;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Path
@@ -64,7 +64,7 @@ class Path
      *
      * @param   object $server_object
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct($server_object)
     {
@@ -76,7 +76,7 @@ class Path
      * Process Request
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     public function set()
     {
@@ -93,7 +93,7 @@ class Path
      * Returns Path
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setPath()
     {
@@ -115,7 +115,7 @@ class Path
      * Set Path using server object ORIG_PATH_INFO (IIS 5 and PHP as CGI)
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setPathOrigPathInfo()
     {
@@ -138,7 +138,7 @@ class Path
      * Set Path using server object ORIG_PATH_INFO
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setPathCleanup()
     {

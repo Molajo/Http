@@ -4,7 +4,7 @@
  *
  * @package    Molajo
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  */
 namespace Molajo\Http;
 
@@ -16,7 +16,7 @@ use CommonApi\Http\ClientInterface;
  *
  * @author     Amy Stephen
  * @license    http://www.opensource.org/licenses/mit-license.html MIT License
- * @copyright  2014 Amy Stephen. All rights reserved.
+ * @copyright  2014-2015 Amy Stephen. All rights reserved.
  * @since      1.0.0
  */
 class Client implements ClientInterface
@@ -286,7 +286,7 @@ class Client implements ClientInterface
      * @param   array  $browsers
      * @param   array  $bots
      *
-     * @since   1.0
+     * @since   1.0.0
      */
     public function __construct(
         $server_object = null,
@@ -309,7 +309,7 @@ class Client implements ClientInterface
      * @param string $name
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function testInput(array $input, $name)
     {
@@ -324,7 +324,7 @@ class Client implements ClientInterface
      * Process Request
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientData()
     {
@@ -343,7 +343,7 @@ class Client implements ClientInterface
      * Get the current value (or default) of the specified key
      *
      * @return  stdClass
-     * @since   1.0
+     * @since   1.0.0
      */
     public function get()
     {
@@ -354,7 +354,7 @@ class Client implements ClientInterface
      * Remote Address for Client
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getRemoteAddress()
     {
@@ -371,7 +371,7 @@ class Client implements ClientInterface
      * Remote Address for Client - no HTTP_CLIENT_IP
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function getRemoteAddressNoHttpClientIP()
     {
@@ -386,7 +386,7 @@ class Client implements ClientInterface
      * Set Remote Host
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setRemoteHost()
     {
@@ -404,7 +404,7 @@ class Client implements ClientInterface
      * Determine if Request is the result of an Ajax call
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function isAjax()
     {
@@ -426,7 +426,7 @@ class Client implements ClientInterface
      * Determine if Request is the result of an CLI call
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function isCli()
     {
@@ -443,7 +443,7 @@ class Client implements ClientInterface
      * Get client information using HTTP_USER_AGENT (Warning: such data is not reliable)
      *
      * @return  client
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClient()
     {
@@ -468,7 +468,7 @@ class Client implements ClientInterface
      * @param   string $user_agent
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientMobileDevice($user_agent)
     {
@@ -491,7 +491,7 @@ class Client implements ClientInterface
      * @param   string $user_agent
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientBrowser($user_agent)
     {
@@ -516,7 +516,7 @@ class Client implements ClientInterface
      * @param   string $user_agent
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientPlatform($user_agent)
     {
@@ -539,7 +539,7 @@ class Client implements ClientInterface
      * Set Client Desktop
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientDesktop()
     {
@@ -558,7 +558,7 @@ class Client implements ClientInterface
      * @param   string $user_agent
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientBot($user_agent)
     {
@@ -579,7 +579,7 @@ class Client implements ClientInterface
      * User Agent Unknown
      *
      * @return  $this
-     * @since   1.0
+     * @since   1.0.0
      */
     protected function setClientUnknownAgent()
     {
